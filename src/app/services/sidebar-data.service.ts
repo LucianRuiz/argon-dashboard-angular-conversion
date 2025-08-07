@@ -7,20 +7,20 @@ import { SidebarData } from '../components/layout/sidebar/sidebar';
  * This Angular service provides configuration and mock data for the application's sidebar navigation.
  * It supplies the structure, sections, and items for the sidebar, supporting different layouts and modules.
  * The service is intended for demo and UI prototyping purposes, simulating backend responses for sidebar navigation.
- * 
+ *
  * The service manages:
  * - Navigation structure with hierarchical menu items
  * - Logo and branding configuration
  * - Section organization (Dashboards, Pages, Applications, Ecommerce, Authentication)
  * - Footer visibility settings
  * - Icon and color theming
- * 
+ *
  * @version 1.0.0
  * @since 2024
  */
 @Injectable({ providedIn: 'root' })
 export class SidebarDataService {
-  
+
   /**
    * Base sidebar configuration containing the complete navigation structure.
    * This includes all sections, items, and their hierarchical relationships.
@@ -31,42 +31,7 @@ export class SidebarDataService {
     logoText: 'Argon Dashboard 2 PRO',
     showFooter: true,
     sections: [
-      // Section without items
-      {
-        title: 'Empty section',
-        icon: 'ni ni-circle-08',
-        iconColor: 'text-pink-500',
-        isExpanded: false,
-        items: [],
-        route: '/empty-section'
-      },
-      // Example of individual item
-      {
-        title: 'Home',
-        icon: 'ni ni-world',
-        iconColor: 'text-green-500',
-        isExpanded: false,
-        items: [
-          { title: 'Home', route: '/home', miniText: 'H', icon: 'ni ni-world' }
-        ]
-      },
-      // Example of section with dropdown
-      {
-        title: 'Example with Child',
-        icon: 'ni ni-folder-17',
-        iconColor: 'text-purple-500',
-        isExpanded: false,
-        items: [
-          {
-            title: 'Parent',
-            miniText: 'P',
-            icon: 'ni ni-folder-17',
-            children: [
-              { title: 'Child', route: '/example/child', miniText: 'C', icon: 'ni ni-single-02' }
-            ]
-          }
-        ]
-      },
+
       {
         title: 'Dashboards',
         icon: 'ni ni-shop',
@@ -77,9 +42,9 @@ export class SidebarDataService {
           { title: 'Default', route: '/dashboard/default', miniText: 'D', icon: '' },
           { title: 'Automotive', route: '/dashboard/automotive', miniText: 'A', icon: '' },
           { title: 'Smart Home', route: '/dashboard/smart-home', miniText: 'S', icon: '' },
-          { 
-            title: 'Virtual Reality', 
-            miniText: 'V', 
+          {
+            title: 'Virtual Reality',
+            miniText: 'V',
             icon: '',
             children: [
               { title: 'VR Default', route: '/dashboard/virtual-reality/vr-default', miniText: 'V', icon: '' },
@@ -97,9 +62,9 @@ export class SidebarDataService {
         iconColor: 'text-orange-500',
         isExpanded: false,
         items: [
-          { 
-            title: 'Profile', 
-            miniText: 'P', 
+          {
+            title: 'Profile',
+            miniText: 'P',
             icon: '',
             children: [
               { title: 'Profile Overview', route: '/pages/profile/overview', miniText: 'P', icon: '' },
@@ -107,18 +72,18 @@ export class SidebarDataService {
               { title: 'All Projects', route: '/pages/profile/projects', miniText: 'A', icon: '' }
             ]
           },
-          { 
-            title: 'Users', 
-            miniText: 'U', 
+          {
+            title: 'Users',
+            miniText: 'U',
             icon: '',
             children: [
               { title: 'Reports', route: '/pages/users/reports', miniText: 'R', icon: '' },
               { title: 'New User', route: '/pages/users/new-user', miniText: 'N', icon: '' }
             ]
           },
-          { 
-            title: 'Account', 
-            miniText: 'A', 
+          {
+            title: 'Account',
+            miniText: 'A',
             icon: '',
             children: [
               { title: 'Settings', route: '/pages/account/settings', miniText: 'S', icon: '' },
@@ -127,9 +92,9 @@ export class SidebarDataService {
               { title: 'Security', route: '/pages/account/security', miniText: 'S', icon: '' }
             ]
           },
-          { 
-            title: 'Projects', 
-            miniText: 'P', 
+          {
+            title: 'Projects',
+            miniText: 'P',
             icon: '',
             children: [
               { title: 'General', route: '/pages/projects/general', miniText: 'G', icon: '' },
@@ -165,9 +130,9 @@ export class SidebarDataService {
         isExpanded: false,
         items: [
           { title: 'Overview', route: '/ecommerce/overview', miniText: 'O', icon: '' },
-          { 
-            title: 'Products', 
-            miniText: 'P', 
+          {
+            title: 'Products',
+            miniText: 'P',
             icon: '',
             children: [
               { title: 'New Product', route: '/ecommerce/products/new-product', miniText: 'N', icon: '' },
@@ -176,9 +141,9 @@ export class SidebarDataService {
               { title: 'Products List', route: '/ecommerce/products/products-list', miniText: 'P', icon: '' }
             ]
           },
-          { 
-            title: 'Orders', 
-            miniText: 'O', 
+          {
+            title: 'Orders',
+            miniText: 'O',
             icon: '',
             children: [
               { title: 'Order List', route: '/ecommerce/orders/order-list', miniText: 'L', icon: '' },
@@ -194,9 +159,9 @@ export class SidebarDataService {
         iconColor: 'text-red-600',
         isExpanded: false,
         items: [
-          { 
-            title: 'Sign In', 
-            miniText: 'S', 
+          {
+            title: 'Sign In',
+            miniText: 'S',
             icon: '',
             children: [
               { title: 'Basic', route: '/pages/authentication/signin/basic', miniText: 'B', icon: '' },
@@ -204,9 +169,9 @@ export class SidebarDataService {
               { title: 'Illustration', route: '/pages/authentication/signin/illustration', miniText: 'I', icon: '' }
             ]
           },
-          { 
-            title: 'Sign Up', 
-            miniText: 'S', 
+          {
+            title: 'Sign Up',
+            miniText: 'S',
             icon: '',
             children: [
               { title: 'Basic', route: '/pages/authentication/signup/basic', miniText: 'B', icon: '' },
@@ -214,9 +179,9 @@ export class SidebarDataService {
               { title: 'Illustration', route: '/pages/authentication/signup/illustration', miniText: 'I', icon: '' }
             ]
           },
-          { 
-            title: 'Reset Password', 
-            miniText: 'R', 
+          {
+            title: 'Reset Password',
+            miniText: 'R',
             icon: '',
             children: [
               { title: 'Basic', route: '/pages/authentication/reset/basic', miniText: 'B', icon: '' },
@@ -224,9 +189,9 @@ export class SidebarDataService {
               { title: 'Illustration', route: '/pages/authentication/reset/illustration', miniText: 'I', icon: '' }
             ]
           },
-          { 
-            title: 'Lock', 
-            miniText: 'L', 
+          {
+            title: 'Lock',
+            miniText: 'L',
             icon: '',
             children: [
               { title: 'Basic', route: '/pages/authentication/lock/basic', miniText: 'B', icon: '' },
@@ -234,9 +199,9 @@ export class SidebarDataService {
               { title: 'Illustration', route: '/pages/authentication/lock/illustration', miniText: 'I', icon: '' }
             ]
           },
-          { 
-            title: '2-Step Verification', 
-            miniText: 'V', 
+          {
+            title: '2-Step Verification',
+            miniText: 'V',
             icon: '',
             children: [
               { title: 'Basic', route: '/pages/authentication/verification/basic', miniText: 'B', icon: '' },
@@ -249,7 +214,7 @@ export class SidebarDataService {
         ]
       },
       // --- DOCS HEADER ---
-     
+
       {
         title: 'Basic',
         showHeader: true,
@@ -417,7 +382,7 @@ export class SidebarDataService {
 
   /**
    * Retrieves the default sidebar configuration with footer enabled.
-   * 
+   *
    * @returns SidebarData - Complete sidebar configuration with all sections and items
    */
   getDefaultSidebar(): SidebarData {
@@ -426,10 +391,10 @@ export class SidebarDataService {
 
   /**
    * Retrieves sidebar configuration without footer for specific layouts.
-   * 
+   *
    * @returns SidebarData - Sidebar configuration with footer disabled
    */
   getSidebarWithoutFooter(): SidebarData {
     return { ...this.baseSidebarData, showFooter: false };
   }
-} 
+}
