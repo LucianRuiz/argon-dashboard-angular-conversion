@@ -1,0 +1,106 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full px-6 py-6 mx-auto">
+    <ng-container *ngIf="statsCards$ | async as statsCards">
+      <ng-container *ngIf="newTabCard$ | async as newTabCard">
+        <div class="flex flex-wrap -mx-3">
+          <!-- Left column -->
+          <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 lg:w-7/12 xl:w-8/12">
+            <div class="flex flex-wrap -mx-3">
+              <!-- Stats cards -->
+              <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-4/12">
+                <app-crm-stats-card [data]="statsCards[0]"></app-crm-stats-card>
+              </div>
+              <div class="w-full max-w-full px-3 mt-6 sm:flex-0 shrink-0 sm:mt-0 sm:w-4/12">
+                <app-crm-stats-card [data]="statsCards[1]"></app-crm-stats-card>
+              </div>
+              <div class="w-full max-w-full px-3 mt-6 sm:flex-0 shrink-0 sm:mt-0 sm:w-4/12">
+                <app-new-tab-card [data]="newTabCard"></app-new-tab-card>
+              </div>
+            </div>
+            
+            <!-- Calendar widget -->
+            <ng-container *ngIf="calendarWidget$ | async as calendarWidget">
+              <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 flex-0">
+                  <app-calendar-widget [data]="calendarWidget"></app-calendar-widget>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Right column -->
+          <div class="w-full max-w-full px-3 mt-6 lg:flex-0 shrink-0 lg:mt-0 lg:w-5/12 xl:w-4/12">
+            <div class="flex flex-wrap -mx-3">
+              <!-- Main birthday card -->
+              <ng-container *ngIf="birthdayCard$ | async as birthdayCard">
+                <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-4/12 lg:w-full">
+                  <app-birthday-card [data]="birthdayCard"></app-birthday-card>
+                </div>
+              </ng-container>
+              
+              <!-- Categories widget -->
+              <ng-container *ngIf="categoriesWidget$ | async as categoriesWidget">
+                <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-6/12 lg:w-full">
+                  <app-categories-widget [data]="categoriesWidget"></app-categories-widget>
+                </div>
+              </ng-container>
+              
+              <!-- Birthday notification -->
+              <ng-container *ngIf="birthdayNotification$ | async as birthdayNotification">
+                <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-6/12 lg:w-full">
+                  <div class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative mt-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap -mx-3">
+                        <div class="w-4/12 max-w-full px-3 flex-0">
+                          <img src="assets/img/kal-visuals-square.jpg" alt="kal" class="w-full shadow-2xl rounded-xl" />
+                        </div>
+                        <div class="w-8/12 max-w-full px-3 my-auto flex-0">
+                          <p class="text-sm font-semibold leading-normal text-slate-500 dark:text-white dark:opacity-60">{{birthdayNotification.title}}</p>
+                          <a class="inline-block px-8 py-2 mb-0 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in rounded-lg shadow-md cursor-pointer bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25" href="javascript:;">{{birthdayNotification.buttonText}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <!-- Transactions and revenue tables -->
+    <ng-container *ngIf="transactionsTable$ | async as transactionsTable">
+      <ng-container *ngIf="revenueTable$ | async as revenueTable">
+        <div class="flex flex-wrap mt-6 -mx-3">
+          <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-6/12">
+            <app-transactions-table [data]="transactionsTable"></app-transactions-table>
+          </div>
+          <div class="w-full max-w-full px-3 mt-6 sm:flex-0 shrink-0 sm:mt-0 sm:w-6/12">
+            <app-revenue-table [data]="revenueTable"></app-revenue-table>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div>

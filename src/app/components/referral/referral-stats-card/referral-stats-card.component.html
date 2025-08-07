@@ -1,0 +1,12 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-xl bg-clip-border" *ngFor="let stat of stats">
+    <div class="p-6 text-center">
+      <h6 class="mb-2 text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500">{{ stat.title }}</h6>
+      <h4 class="text-2xl font-bold dark:text-white">
+        <span class="text-lg" *ngIf="stat.prefix">{{ stat.prefix }}</span>
+        <span>{{ stat.value | number }}</span>
+        <span class="text-lg" *ngIf="stat.suffix">{{ stat.suffix }}</span>
+      </h4>
+    </div>
+  </div>
+</div> 

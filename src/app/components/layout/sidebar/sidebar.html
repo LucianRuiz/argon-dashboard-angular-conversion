@@ -1,0 +1,155 @@
+<aside [class]="sidebarClasses()" id="sidenav-main" appPerfectScrollbar>
+  <!-- Header -->
+  <div class="h-20">
+    <i [class]="closeButtonClasses()" aria-hidden="true"></i>
+    <a [class]="logoLinkClasses()" href="#" target="_blank">
+      <img [src]="data.logoUrl" [class]="logoDarkClasses()" alt="main_logo" />
+      <img [src]="data.logoAltUrl" [class]="logoLightClasses()" alt="main_logo" />
+      <span class="ml-1 font-semibold">{{ data.logoText }}</span>
+    </a>
+  </div>
+  
+  <!-- Divider -->
+  <hr [class]="dividerClasses()" />
+  
+  <!-- Navigation -->
+  <div class="items-center block w-full h-auto grow basis-full" id="sidenav-collapse-main">
+    <ul class="flex flex-col pl-0 mb-0 list-none">
+      
+      <!-- Dynamic Sections -->
+      <ng-container *ngFor="let section of data.sections; let sectionIndex = index">
+        
+        <!-- Section Header with optional separating HR (for DOCS section) -->
+        <li class="w-full mt-4" *ngIf="section.showHeader">
+          <hr [class]="dividerClasses()" *ngIf="section.headerTitle === 'DOCS'" class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+          <h6 [class]="sectionHeaderClasses()">
+            {{ section.headerTitle ? section.headerTitle : section.title.toUpperCase() }}
+          </h6>
+        </li>
+        
+        <!-- Section Main Item -->
+        <li class="mt-0.5 w-full">
+          <!-- Simple link for sections without items (like Changelog) -->
+          <a *ngIf="!section.items || section.items.length === 0" 
+             [class]="primaryLinkNoCaretClasses() + (section.isActive ? ' bg-blue-500/30 font-semibold text-slate-800 dark:text-white dark:opacity-100 rounded-lg' : '')"
+             [href]="section.route || 'javascript:;'" 
+             [target]="section.route && section.route.startsWith('http') ? '_blank' : '_self'">
+            <div class="stroke-none flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
+              <i [class]="primaryIconClasses()(section.icon, section.iconColor)"></i>
+            </div>
+            <span [class]="primaryTextClasses()">{{ section.title }}</span>
+          </a>
+
+          <!-- Expandable section with items -->
+          <ng-container *ngIf="section.items && section.items.length > 0">
+            <a [class]="primaryLinkClasses()(section.isActive)" 
+               href="javascript:;" 
+               [attr.aria-expanded]="section.isExpanded"
+               [attr.active_primary]="section.isActive ? '' : null"
+               (click)="toggleSection(sectionIndex)">
+              <div class="stroke-none flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
+                <i [class]="primaryIconClasses()(section.icon, section.iconColor)"></i>
+              </div>
+              <span [class]="primaryTextClasses()">{{ section.title }}</span>
+            </a>
+
+            <!-- Section Items -->
+            <div class="h-auto overflow-hidden transition-all duration-200 ease-in-out" 
+                 [class.max-h-0]="!section.isExpanded">
+              <ul class="flex flex-wrap mb-0 ml-6 list-none transition-all duration-200 ease-in-out">
+                <li class="w-full" *ngFor="let item of section.items; trackBy: trackByItem">
+                  
+                  <!-- Regular Item -->
+                  <a *ngIf="item.route && !item.route.startsWith('http') && (!item.children || item.children.length === 0)"
+                     [class]="secondaryLinkClasses()(item.isActive)" 
+                     [routerLink]="item.route"
+                     target="_self">
+                    <span class="w-0 text-center transition-all duration-200 ease-in-out opacity-0 pointer-events-none">{{ item.miniText }}</span>
+                    <span class="transition-all duration-100 pointer-events-none ease">{{ item.title }}</span>
+                  </a>
+                  <a *ngIf="item.route && item.route.startsWith('http') && (!item.children || item.children.length === 0)"
+                     [class]="secondaryLinkClasses()(item.isActive)" 
+                     [href]="item.route"
+                     target="_blank">
+                    <span class="w-0 text-center transition-all duration-200 ease-in-out opacity-0 pointer-events-none">{{ item.miniText }}</span>
+                    <span class="transition-all duration-100 pointer-events-none ease">{{ item.title }}</span>
+                  </a>
+                  
+                  <!-- Item with Children -->
+                  <ng-container *ngIf="item.children && item.children.length > 0">
+                    <a [class]="secondaryLinkWithChildrenClasses()(item.isExpanded, item.isActive)"
+                       href="javascript:;" 
+                       [attr.aria-expanded]="item.isExpanded"
+                       (click)="toggleSubItem(sectionIndex, item)">
+                      <span class="w-0 text-center transition-all duration-200 ease-in-out opacity-0 pointer-events-none">{{ item.miniText }}</span>
+                      <span class="transition-all duration-100 pointer-events-none ease">{{ item.title }} <b class="caret"></b></span>
+                    </a>
+
+                    <div class="h-auto overflow-hidden transition-all duration-200 ease-in-out"
+                         [class.max-h-0]="!item.isExpanded">
+                      <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-in-out">
+                        <li class="w-full" *ngFor="let childItem of item.children; trackBy: trackByItem">
+                          <a *ngIf="childItem.route && !childItem.route.startsWith('http')"
+                             [class]="thirdLevelLinkClasses()(childItem.isActive)"
+                             [routerLink]="childItem.route"
+                             target="_self">
+                            <span class="w-0 text-xs leading-tight text-center transition-all duration-200 ease-in-out opacity-0 pointer-events-none">{{ childItem.miniText }}</span>
+                            <span class="transition-all duration-100 pointer-events-none ease">{{ childItem.title }}</span>
+                          </a>
+                          <a *ngIf="childItem.route && childItem.route.startsWith('http')"
+                             [class]="thirdLevelLinkClasses()(childItem.isActive)"
+                             [href]="childItem.route"
+                             target="_blank">
+                            <span class="w-0 text-xs leading-tight text-center transition-all duration-200 ease-in-out opacity-0 pointer-events-none">{{ childItem.miniText }}</span>
+                            <span class="transition-all duration-100 pointer-events-none ease">{{ childItem.title }}</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </ng-container>
+                  
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </li>
+        
+      </ng-container>
+      
+    </ul>
+  </div>
+
+  <!-- Sidebar footer card -->
+  <div [class]="footerContainerClasses()" sidenav-card *ngIf="data.footer?.enabled">
+    <!-- load phantom colors for card after: -->
+    <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 bg-gray-500/30 bg-cyan-500/30 bg-emerald-500/30 bg-orange-500/30 bg-red-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p>
+    <div [class]="footerCardClasses()">
+      <img 
+        *ngIf="data.footer?.image"
+        [class]="footerImageClasses()" 
+        [src]="data.footer?.image" 
+        [alt]="data.footer?.imageAlt || 'sidebar footer image'" />
+      <div [class]="footerContentClasses()">
+        <div [class]="footerContentInnerClasses()">
+          <h6 
+            *ngIf="data.footer?.title"
+            [class]="footerTitleClasses()">
+            {{ data.footer?.title }}
+          </h6>
+          <p 
+            *ngIf="data.footer?.description"
+            [class]="footerDescriptionClasses()">
+            {{ data.footer?.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <a 
+      *ngIf="data.footer?.buttonText && data.footer?.buttonUrl"
+      [href]="data.footer?.buttonUrl" 
+      [target]="data.footer?.buttonTarget || '_self'" 
+      [class]="footerButtonClasses()(data.footer?.buttonClasses)">
+      {{ data.footer?.buttonText }}
+    </a>
+  </div>
+</aside> 

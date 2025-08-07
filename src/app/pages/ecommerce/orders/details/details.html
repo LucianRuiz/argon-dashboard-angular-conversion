@@ -1,0 +1,63 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full px-6 py-6 mx-auto">
+      <!-- Order Details Content -->
+      <div class="flex flex-wrap mb-12 -mx-3">
+        <div class="w-full max-w-full px-3 mx-auto lg:flex-0 lg:w-8/12 shrink-0">
+          <div class="relative flex flex-col min-w-0 my-12 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            
+            <!-- Order Header -->
+            <app-order-header *ngIf="orderHeaderData$ | async as orderHeaderData" [data]="orderHeaderData"></app-order-header>
+            
+            <div class="flex-auto p-4 pt-0">
+              <hr class="h-px mt-0 mb-6 bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+              
+              <!-- Product Info -->
+              <app-product-info *ngIf="productInfoData$ | async as productInfoData" [data]="productInfoData"></app-product-info>
+              
+              <hr class="h-px my-6 bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+              
+              <div class="flex flex-wrap -mx-3">
+                <!-- Tracking Timeline -->
+                <div class="w-full max-w-full px-3 lg:w-3/12 flex-0 md:w-6/12">
+                  <app-tracking-timeline *ngIf="trackingTimelineData$ | async as trackingTimelineData" [data]="trackingTimelineData"></app-tracking-timeline>
+                </div>
+                
+                <!-- Payment Details and Billing -->
+                <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-5/12">
+                  <!-- Order Payment Details -->
+                  <app-order-payment-details *ngIf="orderPaymentDetailsData$ | async as orderPaymentDetailsData" [data]="orderPaymentDetailsData"></app-order-payment-details>
+                  
+                  <!-- Order Billing Info -->
+                  <app-order-billing-info *ngIf="orderBillingInfoData$ | async as orderBillingInfoData" [data]="orderBillingInfoData"></app-order-billing-info>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="w-full max-w-full px-3 ml-auto lg:w-3/12 flex-0">
+                  <app-order-summary *ngIf="orderSummaryData$ | async as orderSummaryData" [data]="orderSummaryData"></app-order-summary>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

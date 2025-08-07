@@ -1,0 +1,90 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Settings Navigation Tabs -->
+    <div class="w-full px-6 mx-auto mt-16">
+      <div class="flex flex-wrap items-center -mx-3">
+        <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-8/12 lg:w-4/12">
+          <ng-container *ngIf="settingsTabsData$ | async as tabsData">
+            <app-settings-tabs [data]="tabsData"></app-settings-tabs>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Content -->
+    <div class="w-full p-6 py-4 mx-auto my-12">
+      <div class="flex flex-wrap mb-12 -mx-3">
+        
+        <!-- Left Sidebar Navigation -->
+        <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 lg:w-3/12">
+          <ng-container *ngIf="settingsNavigationData$ | async as navigationData">
+            <app-settings-navigation [data]="navigationData"></app-settings-navigation>
+          </ng-container>
+        </div>
+        
+        <!-- Right Content Area -->
+        <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 lg:w-9/12">
+          
+          <!-- Profile Section -->
+          <ng-container *ngIf="profileData$ | async as profileData">
+            <app-profile-section [data]="profileData"></app-profile-section>
+          </ng-container>
+          
+          <!-- Basic Info Section -->
+          <ng-container *ngIf="basicInfoData$ | async as basicInfoData">
+            <app-basic-info-section [data]="basicInfoData"></app-basic-info-section>
+          </ng-container>
+          
+          <!-- Password Section -->
+          <ng-container *ngIf="passwordData$ | async as passwordData">
+            <app-password-section [data]="passwordData"></app-password-section>
+          </ng-container>
+          
+          <!-- Two-Factor Authentication Section -->
+          <ng-container *ngIf="twoFactorData$ | async as twoFactorData">
+            <app-two-factor-section [data]="twoFactorData"></app-two-factor-section>
+          </ng-container>
+          
+          <!-- Accounts Section -->
+          <ng-container *ngIf="accountsData$ | async as accountsData">
+            <app-accounts-section [data]="accountsData"></app-accounts-section>
+          </ng-container>
+          
+          <!-- Notifications Section -->
+          <ng-container *ngIf="notificationsData$ | async as notificationsData">
+            <app-notifications-section [data]="notificationsData"></app-notifications-section>
+          </ng-container>
+          
+          <!-- Sessions Section -->
+          <ng-container *ngIf="sessionsData$ | async as sessionsData">
+            <app-sessions-section [data]="sessionsData"></app-sessions-section>
+          </ng-container>
+          
+          <!-- Delete Account Section -->
+          <ng-container *ngIf="deleteAccountData$ | async as deleteAccountData">
+            <app-delete-account-section [data]="deleteAccountData"></app-delete-account-section>
+          </ng-container>
+          
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

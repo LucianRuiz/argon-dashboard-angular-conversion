@@ -1,0 +1,82 @@
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80 h-screen overflow-hidden">
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <main class="relative h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+    
+    <div class="w-full p-6 mx-auto">
+      <div class="flex flex-wrap -mx-3 min-h-80-screen">
+        <div class="w-full max-w-full px-3 mx-auto shrink-0 md:flex-0 lg:w-8/12">
+          <div class="mt-2 places-sweet-alerts">
+            <h2 class="text-center text-white">Sweet Alert</h2>
+            <p class="text-center text-white">A beautiful plugin, that replace the classic alert, Handcrafted by our friend <a class="text-white" target="_blank" href="https://twitter.com/t4t5">Tristan Edwards</a>. Please check out the <a class="text-white" href="https://sweetalert2.github.io/" target="_blank">full documentation.</a></p>
+          </div>
+          
+          <!-- CONTENIDO PRINCIPAL DE LA PÁGINA -->
+          <!-- Aquí se agregarán los componentes de Sweet Alert en el PASO 3 -->
+          
+          <!-- PRIMERA FILA DE TARJETAS (3 tarjetas) -->
+          <div class="flex flex-wrap mt-6 -mx-3" *ngIf="sweetAlertPageData$ | async as pageData">
+            <!-- Tarjeta 1: Basic example -->
+            <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[0]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 2: A success message -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[1]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 3: Custom HTML description -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[2]"></app-sweet-alert-card>
+            </div>
+          </div>
+          
+          <!-- SEGUNDA FILA DE TARJETAS (3 tarjetas) -->
+          <div class="flex flex-wrap mt-6 -mx-3" *ngIf="sweetAlertPageData$ | async as pageData">
+            <!-- Tarjeta 4: Gitgub avatar request -->
+            <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[3]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 5: A title with a text under -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[4]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 6: A message with auto close -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[5]"></app-sweet-alert-card>
+            </div>
+          </div>
+          
+          <!-- TERCERA FILA DE TARJETAS (3 tarjetas) -->
+          <div class="flex flex-wrap mt-6 mb-12 -mx-3" *ngIf="sweetAlertPageData$ | async as pageData">
+            <!-- Tarjeta 7: A warning message, with a function attached to the "Confirm" Button... -->
+            <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[6]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 8: ...and by passing a parameter, you can execute something else for "Cancel" -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[7]"></app-sweet-alert-card>
+            </div>
+            
+            <!-- Tarjeta 9: Right-to-left support for Arabic, Persian, Hebrew, and other RTL languages -->
+            <div class="w-full max-w-full px-3 mt-6 md:mt-0 shrink-0 md:flex-0 md:w-4/12">
+              <app-sweet-alert-card [data]="pageData[8]"></app-sweet-alert-card>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+
+  <app-argon-configurator></app-argon-configurator>
+</div> 

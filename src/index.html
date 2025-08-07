@@ -2,12 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ArgonDashboardAngular</title>
+  <title>Argon Dashboard 2 Pro Tailwind by Creative Tim</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  
+  <!-- ========================================
+       EXTERNAL FONTS AND ICONS
+       ======================================== -->
+  
+  <!-- Google Fonts - Open Sans for consistent typography across the application -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  
+  <!-- Template-specific icon libraries -->
+  <!-- Nucleo Icons - Custom icon set provided by the Argon template -->
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons - Comprehensive icon library for enhanced UI elements -->
+  <!-- Using CDN for better performance and global caching -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- ========================================
+       EXTERNAL UTILITIES
+       ======================================== -->
+  
+  <!-- Popper.js - Required for dropdown positioning and tooltips -->
+  <!-- Using CDN for lightweight inclusion without bundle impact -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  
+  <!-- ========================================
+       APPLICATION STYLES
+       ======================================== -->
+  
+  <!-- Main Tailwind CSS stylesheet with Argon Dashboard customizations -->
+  <!-- Version parameter ensures cache busting during development -->
+  <link href="assets/css/argon-dashboard-tailwind.css?v=1.0.0" rel="stylesheet" />
+  
+  <!-- FullCalendar component styles -->
+  <link href="assets/css/full-calendar.css" rel="stylesheet" />
+  
+  <!-- Choices.js CSS para selects personalizados -->
+  <link href="assets/css/choices.css" rel="stylesheet" />
+  
+  <!-- Kanban CSS - Styles for Kanban board -->
+  <link href="assets/css/kanban.css" rel="stylesheet" />
 </head>
-<body>
+
+
+  
+  <!-- Angular application root component -->
+  <!-- This is where the entire Angular application will be rendered -->
   <app-root></app-root>
+  
+  <!-- ========================================
+       TEMPLATE-SPECIFIC SCRIPTS
+       ======================================== -->
+  
+  <!-- Chart.js - Managed via NPM package for better TypeScript integration -->
+  <!-- Imported in components: sales-overview, consumption-chart, etc. -->
+  
+  <!-- Round Slider - Custom component for circular range inputs -->
+  <!-- Used in: device-limit component for smart home dashboard -->
+  <script src="assets/js/plugins/round-slider.min.js"></script>
+  
+  <!-- Perfect Scrollbar - Managed via NPM package for sidebar scrolling -->
+  <!-- Imported in: sidebar component and argon-configurator -->
+  
+  <!-- Argon Dashboard Core - Template-specific initializations and utilities -->
+  <!-- Contains custom JavaScript functions specific to the Argon template -->
+  <script src="assets/js/argon-dashboard-pro-tailwind.js"></script>
+  
+  <!-- Choices.js para selects personalizados -->
+  <script src="assets/js/plugins/choices.min.js"></script>
+  
+  <!-- Sweet Alert - Plugin for beautiful alert dialogs -->
+  <link href="assets/css/sweet-alerts.css" rel="stylesheet" />
+  <script src="assets/js/plugins/sweetalert.min.js"></script>
+  <script src="assets/js/sweet-alerts.js"></script>
+  
+  <!-- ========================================
+       KANBAN SPECIFIC SCRIPTS
+       ======================================== -->
+  
+  <!-- jKanban - Library for Kanban board functionality -->
+  <script src="assets/js/plugins/jkanban.min.js"></script>
+  
+  <!-- Dragula - Library for drag and drop functionality -->
+  <script src="assets/js/plugins/dragula.min.js"></script>
+  
+  <!-- Perfect Scrollbar - For smooth scrolling -->
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  
+  <!-- ========================================
+       DATATABLES INTEGRATION
+       ======================================== -->
+  
+  <!-- Simple DataTables - Library for enhanced table functionality -->
+  <script src="assets/js/plugins/datatables.min.js"></script>
+  
+  <!-- DataTables CSS - Styles for DataTables components -->
+  <link href="assets/css/datatable.css" rel="stylesheet" />
+  
+  <!-- ========================================
+       SOCIAL MEDIA INTEGRATION
+       ======================================== -->
+  
+  <!-- GitHub and Twitter button integration -->
+  <!-- Provides social sharing functionality for template demos -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

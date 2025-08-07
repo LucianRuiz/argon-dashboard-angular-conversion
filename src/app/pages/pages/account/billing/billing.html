@@ -1,0 +1,68 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+          <div class="w-full px-6 mx-auto mt-16">
+        <!-- Tabs Section -->
+        <div class="flex flex-wrap items-center -mx-3">
+          <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-8/12 lg:w-4/12">
+            <app-settings-tabs *ngIf="settingsTabsData$ | async as settingsTabsData" [data]="settingsTabsData"></app-settings-tabs>
+          </div>
+        </div>
+      </div>
+
+    <div class="w-full p-6 py-4 mx-auto my-12">
+      <div class="flex flex-wrap -mx-3">
+        <!-- Left Column -->
+        <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
+          <div class="flex flex-wrap -mx-3">
+            <!-- Credit Card Visual -->
+            <div class="w-full max-w-full px-3 mb-4 xl:mb-0 xl:w-1/2 xl:flex-none">
+              <app-credit-card-visual *ngIf="creditCardVisualData$ | async as creditCardVisualData" [data]="creditCardVisualData"></app-credit-card-visual>
+            </div>
+            
+            <!-- Summary Cards -->
+            <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none">
+              <app-summary-cards *ngIf="summaryCardsData$ | async as summaryCardsData" [data]="summaryCardsData"></app-summary-cards>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="max-w-full px-3 mb-4 lg:mb-0 lg:w-full lg:flex-none">
+              <app-payment-methods *ngIf="paymentMethodsData$ | async as paymentMethodsData" [data]="paymentMethodsData"></app-payment-methods>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="w-full max-w-full px-3 lg:w-1/3 lg:flex-none">
+          <app-invoices-list *ngIf="invoicesListData$ | async as invoicesListData" [data]="invoicesListData"></app-invoices-list>
+        </div>
+      </div>
+
+      <!-- Billing Information and Transactions -->
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 mt-6 md:w-7/12 md:flex-none">
+          <app-billing-information *ngIf="billingInformationData$ | async as billingInformationData" [data]="billingInformationData"></app-billing-information>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 md:w-5/12 md:flex-none">
+          <app-billing-transactions *ngIf="billingTransactionsData$ | async as billingTransactionsData" [data]="billingTransactionsData"></app-billing-transactions>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

@@ -1,0 +1,33 @@
+<!-- Product Details Component -->
+<div class="w-full">
+  <!-- Product Name -->
+  <h3 class="mt-6 dark:text-white lg:mt-0">{{ data.name }}</h3>
+  
+  <!-- Product Rating -->
+  <div class="float-left border-0">
+    <i *ngFor="let isFullStar of getStars(); let i = index" 
+       [class]="isFullStar ? 'fas fa-star' : 'fas fa-star-half-alt'" 
+       aria-hidden="true"></i>
+  </div>
+  <br>
+  
+  <!-- Product Price -->
+  <h6 class="mt-4 mb-0 dark:text-white">Price</h6>
+  <h5 class="dark:text-white">{{ data.price }}</h5>
+  
+  <!-- Stock Status -->
+  <span class="py-1.6 px-2.6 text-xs leading-none rounded-1.8 inline-block whitespace-nowrap bg-emerald-200 text-center align-baseline font-bold uppercase text-emerald-600">
+    {{ data.stockStatus }}
+  </span>
+  <br>
+  
+  <!-- Product Description -->
+  <label class="inline-block mt-6 mb-2 ml-1 text-xs font-bold leading-default text-slate-700 dark:text-white/80">
+    Description
+  </label>
+  <ul class="pl-8 mt-0 mb-4 list-disc">
+    <li *ngFor="let item of data.description">{{ item }}</li>
+  </ul>
+  
+
+</div> 

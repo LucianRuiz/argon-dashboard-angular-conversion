@@ -1,0 +1,57 @@
+<!-- Platform Settings Widget -->
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <!-- Header -->
+  <div class="p-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+    <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-auto p-4">
+    <!-- Account Settings Section -->
+    <h6 class="text-xs font-bold leading-tight uppercase text-slate-500">Account</h6>
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li class="relative block px-0 py-2 border-0" 
+          [class.rounded-t-lg]="i === 0" 
+          [class.rounded-b-lg]="i === data.accountSettings.length - 1"
+          *ngFor="let setting of data.accountSettings; let i = index">
+        <div class="min-h-6 mb-0.5 flex items-center pl-0">
+          <input 
+            class="mt-0.5 rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 relative float-left w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+            type="checkbox" 
+            [id]="setting.id"
+            [checked]="setting.checked"
+ />
+          <label 
+            class="w-4/5 mb-0 ml-4 overflow-hidden text-sm font-normal cursor-pointer text-ellipsis whitespace-nowrap text-slate-500 dark:text-white/80" 
+            [for]="setting.id">
+            {{ setting.label }}
+          </label>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Application Settings Section -->
+    <h6 class="mt-6 text-xs font-bold leading-tight uppercase text-slate-500">Application</h6>
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li class="relative block px-0 py-2 border-0" 
+          [class.rounded-t-lg]="i === 0" 
+          [class.rounded-b-lg]="i === data.applicationSettings.length - 1"
+          [class.pb-0]="i === data.applicationSettings.length - 1"
+          *ngFor="let setting of data.applicationSettings; let i = index">
+        <div class="min-h-6 mb-0.5 flex items-center pl-0">
+          <input 
+            class="mt-0.5 rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 relative float-left w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+            type="checkbox" 
+            [id]="setting.id"
+            [checked]="setting.checked"
+ />
+          <label 
+            class="w-4/5 mb-0 ml-4 overflow-hidden text-sm font-normal cursor-pointer text-ellipsis whitespace-nowrap text-slate-500 dark:text-white/80" 
+            [for]="setting.id">
+            {{ setting.label }}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> 

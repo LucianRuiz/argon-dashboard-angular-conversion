@@ -1,0 +1,21 @@
+<div class="relative flex flex-col min-w-0 overflow-hidden break-words transition-all duration-200 ease-out origin-top bg-white border-0 border-transparent shadow-xl dark:bg-slate-850 dark:shadow-dark-xl transform3d hover:transform3d-hover rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <ng-container *ngFor="let event of data.events; let last = last; trackBy: trackByEvent">
+      <div class="flex">
+        <h6 class="mb-0 mr-4 dark:text-white">{{event.time}}</h6>
+        <h6 class="mb-0 dark:text-white">
+          {{event.title}}<br />
+          <small class="font-normal text-slate-400 dark:text-white dark:opacity-80">{{event.subtitle}}</small>
+        </h6>
+      </div>
+      <hr *ngIf="!last" class="h-px bg-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+    </ng-container>
+  </div>
+  <a href="javascript:;" class="w-full py-1 text-center bg-gray-50 dark:bg-slate-850" data-target="tooltip_trigger">
+    <i class="fas fa-chevron-down text-white"></i>
+  </a>
+  <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+    Show More
+    <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+  </div>
+</div> 

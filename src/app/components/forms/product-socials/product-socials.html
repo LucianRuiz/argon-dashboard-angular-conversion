@@ -1,0 +1,29 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <h5 class="font-bold dark:text-white">{{ data.sectionTitle }}</h5>
+    <label class="mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Shoppify Handle">{{ data.fields.shopifyHandle.label }}</label>
+    <input 
+      type="text" 
+      name="Shoppify Handle" 
+      [value]="data.fields.shopifyHandle.value"
+      [placeholder]="data.fields.shopifyHandle.placeholder"
+      (input)="onShopifyHandleChange($event)"
+      class="focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />                
+    <label class="mt-6 mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Facebook Account">{{ data.fields.facebookUrl.label }}</label>
+    <input 
+      type="text" 
+      name="Facebook Account" 
+      [value]="data.fields.facebookUrl.value"
+      [placeholder]="data.fields.facebookUrl.placeholder"
+      (input)="onFacebookUrlChange($event)"
+      [class]="'focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none ' + (validateFacebookUrl() ? 'border-gray-300' : 'border-red-500')" />                
+    <label class="mt-6 mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Instagram Account">{{ data.fields.instagramUrl.label }}</label>
+    <input 
+      type="text" 
+      name="Instagram Account" 
+      [value]="data.fields.instagramUrl.value"
+      [placeholder]="data.fields.instagramUrl.placeholder"
+      (input)="onInstagramUrlChange($event)"
+      [class]="'focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none ' + (validateInstagramUrl() ? 'border-gray-300' : 'border-red-500')" />                
+  </div>
+</div> 

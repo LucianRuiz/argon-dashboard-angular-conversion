@@ -1,0 +1,310 @@
+<nav [class]="navbarClasses()">
+  <div [class]="containerClasses()">
+    
+    <!-- Logo -->
+    <a [class]="'py-2.5 text-sm mr-4 ml-4 whitespace-nowrap font-bold lg:ml-0 ' + (data.textColor || (theme === 'transparent' ? 'text-white' : 'text-slate-700'))" [routerLink]="data.logoRoute">{{ data.logoText }}</a>
+    
+    <!-- Hamburger Button for Mobile -->
+    <button aria-expanded="false" 
+            nav-collapse-trigger 
+            [class]="'px-3 py-1 ml-2 text-lg leading-none bg-transparent rounded-lg shadow-none cursor-pointer lg:hidden ' + (data.textColor || (theme === 'transparent' ? 'text-white' : 'text-slate-700'))"
+            (click)="toggleMobileMenu()">
+      <span class="inline-block w-6 h-6 mt-2 align-middle bg-none">
+        <span bar1 [class]="'block relative w-6 h-0.5 rounded-sm transition-all duration-200 mx-auto my-0 origin-top-left ' + (data.textColor ? data.textColor.replace('text-', 'bg-') : (theme === 'transparent' ? 'bg-white' : 'bg-slate-700'))"
+              [class.rotate-45]="isMobileMenuOpen"
+              [class.translate-y-1.5]="isMobileMenuOpen"></span>
+        <span bar2 [class]="'block relative w-6 h-0.5 rounded-sm transition-all duration-200 mx-auto my-0 mt-2 ' + (data.textColor ? data.textColor.replace('text-', 'bg-') : (theme === 'transparent' ? 'bg-white' : 'bg-slate-700'))"
+              [class.opacity-0]="isMobileMenuOpen"></span>
+        <span bar3 [class]="'block relative w-6 h-0.5 rounded-sm transition-all duration-200 mx-auto my-0 mt-2 origin-bottom-left ' + (data.textColor ? data.textColor.replace('text-', 'bg-') : (theme === 'transparent' ? 'bg-white' : 'bg-slate-700'))"
+              [class.-rotate-45]="isMobileMenuOpen"
+              [class.-translate-y-1.5]="isMobileMenuOpen"></span>
+      </span>
+    </button>
+
+    <!-- Navigation Container -->
+    <div class="items-center w-full pt-4 pb-2 transition-all ease-in-out duration-350 lg-max:max-h-0 lg-max:overflow-auto lg-max:hidden lg-max:bg-white lg-max:shadow-3xl md-max:relative grow basis-full rounded-2xl lg:flex lg:basis-auto lg:py-0"
+         [class.lg-max:max-h-screen]="isMobileMenuOpen"
+         [class.lg-max:block]="isMobileMenuOpen">
+      <ul class="flex flex-col pl-0 mx-auto mb-0 list-none md-max:w-full lg:flex-row">
+        
+        <!-- Dynamic Menu Items -->
+        <li *ngFor="let menuItem of data.menuItems; trackBy: trackByMenuItem" 
+            class="relative mx-2 group md-max:static lg:after:content-[''] lg:after:top-0 lg:hover:after:top-full lg:after:absolute lg:after:left-0 lg:after:-bottom-6 lg:after:w-full lg:after:h-full">
+          
+          <!-- Menu Item with Dropdown -->
+          <ng-container *ngIf="menuItem.hasDropdown && menuItem.dropdownSections">
+            <a aria-expanded="false" 
+               [attr.nav-dropdown-trigger]="menuItem.title.toLowerCase()"
+               role="button"
+               [class]="'flex items-center justify-between px-4 py-2 pl-2 text-sm font-normal transition-all ease-in-out cursor-pointer select-none lg:group-hover:opacity-75 lg:px-2 ' + (data.textColor || (theme === 'transparent' ? 'text-white lg-max:text-slate-700' : 'text-slate-700 lg-max:text-slate-700'))"
+               (click)="toggleDropdown(menuItem)">
+              {{ menuItem.title }}
+              <img [src]="theme === 'transparent' ? '../../../assets/img/down-arrow-white.svg' : '../../../assets/img/down-arrow-dark.svg'" 
+                   alt="down-arrow" 
+                   class="hidden ml-1 lg:block">
+              <img src="../../../assets/img/down-arrow-dark.svg" alt="down-arrow" 
+                   [class]="'block ml-1 lg:hidden transition-transform duration-200 ' + (menuItem.isExpanded ? 'rotate-180' : 'rotate-0')">
+            </a>
+
+            <!-- Dropdown Content -->
+            <div [attr.nav-dropdown]="menuItem.title.toLowerCase()" 
+                 [class]="getDropdownClasses(menuItem)">
+              
+              <!-- Authentication Section - Special Layout -->
+              <ng-container *ngIf="menuItem.title === 'Authentication'">
+                
+                <!-- Desktop Layout for Authentication -->
+                <div class="flex-wrap hidden -mx-3 lg:flex">
+                  <div class="w-6/12 max-w-full px-3 flex-none">
+                    <div class="flex relative w-full h-full py-16 rounded-xl bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1635944095210-23114a1fb7c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1335&q=80')]">
+                      <div class="absolute top-0 left-0 w-full h-full bg-center bg-cover opacity-80 rounded-xl bg-gradient-to-tl from-blue-500 to-violet-500"></div>
+                      <div class="flex flex-col items-center justify-center w-full font-semibold text-center text-white z-1">
+                        <div class="inline-block w-12 h-12 text-center text-black bg-white bg-center shadow-2xl fill-current stroke-none rounded-circle">
+                          <i class="ni leading-none ni-diamond bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text text-transparent opacity-80 relative z-1 text-lg top-3"></i>
+                        </div>
+                        <span class="mt-2 text-lg">
+                          Explore our
+                          <br>
+                          utilities pages
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col justify-center w-6/12 max-w-full px-3 pl-0 flex-none">
+                    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                      <li *ngFor="let section of menuItem.dropdownSections; let i = index; trackBy: trackByDropdownSection"
+                          class="group after:absolute after:content-[''] after:h-full after:left-full after:w-1/2 after:bottom-0 relative block p-0 bg-white border-0"
+                          [class.rounded-t-lg]="i === 0"
+                          [class.rounded-b-lg]="i === menuItem.dropdownSections!.length - 1">
+                        <a (click)="toggleNestedDropdown(section)"
+                           (mouseenter)="section.isExpanded = true"
+                           (mouseleave)="section.isExpanded = false"
+                           class="select-none hover:text-slate-700 hover:bg-gray-200 flex w-full px-4 py-1 clear-both font-normal text-slate-500 text-align-inherit bg-transparent border-0 justify-between items-center mb-1 pl-4 rounded-lg lg:transition-colors lg:duration-300 lg:ease cursor-pointer">
+                          <span>{{ section.title }}</span>
+                          <img src="../../../assets/img/down-arrow.svg" alt="down-arrow" class="lg:-rotate-90">
+                        </a>
+                        
+                        <!-- Nested menu for authentication items -->
+                        <div class="w-max min-w-fit px-2 py-4 m-0 text-sm text-left list-none bg-white bg-clip-padding rounded-lg mt-0 transition-all duration-300 ease-in-out absolute block left-full top-0 shadow-xl cursor-pointer z-50 origin-top"
+                             [class.opacity-100]="section.isExpanded"
+                             [class.opacity-0]="!section.isExpanded"
+                             [class.pointer-events-auto]="section.isExpanded"
+                             [class.pointer-events-none]="!section.isExpanded"
+                             [class.scale-100]="section.isExpanded"
+                             (mouseenter)="section.isExpanded = true"
+                             (mouseleave)="section.isExpanded = false">
+                          <a *ngFor="let item of section.items; trackBy: trackByDropdownItem"
+                             class="hover:text-slate-700 hover:bg-gray-200 block w-full px-4 py-1 clear-both font-normal text-slate-500 text-align-inherit whitespace-nowrap bg-transparent border-0 lg:transition-colors lg:duration-300 lg:ease rounded-lg mb-1"
+                             [routerLink]="item.route">
+                            <span>{{ item.title }}</span>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <!-- Mobile Layout for Authentication -->
+                <div class="flex flex-wrap -mx-3 lg:hidden">
+                  <div class="flex flex-col justify-center w-full max-w-full px-3 flex-0">
+                    <ng-container *ngFor="let section of menuItem.dropdownSections; trackBy: trackByDropdownSection">
+                      <h6 class="flex px-0 py-2 mb-0 text-sm font-bold text-slate-700 whitespace-nowrap" 
+                          [class.mt-4]="section !== menuItem.dropdownSections![0]">{{ section.title }}</h6>
+                      <a *ngFor="let item of section.items; trackBy: trackByDropdownItem"
+                         [routerLink]="item.route"
+                         class="block w-full px-4 py-1.2 clear-both font-normal text-slate-500 text-align-inherit whitespace-nowrap bg-transparent border-0 rounded-lg">
+                        {{ item.title }}
+                      </a>
+                    </ng-container>
+                  </div>
+                </div>
+              </ng-container>
+              
+              <!-- Applications Section - Special Layout (Single Column) -->
+              <ng-container *ngIf="menuItem.title === 'Applications'">
+                
+                <!-- Desktop Layout for Applications -->
+                <div class="hidden lg:flex">
+                  <ul class="flex flex-col w-full pl-0 mb-0 list-none">
+                    <li *ngFor="let section of menuItem.dropdownSections; let i = index; trackBy: trackByDropdownSection"
+                        class="relative block p-0 bg-white border-0"
+                        [class.rounded-t-lg]="i === 0"
+                        [class.rounded-b-lg]="i === menuItem.dropdownSections!.length - 1">
+                      <a [routerLink]="section.items[0].route"
+                         class="block clear-both w-full px-4 py-2 font-normal bg-transparent border-0 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-gray-200 text-align-inherit whitespace-nowrap lg:transition-colors lg:duration-300 lg:ease">
+                        <div class="flex">
+                          <div class="flex w-4 h-4 mt-1 mr-4 text-black fill-current stroke-none">
+                            <i [class]="section.icon + ' relative leading-none text-transparent bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text z-1'"></i>
+                          </div>
+                          <div class="flex items-center justify-between w-full">
+                            <div>
+                              <p class="block p-0 mb-0 text-sm whitespace-nowrap text-slate-700">{{ section.title }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- Mobile Layout for Applications -->
+                <div class="flex flex-wrap -mx-3 lg:hidden">
+                  <div class="w-full max-w-full px-3 md:w-full md:flex-none shrink-0">
+                    <a *ngFor="let section of menuItem.dropdownSections; trackBy: trackByDropdownSection"
+                       [routerLink]="section.items[0].route"
+                       class="py-2 pl-4 rounded-lg">
+                      <div class="flex">
+                        <div class="flex w-4 h-4 mt-1 mr-4 text-black fill-current stroke-none">
+                          <i [class]="section.icon + ' relative leading-none text-transparent bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text z-1'"></i>
+                        </div>
+                        <div class="flex items-center justify-between w-full">
+                          <div>
+                            <p class="block p-0 mb-0 text-sm whitespace-nowrap text-slate-700">{{ section.title }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                
+              </ng-container>
+              
+              <!-- Docs Section - Special Layout (Single Column) -->
+              <ng-container *ngIf="menuItem.title === 'Docs'">
+                
+                <!-- Desktop Layout for Docs -->
+                <div class="hidden lg:flex">
+                  <ul class="flex flex-col w-full pl-0 mb-0 list-none">
+                    <li *ngFor="let section of menuItem.dropdownSections; let i = index; trackBy: trackByDropdownSection"
+                        class="relative block p-0 bg-white border-0"
+                        [class.rounded-t-lg]="i === 0"
+                        [class.rounded-b-lg]="i === menuItem.dropdownSections!.length - 1">
+                      <a [routerLink]="section.items[0].route"
+                         class="block clear-both w-full px-4 py-2 font-normal bg-transparent border-0 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-gray-200 text-align-inherit lg:transition-colors lg:duration-300 lg:ease">
+                        <div class="flex">
+                          <div class="flex w-4 h-4 mt-1 mr-4 text-black fill-current stroke-none">
+                            <i [class]="section.icon + ' text-blue-500'"></i>
+                          </div>
+                          <div>
+                            <h6 class="flex p-0 mb-0 text-sm font-bold text-slate-700">{{ section.title }}</h6>
+                            <span class="text-sm leading-normal">{{ section.description }}</span>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+                <!-- Mobile Layout for Docs -->
+                <div class="flex flex-wrap -mx-3 lg:hidden">
+                  <div class="w-full max-w-full px-3 md:w-full md:flex-none shrink-0">
+                    <a *ngFor="let section of menuItem.dropdownSections; trackBy: trackByDropdownSection"
+                       [routerLink]="section.items[0].route"
+                       class="hover:text-slate-700 hover:bg-gray-200 block w-full px-4 py-1.2 clear-both font-normal text-slate-500 text-align-inherit bg-transparent border-0 lg:transition-colors lg:duration-300 lg:ease rounded-lg">
+                      <div class="flex">
+                        <div class="flex w-4 h-4 mt-1 mr-4 text-black fill-current stroke-none">
+                          <i [class]="section.icon + ' text-blue-500'"></i>
+                        </div>
+                        <div>
+                          <h6 class="flex p-0 mb-0 text-sm font-bold text-slate-700">{{ section.title }}</h6>
+                          <span class="text-sm leading-normal">{{ section.description }}</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                
+              </ng-container>
+              
+              <!-- Standard Layout for Pages and Others -->
+              <ng-container *ngIf="menuItem.title !== 'Authentication' && menuItem.title !== 'Applications' && menuItem.title !== 'Docs'">
+              
+              <!-- Desktop Dropdown Layout -->
+              <div class="flex-wrap hidden -mx-1 lg:flex">
+                <div class="w-full max-w-md px-2 py-2 flex-none">
+                  <div class="flex flex-wrap -mx-1 items-start">
+                    
+                    <!-- Dynamic Dropdown Sections -->
+                      <div *ngFor="let section of menuItem.dropdownSections; let i = index; trackBy: trackByDropdownSection" 
+                           [class]="getSectionColumnClasses(menuItem)">
+                      
+                      <!-- Section Header -->
+                      <div class="flex items-center px-0 py-2 mb-0 text-sm font-bold whitespace-nowrap text-slate-700">
+                        <div class="inline-block">
+                          <div class="flex items-center justify-center w-6 h-6 mr-2 text-center rounded-lg">
+                              <i [class]="section.icon + ' relative leading-none text-transparent bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text z-1'"></i>
+                            </div>
+                          </div>
+                          {{ section.title }}
+                        </div>
+                        
+                        <!-- Section Items -->
+                        <ng-container *ngFor="let item of section.items; let itemIndex = index; trackBy: trackByDropdownItem">
+                          <a [routerLink]="item.route"
+                           class="hover:text-slate-700 hover:bg-gray-200 block w-full px-4 py-1 clear-both font-normal text-slate-500 text-align-inherit whitespace-nowrap bg-transparent border-0 lg:transition-colors lg:duration-300 lg:ease rounded-lg">
+                          <span class="pl-4">{{ item.title }}</span>
+                          </a>
+                        </ng-container>
+                        
+                        <!-- Section Divider (mostrar solo en las primeras 2 secciones) -->
+                        <hr *ngIf="i < 2" class="absolute top-0 right-0 w-px h-full bg-transparent bg-gradient-to-b from-transparent via-black/40 to-transparent">
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+                <!-- Mobile Layout for Standard Sections -->
+              <div class="lg:hidden">
+                <ng-container *ngFor="let section of menuItem.dropdownSections; trackBy: trackByDropdownSection">
+                  <!-- Section Header for Mobile -->
+                    <div class="flex items-center py-2 mb-0 text-sm font-bold whitespace-nowrap text-slate-700"
+                         [class.mt-4]="section !== menuItem.dropdownSections![0]">
+                    <div class="inline-block">
+                        <div class="flex items-center justify-center w-6 h-6 mr-2 text-center rounded-lg">
+                          <i [class]="section.icon + ' relative leading-none text-transparent bg-gradient-to-tl from-blue-500 to-violet-500 bg-clip-text z-1'"></i>
+                      </div>
+                    </div>
+                    {{ section.title }}
+                  </div>
+                  
+                  <!-- Section Items for Mobile -->
+                  <ng-container *ngFor="let item of section.items; trackBy: trackByDropdownItem">
+                      <a [routerLink]="item.route"
+                       class="hover:text-slate-700 hover:bg-gray-200 block w-full px-4 py-1.2 clear-both font-normal text-slate-500 text-align-inherit whitespace-nowrap bg-transparent border-0 rounded-lg">
+                      {{ item.title }}
+                      </a>
+                    </ng-container>
+                    
+                  </ng-container>
+                </div>
+                  
+                </ng-container>
+              
+            </div>
+          </ng-container>
+          
+          <!-- Simple Menu Item without Dropdown -->
+          <a *ngIf="!menuItem.hasDropdown && menuItem.route"
+             [class]="'flex items-center justify-between px-4 py-2 pl-2 text-sm font-normal transition-all ease-in-out cursor-pointer select-none lg:group-hover:opacity-75 lg:px-2 ' + (data.textColor || (theme === 'transparent' ? 'text-white lg-max:text-slate-700' : 'text-slate-700 lg-max:text-slate-700'))"
+             [routerLink]="menuItem.route">
+            {{ menuItem.title }}
+          </a>
+          
+        </li>
+        
+      </ul>
+      
+      <!-- Buy Now Button -->
+      <ul class="hidden pl-0 mb-0 list-none lg:block lg:flex-row">
+        <li>
+          <a [href]="data.buyNowUrl" 
+             target="_blank" 
+             [class]="'inline-block px-8 py-2 mb-0 mr-1 text-xs font-bold text-center align-middle transition-all ease-in-out border-0 rounded-lg shadow-md cursor-pointer leading-tight tracking-tight hover:-translate-y-px active:opacity-85 ' + (data.buyNowButtonColor || 'text-white bg-blue-500')">
+            {{ data.buyNowText }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> 

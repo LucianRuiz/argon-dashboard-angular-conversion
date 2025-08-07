@@ -1,0 +1,45 @@
+<!-- Profile Header Card -->
+<div class="w-full mx-auto mt-60">
+  <div class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 shadow-3xl dark:bg-slate-850 rounded-2xl bg-clip-border">
+    <div class="flex flex-wrap -mx-3">
+      <!-- Profile Image -->
+      <div class="flex-none w-auto max-w-full px-3">
+        <div class="relative inline-flex items-center justify-center text-base text-white transition-all duration-200 ease-in-out h-19 w-19 rounded-xl">
+          <img [src]="data.profileImage" [alt]="data.name + ' profile image'" class="w-full shadow-sm rounded-xl" />
+        </div>
+      </div>
+
+      <!-- Profile Info -->
+      <div class="flex-none w-auto max-w-full px-3 my-auto">
+        <div class="h-full">
+          <h5 class="mb-1 dark:text-white">{{ data.name }}</h5>
+          <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ data.position }}</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
+        <div class="relative right-0">
+          <ul class="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" role="tablist">
+            <li class="z-30 flex-auto text-center" *ngFor="let tab of data.tabs">
+              <a 
+                class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg text-slate-700"
+                [class.bg-white]="tab.active"
+                [class.shadow-md]="tab.active"
+                [class.bg-inherit]="!tab.active"
+                [class.nav-link]="true"
+                [class.active]="tab.active"
+                href="javascript:;"
+                (click)="onTabClick(tab.id)"
+                role="tab" 
+                [attr.aria-selected]="tab.active">
+                <i [class]="tab.icon"></i>
+                <span class="ml-2">{{ tab.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,21 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+    <p class="mb-0 text-sm font-semibold leading-normal capitalize">{{ data.subtitle }}</p>
+  </div>
+  <div class="flex-auto p-4 rounded-xl">
+    <div class="flex" *ngFor="let event of data.events; let i = index" [ngClass]="{'mt-6': i > 0}">
+      <div>
+        <div class="inline-block w-12 h-12 text-center text-black bg-center rounded-lg shadow-none fill-current stroke-none bg-blue-600/5">
+          <i class="text-lg ni leading-none {{ event.icon }} relative top-3.5 z-1" [ngClass]="event.iconColor" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="ml-4">
+        <div class="">
+          <h6 class="mb-1 text-sm leading-normal dark:text-white text-slate-700">{{ event.title }}</h6>
+          <span class="text-sm leading-normal">{{ event.date }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

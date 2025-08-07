@@ -1,0 +1,16 @@
+<!-- Settings Navigation Widget -->
+<div class="sticky flex flex-col min-w-0 break-words bg-white border-0 shadow-xl top-1/100 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <ul class="flex flex-col flex-wrap p-4 mb-0 list-none rounded-xl">
+    <li *ngFor="let item of data.items; trackBy: trackByIndex" [class.pt-2]="item.id !== 'profile'">
+      <a (click)="selectItem(item.id)" 
+         class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-200 cursor-pointer dark:text-white dark:bg-inherit"
+         [class.bg-gray-200]="isActive(item.id)"
+         [class.text-slate-700]="isActive(item.id)"
+         [class.dark:text-white]="isActive(item.id)"
+         [class.dark:bg-inherit]="isActive(item.id)">
+        <i class="mr-2" [class]="item.icon + ' text-slate-700 opacity-60 dark:text-white dark:group-hover:text-slate-700'"></i>
+        <span class="text-sm leading-normal dark:group-hover:text-slate-700 dark:text-white">{{ item.text }}</span>
+      </a>
+    </li>
+  </ul>
+</div> 

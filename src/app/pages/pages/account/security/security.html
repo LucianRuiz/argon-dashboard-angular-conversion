@@ -1,0 +1,66 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Settings Navigation Tabs -->
+    <div class="w-full px-6 mx-auto mt-16">
+      <div class="flex flex-wrap items-center -mx-3">
+        <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-8/12 lg:w-4/12">
+          <ng-container *ngIf="settingsTabsData$ | async as tabsData">
+            <app-settings-tabs [data]="tabsData"></app-settings-tabs>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security Content -->
+    <div class="w-full p-6 py-4 mx-auto my-4">
+      <!-- Security Question Section -->
+      <ng-container *ngIf="securityQuestionData$ | async as securityQuestionData">
+        <app-security-question [data]="securityQuestionData"></app-security-question>
+      </ng-container>
+
+      <!-- Security Settings and Two Factor Auth -->
+      <div class="flex flex-wrap -mx-3">
+        <!-- Security Settings -->
+        <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-6/12">
+          <app-security-settings *ngIf="securitySettingsData$ | async as securitySettingsData" [data]="securitySettingsData"></app-security-settings>
+        </div>
+        
+        <!-- Two Factor Authentication -->
+        <div class="w-full max-w-full px-3 mt-6 sm:flex-0 shrink-0 sm:w-6/12 md:mt-0">
+          <app-two-factor-auth *ngIf="twoFactorAuthData$ | async as twoFactorAuthData" [data]="twoFactorAuthData"></app-two-factor-auth>
+        </div>
+      </div>
+
+      <!-- Change Password and Requirements -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <!-- Change Password -->
+        <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+          <app-change-password *ngIf="changePasswordData$ | async as changePasswordData" [data]="changePasswordData"></app-change-password>
+        </div>
+        
+        <!-- Password Requirements -->
+        <div class="w-full max-w-full px-3 mt-6 md:flex-0 shrink-0 md:mt-0 md:w-6/12">
+          <app-password-requirements *ngIf="passwordRequirementsData$ | async as passwordRequirementsData" [data]="passwordRequirementsData"></app-password-requirements>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

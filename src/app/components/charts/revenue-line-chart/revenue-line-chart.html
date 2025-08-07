@@ -1,0 +1,21 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <div class="flex justify-between">
+      <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+      <button type="button" class="active:shadow-xs active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 ml-auto flex cursor-pointer items-center justify-center border border-solid border-slate-400 bg-transparent text-center align-middle font-bold text-slate-400 shadow-none transition-all hover:bg-transparent hover:text-slate-400 hover:opacity-75 hover:shadow-none active:bg-slate-400 active:text-black hover:active:bg-transparent hover:active:text-slate-400 hover:active:opacity-75 hover:active:shadow-none">
+        <i class="fas fa-info text-3xs"></i>
+      </button>
+    </div>
+    <div class="flex items-center mt-2">
+      <span *ngFor="let item of data.legend" class="py-2.6 mr-6 rounded-1.8 text-xs flex items-center whitespace-nowrap bg-transparent px-0 text-center align-baseline font-normal leading-none text-white">
+        <i class="inline-block w-2 h-2 mr-2 align-middle rounded-circle" [ngStyle]="{'background-color': item.color}"></i>
+        <span class="leading-tight dark:text-white text-slate-700">{{ item.label }}</span>
+      </span>
+    </div>
+  </div>
+  <div class="flex-auto p-4">
+    <div>
+      <canvas [id]="data.chartId" height="300"></canvas>
+    </div>
+  </div>
+</div> 

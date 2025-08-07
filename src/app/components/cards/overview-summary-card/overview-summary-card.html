@@ -1,0 +1,41 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="relative flex-auto p-4">
+    <div class="flex flex-wrap -mx-3 ">
+      <div class="w-7/12 max-w-full px-3 text-left flex-0">
+        <p class="mb-1 text-sm font-semibold leading-normal uppercase">{{ data.title }}</p>
+        <h5 class="mb-0 font-bold dark:text-white">{{ data.value }}</h5>
+        <span class="mt-auto mb-0 text-sm font-bold leading-normal text-right"
+              [ngClass]="data.trend === 'up' ? 'text-emerald-500' : 'text-red-500'">
+          {{ data.percentage }}
+          <span class="font-normal text-slate-400">{{ data.description }}</span>
+        </span>
+      </div>
+      <div class="w-5/12 max-w-full px-3 flex-0 flex flex-col items-end">
+        <!-- Fecha arriba a la derecha -->
+        <div class="relative mb-2">
+          <a href="javascript:;" class="cursor-pointer" tabindex="0" (click)="toggleDropdown($event)">
+            <span class="text-xs leading-tight text-slate-400">{{ data.dateRange }}</span>
+          </a>
+          <ul *ngIf="showDropdown" class="absolute right-0 z-10 mt-2 w-32 bg-white rounded-lg shadow-lg text-sm text-slate-500">
+            <li *ngFor="let option of data.dateOptions">
+              <a href="javascript:;" class="block px-4 py-2 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700">{{ option }}</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Icono debajo -->
+        <span class="inline-flex items-center justify-center w-10 h-10 text-lg rounded-lg"
+              [ngClass]="{
+                'bg-gradient-to-tl from-emerald-500 to-teal-400': data.iconColor === 'green',
+                'bg-gradient-to-tl from-blue-500 to-violet-500': data.iconColor === 'blue',
+                'bg-gradient-to-tl from-orange-500 to-yellow-500': data.iconColor === 'orange',
+                'bg-gradient-to-tl from-red-600 to-orange-600': data.iconColor === 'red',
+                'bg-gradient-to-tl from-purple-700 to-pink-500': data.iconColor === 'purple',
+                'bg-gradient-to-tl from-gray-600 to-gray-400': data.iconColor === 'gray',
+                'bg-gradient-to-tl from-zinc-800 to-zinc-700': data.iconColor === 'zinc'
+              }">
+          <i [class]="data.icon + ' text-white'" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div> 

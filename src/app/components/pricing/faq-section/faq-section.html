@@ -1,0 +1,42 @@
+<!-- FAQ Section -->
+<div class="container my-16">
+  <div class="flex flex-wrap mt-32 -mx-3">
+    <div class="w-full max-w-full px-3 mx-auto text-center shrink-0 md:flex-0 md:w-6/12">
+      <h2>Frequently Asked Questions</h2>
+      <p>
+        A lot of people don't appreciate the moment until it's passed. I'm not trying my hardest, and I'm not trying to do 
+      </p>
+    </div>
+  </div>
+  <div class="flex flex-wrap -mx-3">
+    <div class="w-full max-w-full px-3 mx-auto shrink-0 md:flex-0 md:w-10/12">
+      <div>
+        <div 
+          *ngFor="let faq of faqItems; let i = index"
+          class="mb-4"
+          [class.rounded-t-lg]="i === 0"
+          [class.rounded-b-lg]="i === faqItems.length - 1">
+          <h5 class="mb-0">
+            <button 
+              class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 rounded-t-lg"
+              [class.text-slate-700]="faq.isOpen"
+              [class.text-slate-500]="!faq.isOpen"
+              (click)="toggleFaq(i)"
+              [attr.aria-expanded]="faq.isOpen">
+              {{ faq.question }}
+              <i class="absolute right-0 pt-1 mr-4 text-xs leading-tight"
+                 [class.fa.fa-plus]="!faq.isOpen"
+                 [class.fa.fa-minus]="faq.isOpen"></i>
+            </button>
+          </h5>
+          <div class="overflow-hidden transition-all ease-in-out duration-300"
+               [class]="faq.isOpen ? 'max-h-96' : 'max-h-0'">
+            <div class="p-4 text-sm leading-normal opacity-80 whitespace-pre-line">
+              {{ faq.answer }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

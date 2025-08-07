@@ -1,0 +1,23 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-xl bg-clip-border overflow-hidden" *ngFor="let program of programs">
+    <div class="relative h-48 bg-cover bg-center" [style.background-image]="program.imageUrl ? 'url(' + program.imageUrl + ')' : 'none'">
+      <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-tl from-zinc-800 to-zinc-700 opacity-60" *ngIf="program.isActive"></span>
+      <div class="relative flex flex-col h-full p-6 justify-end" *ngIf="program.isActive">
+        <p class="font-bold text-white text-sm mb-4">{{ program.title }}</p>
+        <a class="text-sm font-semibold leading-normal text-white group hover:text-blue-200 transition-colors" href="javascript:;">
+          Read More
+          <i class="fas fa-arrow-right text-sm leading-normal ml-1 group-hover:translate-x-1.25 transition-all duration-200 ease-bounce" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="relative flex flex-col h-full p-6 justify-center items-center" *ngIf="!program.isActive">
+        <div class="mb-4">
+          <img class="w-16 h-16 opacity-50" src="assets/img/illustrations/icon-documentation.svg" alt="rocket">
+        </div>
+        <a class="text-sm font-semibold leading-normal text-slate-400 group hover:text-slate-600 transition-colors" href="javascript:;">
+          {{ program.title }}
+          <i class="fas fa-arrow-right text-sm leading-normal ml-1 group-hover:translate-x-1.25 transition-all duration-200 ease-bounce" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div> 

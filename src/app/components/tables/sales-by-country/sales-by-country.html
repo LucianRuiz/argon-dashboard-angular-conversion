@@ -1,0 +1,44 @@
+<div class="mt-6">
+  <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-2xl bg-clip-border">
+    <div class="p-4 pb-0 mb-0 rounded-t-4">
+      <div class="flex justify-between">
+        <h6 class="mb-2 dark:text-white">{{ title }}</h6>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="items-center w-full mb-4 align-top border-collapse border-gray-200 dark:border-white/40">
+        <tbody>
+          <tr *ngFor="let country of countries; let last = last; trackBy: trackByCountry">
+            <td class="p-2 align-middle bg-transparent w-3/10 whitespace-nowrap" [ngClass]="last ? '' : 'border-b dark:border-white/40'">
+              <div class="flex items-center px-2 py-1">
+                <div><img [src]="country.flag" alt="Country flag" /></div>
+                <div class="ml-6">
+                  <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Country:</p>
+                  <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ country.country }}</h6>
+                </div>
+              </div>
+            </td>
+            <td class="p-2 align-middle bg-transparent whitespace-nowrap" [ngClass]="last ? '' : 'border-b dark:border-white/40'">
+              <div class="text-center">
+                <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Sales:</p>
+                <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ country.sales }}</h6>
+              </div>
+            </td>
+            <td class="p-2 align-middle bg-transparent whitespace-nowrap" [ngClass]="last ? '' : 'border-b dark:border-white/40'">
+              <div class="text-center">
+                <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Value:</p>
+                <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ country.value }}</h6>
+              </div>
+            </td>
+            <td class="p-2 text-sm leading-normal align-middle bg-transparent whitespace-nowrap" [ngClass]="last ? '' : 'border-b dark:border-white/40'">
+              <div class="flex-1 text-center">
+                <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Bounce:</p>
+                <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ country.bounce }}</h6>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 

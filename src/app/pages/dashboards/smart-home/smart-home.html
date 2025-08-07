@@ -1,0 +1,104 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full px-6 py-6 mx-auto">
+    <!-- First row: Camera Gallery + Weather + Stats Cards -->
+    <ng-container *ngIf="cameraGalleryData$ | async as cameraGalleryData">
+      <ng-container *ngIf="weatherData$ | async as weatherData">
+        <ng-container *ngIf="statsCards$ | async as statsCards">
+          <div class="flex flex-wrap -mx-3">
+            <!-- Camera Gallery -->
+            <div class="flex-shrink-0 w-full max-w-full px-3 xl:flex-0 xl:w-7/12">
+              <app-camera-gallery [data]="cameraGalleryData"></app-camera-gallery>
+            </div>
+            
+            <!-- Right column: Weather + Stats Cards -->
+            <div class="w-full max-w-full px-3 mt-6 ml-auto xl:flex-0 shrink-0 xl:mt-0 xl:w-5/12">
+              <!-- Weather Card -->
+              <div class="flex flex-wrap -mx-3">
+                <div class="w-full max-w-full px-3 flex-0">
+                  <app-weather-card [data]="weatherData"></app-weather-card>
+                </div>
+              </div>
+              
+              <!-- First row of Stats Cards -->
+              <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                  <app-smart-stats-card [data]="statsCards[0]"></app-smart-stats-card>
+                </div>
+                <div class="w-full max-w-full px-3 mt-6 md:flex-0 shrink-0 md:mt-0 md:w-6/12">
+                  <app-smart-stats-card [data]="statsCards[1]"></app-smart-stats-card>
+                </div>
+              </div>
+              
+              <!-- Second row of Stats Cards -->
+              <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                  <app-smart-stats-card [data]="statsCards[2]"></app-smart-stats-card>
+                </div>
+                <div class="w-full max-w-full px-3 mt-6 md:flex-0 shrink-0 md:mt-0 md:w-6/12">
+                  <app-smart-stats-card [data]="statsCards[3]"></app-smart-stats-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <!-- Second row: Consumption Chart + Day Chart + Device Limit -->
+    <ng-container *ngIf="consumptionChartData$ | async as consumptionChartData">
+      <ng-container *ngIf="consumptionDayChartData$ | async as consumptionDayChartData">
+        <ng-container *ngIf="deviceLimitData$ | async as deviceLimitData">
+          <div class="flex flex-wrap mt-6 -mx-3">
+            <!-- Consumption Chart -->
+            <div class="w-full max-w-full px-3 ml-auto lg:flex-0 shrink-0 lg:w-6/12">
+              <app-consumption-chart [data]="consumptionChartData"></app-consumption-chart>
+            </div>
+            
+            <!-- Consumption per Day Chart -->
+            <div class="w-full max-w-full px-3 mt-6 lg:flex-0 shrink-0 sm:w-6/12 lg:mt-0 lg:w-3/12">
+              <app-consumption-day-chart [data]="consumptionDayChartData"></app-consumption-day-chart>
+            </div>
+            
+            <!-- Device Limit -->
+            <div class="w-full max-w-full px-3 mt-6 lg:flex-0 shrink-0 sm:w-6/12 lg:mt-0 lg:w-3/12">
+              <app-device-limit [data]="deviceLimitData"></app-device-limit>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <!-- Separator -->
+    <hr class="h-px my-5 dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+
+    <!-- Third row: Device Cards -->
+    <ng-container *ngIf="deviceCards$ | async as deviceCards">
+      <div class="flex flex-wrap -mx-3">
+        <div
+          *ngFor="let device of deviceCards; trackBy: trackByDeviceId"
+          class="w-full max-w-full px-3 mt-6 sm:flex-0 sm:w-6/12 lg:w-2/12"
+        >
+          <app-device-card [data]="device"></app-device-card>
+        </div>
+      </div>
+    </ng-container>
+
+      <app-footer></app-footer>
+    </div>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div>

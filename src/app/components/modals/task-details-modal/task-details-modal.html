@@ -1,0 +1,90 @@
+<!-- Task Details Modal -->
+<div class="fixed top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto transition-opacity ease-linear z-sticky" 
+     [class.hidden]="!data.isOpen"
+     [class.opacity-0]="!data.isOpen"
+     [class.opacity-100]="data.isOpen"
+     aria-hidden="true" 
+     tabindex="-1" 
+     role="dialog">
+  
+  <div class="relative w-auto transition-transform duration-300 ease-out pointer-events-none my-7 sm:max-w-125 sm:mx-auto -translate-y-13">
+    <div class="relative flex flex-col w-full bg-white border border-solid pointer-events-auto bg-clip-padding border-black/20 rounded-xl outline-0">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between p-4 border-b border-solid shrink-0 border-slate-100 rounded-t-xl">
+        <h5 class="mb-0">Task details</h5>
+        <button type="button" 
+                (click)="onCloseModal()"
+                class="flex items-center box-content w-4 h-4 text-slate-700 bg-transparent border-0 rounded-1.5 opacity-50 cursor-pointer p-2 -m-2 ml-auto" 
+                aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fa fa-close"></i>
+          </span>
+        </button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="relative flex-auto p-4 pt-6">
+        <!-- Hidden Task ID -->
+        <input [value]="data.taskId" class="hidden" />
+        
+        <!-- Task Title Input -->
+        <div class="relative flex flex-wrap items-stretch w-full mb-6 transition-all rounded-lg ease">
+          <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+            <i class="far fa-edit"></i>
+          </span>
+          <input [(ngModel)]="data.taskTitle"
+                 class="pl-9 text-sm focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" 
+                 placeholder="Task Title" 
+                 type="text" />
+        </div>
+        
+        <!-- Task Assignee Input -->
+        <div class="relative flex flex-wrap items-stretch w-full mb-6 transition-all rounded-lg ease">
+          <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+            <i class="fas fa-user"></i>
+          </span>
+          <input [(ngModel)]="data.taskAssignee"
+                 class="pl-9 text-sm focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" 
+                 placeholder="Task Assignee" 
+                 type="text" />
+        </div>
+        
+        <!-- Task Description Textarea -->
+        <div class="mb-4">
+          <textarea [(ngModel)]="data.taskDescription"
+                    class="-ml-px relative flex-auto w-full min-w-0 focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+                    placeholder="Task Description" 
+                    rows="4"></textarea>
+        </div>
+        
+        <!-- Success Message (Hidden by default) -->
+        <div class="relative hidden p-4 mb-4 text-white border border-solid rounded-lg border-lime-300 bg-gradient-to-tl from-emerald-500 to-teal-400">
+          Changes saved!
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="flex items-center justify-end p-4 border-t border-solid shrink-0 border-slate-100 rounded-b-xl">
+          <button 
+            type="button" 
+            class="inline-block px-6 py-3 mr-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-red-600 to-orange-600 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs"
+            (click)="onCloseModal()">
+            Close
+          </button>
+          <button 
+            type="button" 
+            class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-blue-500 to-violet-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs"
+            (click)="onUpdateTask()">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-40 bg-black opacity-50" 
+     [class.hidden]="!data.isOpen"
+     (click)="onCloseModal()">
+</div> 

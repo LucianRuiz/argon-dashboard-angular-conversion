@@ -1,0 +1,31 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-xl bg-clip-border">
+  <div class="p-6">
+    <h6 class="mb-3 text-lg font-semibold dark:text-white">Referral Code</h6>
+    <p class="mb-4 text-sm leading-normal text-slate-600 dark:text-slate-400">Copy the code below to your registered provider.</p>
+    <div class="p-4 border border-dashed rounded-lg border-slate-400 bg-slate-50 dark:bg-slate-800">
+      <p class="mb-2 text-xs leading-tight text-slate-600 dark:text-slate-400">
+        Generated {{ referralCode.generatedDate }} by 
+        <span class="font-bold text-slate-800 dark:text-white">{{ referralCode.generatedBy }}</span>
+      </p>
+      <p class="mb-4 text-xs leading-tight text-slate-600 dark:text-slate-400">
+        <span class="font-bold">(Used {{ referralCode.usedCount }} time)</span>
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="flex-1">
+          <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+            <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+              <i class="leading-none ni ni-key-25" aria-hidden="true"></i>
+            </span>
+            <input disabled type="text" class="pl-9 text-sm bg-white focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 ease w-full leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" [value]="referralCode.code">
+          </div>
+        </div>
+        <button (click)="onCopyCode()" class="inline-block px-4 py-2 text-xs font-bold text-center align-middle transition-all ease-in bg-blue-500 border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro tracking-tight-rem bg-150 bg-x-25 hover:-translate-y-px active:shadow-xs text-white hover:bg-blue-600 active:scale-100">Copy</button>                        
+      </div>
+      <p class="mb-1 mt-3 text-xs leading-tight text-slate-600 dark:text-slate-400">You cannot generate codes.</p>
+      <p class="mb-0 text-xs leading-tight text-slate-600 dark:text-slate-400">
+        <a class="text-blue-500 hover:text-blue-600 dark:text-blue-400" href="javascript:;">Contact us</a>
+        to generate more referrals link.
+      </p>
+    </div>
+  </div>
+</div> 

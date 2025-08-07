@@ -1,0 +1,12 @@
+<div alert class="relative p-4 pr-12 mb-4 text-white border border-solid rounded-lg" 
+     [ngClass]="[data.borderColor, 'bg-gradient-to-tl', data.gradientFrom, data.gradientTo]">
+  
+  {{ data.content }}
+  <a [href]="data.linkUrl" class="font-semibold text-white">{{ data.linkText }}</a>. Give it a click if you like.
+  
+  <button alert-close type="button" 
+          class="box-content absolute top-0 right-0 w-4 h-4 p-4 text-sm text-white bg-transparent border-0 rounded z-2"
+          (click)="onClose($event)">
+    <span aria-hidden="true" class="text-center cursor-pointer">&#10005;</span>
+  </button>
+</div> 

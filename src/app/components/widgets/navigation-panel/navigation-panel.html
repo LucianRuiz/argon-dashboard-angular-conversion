@@ -1,0 +1,130 @@
+<div class="shadow-3xl dark:bg-slate-850 dark:shadow-dark-xl border-black/12.5 bg-white relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-clip-border dark:bg-none">
+  <!-- Header con búsqueda y controles -->
+  <div class="border-b-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-transparent p-6" *ngIf="controlData && navigationData">
+    <div class="flex flex-wrap -mx-3">
+      <!-- Search input -->
+      <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+          <span class="leading-5.6 z-100 text-sm absolute -ml-px flex h-full items-center whitespace-nowrap rounded-l-lg border-0 bg-transparent p-3 text-center font-normal text-slate-500">
+            <i class="text-lg leading-none ni ni-zoom-split-in"></i>
+          </span>
+          <input class="leading-5.6 ease text-sm pl-9 focus:border-blue-500 border-transparent border border-solid focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 relative block min-w-0 flex-auto appearance-none rounded-lg bg-transparent bg-clip-padding p-3 font-normal text-slate-500 focus:transition-shadow placeholder:text-gray-500 focus:outline-none" 
+                 type="text" 
+                 [placeholder]="controlData.searchPlaceholder" />
+        </div>
+      </div>
+      
+      <!-- Control icons and time -->
+      <div class="w-full max-w-full px-3 my-auto ml-auto flex-0 md:w-6/12 lg:w-6/12">
+        <div class="flex items-center justify-end">
+          <i *ngFor="let control of controlData.controlIcons" 
+             [class]="'ml-4 text-lg leading-none text-slate-500 ni ' + control.icon" 
+             [title]="control.tooltip">
+          </i>
+          <h4 class="mb-1 ml-6 text-slate-500 dark:text-white">{{ navigationData.currentTime }}</h4>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="h-px bg-gradient-to-r from-transparent via-black/40 to-transparent dark:via-white" />
+    
+    <!-- Trip info inline -->
+    <div class="flex flex-wrap -mx-3">
+      <!-- Estimated arrival time -->
+      <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+        <div class="relative flex items-center">
+          <h3 class="mb-1 text-slate-500 dark:text-white">{{ navigationData.estimatedArrival }}</h3>
+          <p class="mb-1 ml-4 text-slate-500 opacity-80 dark:text-white">Estimated arrival time</p>
+          <hr class="absolute top-0 right-0 w-px h-full mt-0 bg-gradient-to-b from-transparent via-white to-transparent" />
+        </div>
+      </div>
+
+      <!-- Next turn info -->
+      <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+        <div class="relative flex items-center">
+          <h3 class="mb-1 ml-auto text-slate-500 dark:text-white">
+            {{ navigationData.nextTurn.distance }}
+            <small class="text-sm leading-normal align-top dark:text-white">{{ navigationData.nextTurn.unit }}</small>
+          </h3>
+          <p class="mb-1 ml-4 mr-auto text-slate-500 opacity-80 dark:text-white">{{ navigationData.nextTurn.instruction }}</p>
+          <hr class="absolute top-0 right-0 w-px h-full mt-0 bg-gradient-to-b from-transparent via-white to-transparent" />
+        </div>
+      </div>
+
+      <!-- Destination info -->
+      <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:ml-auto lg:w-4/12">
+        <div class="flex items-center">
+          <h3 class="mb-1 text-slate-500 lg:ml-auto dark:text-white">
+            {{ navigationData.destination.distance }}
+            <small class="text-sm leading-normal align-top dark:text-white">{{ navigationData.destination.unit }}</small>
+          </h3>
+          <p class="mb-1 ml-4 text-slate-500 opacity-80 dark:text-white">{{ navigationData.destination.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map section -->
+  <div class="flex-auto p-0">
+    <app-map-widget></app-map-widget>
+  </div>
+
+  <!-- Music player section inline -->
+  <div class="border-t-black/12.5 mt-0 rounded-b-2xl border-t-0 border-solid bg-transparent p-6" *ngIf="musicData">
+    <div class="flex flex-wrap -mx-3">
+      <!-- Song info -->
+      <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+        <div class="flex items-center">
+          <div class="relative">
+            <div class="inline-flex items-center justify-center text-sm transition-all duration-200 ease-in-out text-slate-500 w-14 h-14 rounded-xl">
+              <img [src]="musicData.currentSong.coverImage" alt="album cover" class="w-full shadow-2xl rounded-circle" />
+            </div>
+            <img [src]="musicData.currentSong.spotifyLogo" alt="spotify logo" class="absolute bottom-0 right-0 w-3/5 mb-0 -mr-4" />
+          </div>
+          <div class="px-4">
+            <p class="mb-0 text-sm font-semibold leading-normal text-slate-500 dark:text-white">{{ musicData.currentSong.title }}</p>
+            <p class="mb-2 text-xs leading-tight text-slate-500 opacity-80 dark:text-white">{{ musicData.currentSong.artist }} - {{ musicData.currentSong.genre }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control buttons -->
+      <div class="w-full max-w-full px-3 my-auto mt-3 text-center flex-0 md:w-6/12 lg:mt-0 lg:w-4/12">
+        <div class="flex items-center">
+          <!-- Previous button -->
+          <button (click)="previousTrack()" class="inline-block p-4 mb-0 ml-auto text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+            <i class="ni leading-none ni-button-play text-4.8 relative top-0 rotate-180" aria-hidden="true"></i>
+          </button>
+          
+          <!-- Play/Pause button -->
+          <button (click)="togglePlayPause()" class="inline-block p-4 mb-0 ml-6 text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+            <i [class]="'ni leading-none ' + (musicData.isPlaying ? 'ni-button-pause' : 'ni-button-play') + ' text-4.8 relative top-0'" aria-hidden="true"></i>
+          </button>
+          
+          <!-- Next button -->
+          <button (click)="nextTrack()" class="inline-block p-4 mb-0 ml-6 mr-auto text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+            <i class="ni leading-none ni-button-play text-4.8 relative top-0" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Volume control -->
+      <div class="w-8/12 max-w-full px-3 my-auto flex-0 md:w-6/12 lg:w-2/12">
+        <p class="mb-2 text-slate-500">Volume</p>
+        <div class="relative h-2 bg-gray-200 rounded-full cursor-pointer" #volumeTrack>
+          <div class="h-2 bg-blue-500 rounded-full transition-all duration-200" [style.width.%]="musicData.volume"></div>
+          <div class="absolute top-1/2 w-4 h-4 bg-blue-500 rounded-full shadow-lg transform -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform duration-200" 
+               #volumeSlider
+               [style.left.%]="musicData.volume">
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu icons -->
+      <div class="w-4/12 max-w-full px-3 my-auto ml-auto flex-0 md:w-6/12 lg:w-1/12">
+        <i class="mt-4 ml-auto leading-none text-slate-500 ni ni-bullet-list-67" title="Hide menu"></i>
+        <i class="mt-4 ml-4 leading-none text-slate-500 ni ni-chat-round" title="Track messages"></i>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,52 @@
+<div class="w-full mb-4 overflow-x-auto align-top border-gray-200 text-slate-500">
+  <table class="items-center justify-center w-full mb-0 align-top border-collapse border-gray-200 text-slate-500 dark:text-white/80">
+    <thead class="align-bottom">
+      <tr>
+        <th class="px-6 py-3 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">Product</th>
+        <th class="px-6 py-3 pl-2 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">Price</th>
+        <th class="px-6 py-3 pl-2 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">Review</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">Availability</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">ID</th>
+      </tr>
+    </thead>
+    <tbody class="align-top">
+      <tr *ngFor="let product of products">
+        <td class="p-2 align-middle border-b border-solid whitespace-nowrap border-inherit">
+          <div class="flex px-2 py-1">
+            <div>
+              <img class="inline-flex items-center justify-center w-12 h-12 mr-4 text-base text-white transition-all duration-200 ease-in-out rounded-xl" [src]="product.image" [alt]="product.name">
+            </div>
+            <div class="flex flex-col justify-center">
+              <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ product.name }}</h6>
+            </div>
+          </div>
+        </td>
+        <td class="p-2 align-middle border-b border-solid whitespace-nowrap border-inherit">
+          <p class="mb-0 text-sm leading-normal text-slate-400">{{ product.price }}</p>
+        </td>
+        <td class="p-2 align-middle border-b border-solid whitespace-nowrap border-inherit">
+          <div class="float-left border-0 lg:-ml-6">
+            <ng-container *ngFor="let star of getStars(product.rating).full">
+              <i class="fas fa-star" aria-hidden="true"></i>
+            </ng-container>
+            <ng-container *ngIf="getStars(product.rating).half">
+              <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+            </ng-container>
+          </div>
+        </td>
+        <td class="p-2 text-sm leading-normal align-middle border-b border-solid whitespace-nowrap border-inherit">
+          <div class="h-0.75 w-30 text-xs flex overflow-visible rounded-lg bg-gray-200 mx-auto">
+            <div
+              class="transition-width duration-600 ease rounded-1 -ml-px flex h-0.75 flex-col justify-center overflow-hidden whitespace-nowrap text-center text-white"
+              [ngClass]="product.available ? 'bg-gradient-to-tl from-emerald-500 to-teal-400' : 'bg-gradient-to-tl from-orange-500 to-yellow-500'"
+              [style.width]="product.available ? '80%' : '40%'"
+            ></div>
+          </div>
+        </td>
+        <td class="p-2 text-center align-middle border-b border-solid whitespace-nowrap border-inherit">
+          <span class="text-sm leading-normal text-slate-400">{{ product.id }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> 

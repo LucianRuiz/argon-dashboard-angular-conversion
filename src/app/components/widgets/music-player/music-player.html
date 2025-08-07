@@ -1,0 +1,51 @@
+<div class="flex flex-wrap -mx-3" *ngIf="data">
+  <!-- Song info -->
+  <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+    <div class="flex items-center">
+      <div class="relative">
+        <div class="inline-flex items-center justify-center text-sm transition-all duration-200 ease-in-out text-slate-500 w-14 h-14 rounded-xl">
+          <img [src]="data.currentSong.coverImage" alt="album cover" class="w-full shadow-2xl rounded-circle" />
+        </div>
+        <img [src]="data.currentSong.spotifyLogo" alt="spotify logo" class="absolute bottom-0 right-0 w-3/5 mb-0 -mr-4" />
+      </div>
+      <div class="px-4">
+        <p class="mb-0 text-sm font-semibold leading-normal text-slate-500 dark:text-white">{{ data.currentSong.title }}</p>
+        <p class="mb-2 text-xs leading-tight text-slate-500 opacity-80 dark:text-white">{{ data.currentSong.artist }} - {{ data.currentSong.genre }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Control buttons -->
+  <div class="w-full max-w-full px-3 my-auto mt-3 text-center flex-0 md:w-6/12 lg:mt-0 lg:w-4/12">
+    <div class="flex items-center">
+      <!-- Previous button -->
+      <button class="inline-block p-4 mb-0 ml-auto text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+        <i class="ni leading-none ni-button-play text-4.8 relative top-0 rotate-180" aria-hidden="true"></i>
+      </button>
+      
+      <!-- Play/Pause button -->
+      <button class="inline-block p-4 mb-0 ml-6 text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+        <i [class]="'ni leading-none ' + (data.isPlaying ? 'ni-button-pause' : 'ni-button-play') + ' text-4.8 relative top-0'" aria-hidden="true"></i>
+      </button>
+      
+      <!-- Next button -->
+      <button class="inline-block p-4 mb-0 ml-6 mr-auto text-sm font-bold text-center uppercase align-middle transition-all ease-in border border-solid shadow-none cursor-pointer text-slate-700 leading-pro active:opacity-85 active:shadow-xs tracking-tight-rem w-13 h-13 rounded-7 border-slate-700 bg-white/10 dark:bg-transparent hover:border-slate-700 hover:bg-transparent hover:text-slate-700 hover:opacity-75 hover:shadow-none active:border-slate-700 active:bg-slate-700 dark:active:hover:bg-transparent dark:active:bg-slate-700 active:text-white hover:active:border-slate-700 hover:active:bg-transparent hover:active:text-slate-700 hover:active:opacity-75 hover:active:shadow-none active:-translate-y-px">
+        <i class="ni leading-none ni-button-play text-4.8 relative top-0" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Volume control -->
+  <div class="w-8/12 max-w-full px-3 my-auto flex-0 md:w-6/12 lg:w-2/12">
+    <p class="mb-2 text-slate-500">Volume</p>
+    <div class="h-2 bg-gray-200 rounded-full">
+      <div class="h-2 bg-blue-500 rounded-full" [style.width.%]="data.volume"></div>
+    </div>
+  </div>
+
+  <!-- Menu icons -->
+  <div class="w-4/12 max-w-full px-3 my-auto ml-auto flex-0 md:w-6/12 lg:w-1/12">
+    <i class="mt-4 ml-auto leading-none text-slate-500 ni ni-bullet-list-67" title="Hide menu"></i>
+    <i class="mt-4 ml-4 leading-none text-slate-500 ni ni-chat-round" title="Track messages"></i>
+  </div>
+</div> 

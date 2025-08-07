@@ -1,0 +1,54 @@
+<div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+    <h6 class="dark:text-white">{{ data.title }}</h6>
+  </div>
+
+  <div class="flex-auto p-0 pb-2">
+    <div class="p-0 overflow-x-auto">
+      <table class="items-center justify-center w-full mb-0 align-top border-collapse border-gray-200 dark:border-white/40 dark:text-white text-slate-500">
+        <thead class="align-bottom">
+          <tr>
+            <th class="px-6 py-3 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">{{ data.headers.column1 }}</th>
+            <th class="py-3 pl-2 pr-6 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">{{ data.headers.column2 }}</th>
+            <th class="px-6 py-3 font-bold text-center uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">{{ data.headers.column3 }}</th>
+            <th class="px-6 py-3 font-bold text-center uppercase align-middle border-b border-gray-200 border-solid text-xxs text-slate-400 opacity-70 whitespace-nowrap tracking-none">{{ data.headers.column4 }}</th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr *ngFor="let product of data.products; let last = last">
+            <td class="p-2 align-middle" [ngClass]="last ? 'border-b-0' : 'border-b border-solid dark:border-white/40'">
+              <div class="flex px-4 py-1">
+                <div>
+                  <img class="inline-flex items-center justify-center w-12 h-12 mr-4 text-base text-white transition-all duration-200 ease-in-out rounded-xl" [src]="product.image" [alt]="product.name + ' image'">
+                </div>
+                <div class="flex flex-col justify-center">
+                  <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ product.name }}</h6>
+                  <p class="mb-0 text-sm font-semibold leading-normal text-slate-400">
+                    <span class="text-emerald-500">{{ product.orders }}</span>
+                    orders
+                  </p>
+                </div>
+              </div>
+            </td>
+            <td class="p-2 align-middle" [ngClass]="last ? 'border-b-0' : 'border-b border-solid dark:border-white/40'">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ product.value }}</p>
+            </td>
+            <td class="p-2 text-center align-middle" [ngClass]="last ? 'border-b-0' : 'border-b border-solid dark:border-white/40'">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ product.adsSpent }}</p>
+            </td>
+            <td class="p-2 text-right align-middle" [ngClass]="last ? 'border-b-0' : 'border-b border-solid dark:border-white/40'">
+              <div class="flex items-center justify-center px-4 py-1">
+                <p class="mb-0 text-sm font-semibold leading-normal">{{ product.refunds }}</p>
+                <i class="mt-1 ml-1 text-sm leading-normal" 
+                   [ngClass]="product.refundsTrend === 'down' ? 'ni ni-bold-down text-emerald-500' : 'ni ni-bold-up text-red-500'"></i>
+                <button *ngIf="product.hasInfoButton" type="button" class="active:shadow-xs ml-4 active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 flex cursor-pointer items-center justify-center border border-solid border-slate-400 bg-transparent text-center align-middle font-bold text-slate-400 shadow-none transition-all hover:bg-transparent hover:text-slate-400 hover:opacity-75 hover:shadow-none active:bg-slate-400 active:text-black hover:active:bg-transparent hover:active:text-slate-400 hover:active:opacity-75 hover:active:shadow-none">
+                  <i class="fas fa-info text-3xs"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 

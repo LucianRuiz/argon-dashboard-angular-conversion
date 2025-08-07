@@ -1,0 +1,14 @@
+<div class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col overflow-hidden break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+  <div class="p-4 pb-0 rounded-t-2xl">
+    <p class="mb-0 text-sm font-semibold leading-normal capitalize dark:text-white dark:opacity-60">{{data.title}}</p>
+    <h5 class="mb-0 font-bold dark:text-white">
+      {{data.value}}
+      <span class="text-sm font-bold leading-normal {{data.trendColor}}">{{data.trend}}</span>
+    </h5>
+  </div>
+  <div class="flex-auto p-0">
+    <div>
+      <canvas [id]="data.chartId" class="chart-canvas" height="100"></canvas>
+    </div>
+  </div>
+</div> 

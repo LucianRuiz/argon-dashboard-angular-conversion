@@ -1,0 +1,35 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Settings Tabs Section -->
+    <div class="w-full px-6 mx-auto mt-19">
+      <div class="flex flex-wrap items-center -mx-3">
+        <div class="w-full max-w-full px-3 sm:flex-0 shrink-0 sm:w-8/12 lg:w-4/12">
+          <app-settings-tabs *ngIf="settingsTabsData$ | async as settingsTabsData" [data]="settingsTabsData"></app-settings-tabs>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invoice Content Section -->
+    <div class="w-full p-6 py-2 mx-auto">
+      <app-invoice-details *ngIf="invoiceData$ | async as invoiceData" [data]="invoiceData"></app-invoice-details>
+      
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

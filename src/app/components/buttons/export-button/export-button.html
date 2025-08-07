@@ -1,0 +1,10 @@
+<!-- Botón de exportación -->
+<a 
+  [href]="data.href || 'javascript:;'" 
+  (click)="!data.href && handleClick()"
+  class="inline-block px-5 py-2.5 mb-4 ml-auto text-sm font-bold text-center text-white align-middle transition-all ease-in border border-white border-solid rounded-lg shadow-none cursor-pointer bg-white/13 hover:-translate-y-px leading-normal tracking-tight-rem active:opacity-85 active:shadow-xs hover:border-white hover:bg-transparent hover:opacity-75 active:border-white active:bg-white active:text-black hover:active:bg-transparent hover:active:text-white hover:active:shadow-none">
+  <span>{{ data.text }}</span>
+  <span class="ml-2">
+    <i [class]="data.icon" class="leading-none"></i>
+  </span>
+</a> 

@@ -1,0 +1,23 @@
+<div class="flex flex-wrap -mx-3">
+  <div *ngFor="let card of data.cards; trackBy: trackByCard" class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12">
+    <div class="relative flex flex-col min-w-0 break-words shadow-xl rounded-2xl bg-clip-border text-white" [ngClass]="card.bgClass">
+      <div class="flex-auto p-4">
+        <div class="flex justify-between">
+          <img [src]="card.icon" [alt]="card.brand" class="w-10 h-10" />
+          <div class="text-right">
+            <a class="inline-block px-2 py-1 mb-0 text-xs font-bold text-center align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-white" href="javascript:;">
+              <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <div class="mt-6">
+          <h6 class="mb-2 text-lg font-semibold tracking-widest">**** **** **** {{card.number}}</h6>
+          <div class="flex justify-between items-center">
+            <span class="text-xs">{{card.holder}}</span>
+            <span class="text-xs">Exp: {{card.expiry}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,31 @@
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+    <div class="flex flex-wrap -mx-3">
+      <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+        <h6 class="mb-0 dark:text-white">{{data.title}}</h6>
+      </div>
+      <div class="flex-none w-1/2 max-w-full px-3 text-right">
+        <button class="inline-block px-8 py-2 mb-0 text-xs font-bold leading-normal text-center text-blue-500 align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer bg-150 active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 hover:opacity-75">{{data.viewAllButton}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto p-4 pb-0">
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li *ngFor="let invoice of data.invoices; trackBy: trackByInvoice; let last = last" 
+          class="relative flex justify-between px-4 py-2 pl-0 mb-2 border-0 rounded-xl text-inherit"
+          [class.rounded-t-inherit]="invoice.id === 1"
+          [class.rounded-b-inherit]="last">
+        <div class="flex flex-col">
+          <h6 class="mb-1 text-sm font-semibold leading-normal text-slate-700 dark:text-white">{{invoice.date}}</h6>
+          <span class="text-xs leading-tight">{{invoice.number}}</span>
+        </div>
+        <div class="flex items-center text-sm leading-normal">
+          ${{invoice.amount}}
+          <button class="inline-block px-0 py-2.5 mb-0 ml-6 text-sm font-bold leading-normal text-center uppercase align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer bg-150 active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700 dark:text-white">
+            <i class="mr-1 text-lg leading-none fas fa-file-pdf"></i> {{data.pdfButtonText}}
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> 

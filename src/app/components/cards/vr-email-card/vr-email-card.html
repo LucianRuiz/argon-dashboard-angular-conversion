@@ -1,0 +1,12 @@
+<div class="relative flex flex-col min-w-0 mt-6 break-words transition-all duration-200 ease-out bg-white border-0 border-transparent shadow-xl dark:bg-slate-850 dark:shadow-dark-xl transform3d hover:transform3d-hover rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <div class="flex">
+      <p class="mb-0 dark:opacity-60">Emails ({{data.count}})</p>
+      <a href="javascript:;" class="ml-auto dark:text-white hover:text-fuchsia-800" data-target="tooltip_trigger">{{data.checkText}}</a>
+      <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+        {{data.checkText}}
+        <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+</div> 

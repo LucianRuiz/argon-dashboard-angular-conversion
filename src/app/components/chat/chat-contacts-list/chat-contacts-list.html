@@ -1,0 +1,67 @@
+<div class="relative flex flex-col min-w-0 mb-12 break-words bg-white border-0 max-h-70-screen lg:mb-0 bg-white/80 shadow-blur dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  
+  <!-- Header -->
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4">
+    <h6 class="dark:text-white">Friends</h6>
+    <input 
+      type="text" 
+      placeholder="Search Contact" 
+      class="focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+  </div>
+
+  <!-- Contacts List -->
+  <div class="flex-auto p-2 overflow-auto overflow-x-hidden" appPerfectScrollbar [updateOnChange]="contactsData" style="scrollbar-width: none; -ms-overflow-style: none;">
+    <a 
+      *ngFor="let contact of contactsData"
+      href="javascript:;" 
+      class="block p-2"
+      [class.bg-gradient-to-tl]="isActiveContact(contact)"
+      [class.from-blue-500]="isActiveContact(contact)"
+      [class.to-violet-500]="isActiveContact(contact)"
+      [class.rounded-xl]="isActiveContact(contact)"
+      (click)="onContactClick(contact.id)">
+      
+      <div class="flex p-2">
+        <img 
+          [src]="contact.avatar" 
+          [alt]="contact.name" 
+          class="inline-flex items-center justify-center w-12 h-12 text-base text-white transition-all duration-200 ease-in-out shadow-2xl rounded-xl">
+        
+        <div class="ml-4">
+          <div class="items-center justify-between">
+            <h6 
+              class="mb-0"
+              [class.text-white]="isActiveContact(contact)"
+              [class.dark:text-white]="isActiveContact(contact)">
+              {{ contact.name }}
+            </h6>
+            
+            <p 
+              *ngIf="contact.isTyping"
+              class="mb-0 text-sm leading-normal"
+              [class.text-white]="isActiveContact(contact)">
+              Typing...
+            </p>
+            
+            <p 
+              *ngIf="!contact.isTyping"
+              class="mb-2 text-xs leading-tight"
+              [class.text-white]="isActiveContact(contact)"
+              [class.text-slate-500]="!isActiveContact(contact)">
+              {{ contact.lastMessageTime }}
+            </p>
+            
+            <span 
+              *ngIf="!contact.isTyping"
+              class="block w-11/12 p-0 overflow-hidden text-sm leading-normal flex-0 overflow-ellipsis whitespace-nowrap"
+              [class.text-white]="isActiveContact(contact)"
+              [class.text-slate-500]="!isActiveContact(contact)">
+              {{ contact.lastMessage }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div> 

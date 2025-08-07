@@ -1,0 +1,23 @@
+<!-- Desktop version - hidden on small screens, visible on medium and up -->
+<div class="hidden w-full max-w-full px-3 md:block shrink-0">
+  <div class="w-10/12 flex-0">
+    <!-- Iterar sobre las imágenes de desktop -->
+    <app-perspective-image 
+      *ngFor="let image of desktopImages" 
+      [imageData]="image"
+      [isMobile]="false">
+    </app-perspective-image>
+  </div>
+</div>
+
+<!-- Mobile version - visible only on small screens -->
+<div class="block w-full max-w-full px-3 md:hidden shrink-0">
+  <div class="w-10/12 mx-auto flex-0">
+    <!-- Iterar sobre las imágenes de mobile -->
+    <app-perspective-image 
+      *ngFor="let image of mobileImages" 
+      [imageData]="image"
+      [isMobile]="true">
+    </app-perspective-image>
+  </div>
+</div> 

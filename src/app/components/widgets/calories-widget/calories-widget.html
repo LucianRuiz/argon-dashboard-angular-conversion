@@ -1,0 +1,14 @@
+<div class="relative flex flex-col min-w-0 overflow-hidden break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="p-4 pb-0 border-black/12.5 rounded-t-2xl border-b-0 border-solid">
+    <p class="mb-0 text-sm font-semibold leading-normal capitalize">{{ data.title }}</p>
+    <h5 class="mb-0 font-bold">
+      {{ data.value }}
+      <span class="text-sm font-bold leading-normal" [ngClass]="data.percentageColor">{{ data.percentage }}</span>
+    </h5>
+  </div>
+  <div class="flex-auto p-0">
+    <div class="chart h-32">
+      <canvas [id]="data.chartId" class="chart-canvas" height="100"></canvas>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,59 @@
+<!-- Layout principal para Ecommerce Overview -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80 h-screen overflow-hidden">
+  <!-- Fondo superior -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main content con PerfectScrollbar y flex para sticky footer -->
+  <main class="relative h-screen flex flex-col transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Contenido principal -->
+    <div class="w-full p-6 mx-auto">
+      <!-- 1. Tarjetas de resumen -->
+      <app-overview-summary-cards [cards]="overviewSummaryCardsData$ | async"></app-overview-summary-cards>
+
+      <!-- 2. Channels + Revenue -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <!-- Channels Pie Chart -->
+        <div class="w-full max-w-full px-3 shrink-0 sm:flex-0 sm:w-6/12 lg:w-4/12">
+          <app-channels-pie-chart *ngIf="channelsPieChartData$ | async as channelsData" [data]="channelsData"></app-channels-pie-chart>
+        </div>
+
+        <!-- Revenue Line Chart -->
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 sm:mt-0 sm:flex-0 sm:w-6/12 lg:w-8/12">
+          <app-revenue-line-chart *ngIf="revenueLineChartData$ | async as revenueData" [data]="revenueData"></app-revenue-line-chart>
+        </div>
+      </div>
+
+      <!-- 3. Sales by Age + Sales by Country -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <!-- Sales by Age -->
+        <div class="w-full max-w-full px-3 shrink-0 lg:flex-0 lg:w-8/12">
+          <app-bar-chart-horizontal *ngIf="barChartHorizontalData$ | async as barChartData" [data]="barChartData"></app-bar-chart-horizontal>
+        </div>
+
+        <!-- Sales by Country -->
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 lg:mt-0 lg:flex-0 lg:w-4/12">
+          <app-sales-by-country *ngIf="countrySalesData$ | async as countriesData" [title]="'Sales by Country'" [countries]="countriesData"></app-sales-by-country>
+        </div>
+      </div>
+
+      <!-- 4. Top Selling Products -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 flex-0">
+          <app-top-selling-products *ngIf="topSellingProductsData$ | async as productsData" [data]="productsData"></app-top-selling-products>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </main>
+
+  <!-- Configurador -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

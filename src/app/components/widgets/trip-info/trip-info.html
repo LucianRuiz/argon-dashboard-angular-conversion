@@ -1,0 +1,33 @@
+<div class="flex flex-wrap -mx-3" *ngIf="data">
+  <!-- Estimated arrival time -->
+  <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+    <div class="relative flex items-center">
+      <h3 class="mb-1 text-slate-500 dark:text-white">{{ data.estimatedArrival }}</h3>
+      <p class="mb-1 ml-4 text-slate-500 opacity-80 dark:text-white">Estimated arrival time</p>
+      <hr class="absolute top-0 right-0 w-px h-full mt-0 bg-gradient-to-b from-transparent via-white to-transparent" />
+    </div>
+  </div>
+
+  <!-- Next turn info -->
+  <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:w-4/12">
+    <div class="relative flex items-center">
+      <h3 class="mb-1 ml-auto text-slate-500 dark:text-white">
+        {{ data.nextTurn.distance }}
+        <small class="text-sm leading-normal align-top dark:text-white">{{ data.nextTurn.unit }}</small>
+      </h3>
+      <p class="mb-1 ml-4 mr-auto text-slate-500 opacity-80 dark:text-white">{{ data.nextTurn.instruction }}</p>
+      <hr class="absolute top-0 right-0 w-px h-full mt-0 bg-gradient-to-b from-transparent via-white to-transparent" />
+    </div>
+  </div>
+
+  <!-- Destination info -->
+  <div class="w-full max-w-full px-3 flex-0 md:w-6/12 lg:ml-auto lg:w-4/12">
+    <div class="flex items-center">
+      <h3 class="mb-1 text-slate-500 lg:ml-auto dark:text-white">
+        {{ data.destination.distance }}
+        <small class="text-sm leading-normal align-top dark:text-white">{{ data.destination.unit }}</small>
+      </h3>
+      <p class="mb-1 ml-4 text-slate-500 opacity-80 dark:text-white">{{ data.destination.name }}</p>
+    </div>
+  </div>
+</div> 

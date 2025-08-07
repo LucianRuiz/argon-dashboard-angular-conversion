@@ -1,0 +1,53 @@
+<div [ngClass]="{
+  'relative': true,
+  'mb-4': !data.isLast,
+  'mb-0': data.isLast,
+  'after:clear-both after:table after:content-[\'\']': mode === 'default' || mode === 'timeline-light'
+}">
+  <span [ngClass]="{
+    'w-6.5 h-6.5 rounded-circle text-base z-1 absolute left-4 inline-flex -translate-x-1/2 items-center justify-center text-center font-semibold shadow-md': true,
+    'bg-white dark:bg-slate-700': mode === 'default' || mode === 'timeline-light',
+    'bg-slate-700': mode === 'timeline-dark'
+  }">
+    <i
+      class="relative leading-pro z-1 bg-clip-text"
+      [ngClass]="[
+        data.icon,
+        data.iconGradient,
+        (mode === 'default' || mode === 'timeline-light') ? 'text-transparent' : '',
+        mode === 'timeline-dark' ? 'text-white' : ''
+      ]"></i>
+  </span>
+  <div [ngClass]="{
+    'ml-12 pt-1.4 lg:max-w-120 relative -top-1.5 w-auto': mode === 'default' || mode === 'timeline-light',
+    'ml-11 pt-1.4 max-w-120 relative -top-1.5 w-auto': mode === 'timeline-dark'
+  }">
+    <h6 class="mb-0 text-sm font-semibold leading-normal" [ngClass]="{
+      'text-slate-700 dark:text-white': mode === 'default' || mode === 'timeline-light',
+      'text-white': mode === 'timeline-dark'
+    }">
+      {{ data.title }}
+    </h6>
+    <p class="mt-1 mb-0 text-xs font-semibold leading-tight"
+       [ngClass]="{
+         'text-slate-400': mode === 'default' || mode === 'timeline-light',
+         'dark:text-white dark:opacity-80': mode === 'timeline-dark'
+       }">
+      {{ data.date }} {{ data.time }}
+    </p>
+    <!-- Mostrar descripción y tags en modo timeline-dark y timeline-light -->
+    <div *ngIf="mode === 'timeline-dark' || mode === 'timeline-light'">
+      <p class="mt-4 mb-2 text-sm leading-normal" [ngClass]="{
+        'text-slate-500': mode === 'timeline-light',
+        'text-slate-400': mode === 'timeline-dark'
+      }">
+        {{ data.description }}
+      </p>
+      <span *ngFor="let tag of data.tags" 
+            class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white shadow"
+            [ngClass]="data.iconGradient">
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</div> 

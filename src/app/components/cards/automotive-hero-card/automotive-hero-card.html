@@ -1,0 +1,59 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white shadow-3xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <img src="assets/img/shapes/pattern-left.png" alt="pattern-lines" class="absolute top-0 left-0 h-full overflow-hidden opacity-40" />
+  <img src="assets/img/shapes/pattern-right.png" alt="pattern-lines" class="absolute top-0 right-0 h-full overflow-hidden opacity-40" />
+  
+  <div class="z-10 flex-auto px-12 py-6 bg-cover" *ngIf="data">
+    <div class="flex flex-wrap -mx-3">
+      <!-- Left section - Since Last Charge -->
+      <div class="w-full max-w-full px-3 my-auto flex-0 lg:w-3/12">
+        <h4 class="text-center text-slate-500 opacity-90 dark:text-white">Since Last Charge</h4>
+        <hr class="h-px mt-1 mb-4 bg-gradient-to-r from-transparent via-white to-transparent" />
+        <div class="flex justify-center">
+          <div>
+            <h6 class="mb-0 text-slate-500 opacity-70 dark:text-white">Distance</h6>
+            <h3 class="text-slate-500 dark:text-white">
+              {{ data.sinceLastCharge.distance }}
+              <small class="text-sm leading-normal align-top dark:text-white">{{ data.sinceLastCharge.distanceUnit }}</small>
+            </h3>
+          </div>
+          <div class="ml-6 text-center lg:ml-16">
+            <h6 class="mb-0 text-slate-500 opacity-70 dark:text-white">Average Energy</h6>
+            <h3 class="text-slate-500 dark:text-white">
+              {{ data.sinceLastCharge.averageEnergy }}
+              <small class="text-sm leading-normal align-top dark:text-white">{{ data.sinceLastCharge.energyUnit }}</small>
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center section - Car Image and Range -->
+      <div class="w-full max-w-full px-3 text-center flex-0 lg:w-6/12">
+        <img class="hidden w-3/4 -mt-24 md:block lg:-mt-32 lg:w-full" [src]="data.carImage" alt="car image" />
+        <div class="flex items-center">
+          <h4 class="ml-0 text-slate-500 opacity-70 md:ml-auto dark:text-white">Available Range</h4>
+          <h2 class="ml-2 mr-auto text-slate-500 dark:text-white">
+            {{ data.availableRange }}
+            <small class="text-sm leading-normal align-top dark:text-white"> {{ data.rangeUnit }}</small>
+          </h2>
+        </div>
+      </div>
+
+      <!-- Right section - Nearest Charger -->
+      <div class="w-full max-w-full px-3 my-auto flex-0 lg:w-3/12">
+        <h4 class="text-slate-500 opacity-90 dark:text-white">Nearest Charger</h4>
+        <hr class="h-px mt-1 mb-4 bg-gradient-to-r from-transparent via-white to-transparent" />
+        <div class="flex">
+          <div>
+            <h6 class="mb-0 text-slate-500 dark:text-white">{{ data.nearestCharger.location }}</h6>
+            <h6 class="mb-0 text-slate-500 dark:text-white">{{ data.nearestCharger.address }}</h6>
+          </div>
+          <div class="ml-6 lg:ml-16">
+            <button class="leading-pro text-xs active:opacity-85 active:shadow-xs ease-in tracking-tight-rem w-9 h-9 p-2.8 rounded-7 mb-0 inline-block cursor-pointer border border-solid border-slate-700 bg-white/10 text-center align-middle font-bold uppercase text-slate-700 shadow-none transition-all hover:border-white hover:bg-transparent hover:text-white hover:opacity-75 hover:shadow-none active:border-white active:bg-white active:text-black hover:active:border-white hover:active:bg-transparent hover:active:text-white hover:active:opacity-75 hover:active:shadow-none">
+              <i class="leading-none ni ni-map-big" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,26 @@
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default h-screen overflow-hidden bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white/80">
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <main class="relative h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+    
+    <div class="w-full p-6 mx-auto">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 lg:w-6/12">
+          <app-timeline *ngIf="timelineData$ | async as timelineData" [data]="timelineData.lightTimeline" mode="timeline-light"></app-timeline>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 lg:flex-0 shrink-0 lg:mt-0 lg:w-6/12">
+          <app-timeline *ngIf="timelineData$ | async as timelineData" [data]="timelineData.darkTimeline" mode="timeline-dark"></app-timeline>
+        </div>
+      </div>
+
+      <app-footer [data]="footerData"></app-footer>
+    </div>
+  </main>
+
+  <app-footer [data]="footerData"></app-footer>
+  <app-argon-configurator></app-argon-configurator>
+</div> 

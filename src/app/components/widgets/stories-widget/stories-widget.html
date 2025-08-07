@@ -1,0 +1,13 @@
+<div *ngIf="data" class="relative flex flex-col min-w-0 overflow-scroll break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex flex-auto p-6">
+    <div *ngFor="let story of data; trackBy: trackByStory" class="w-4/12 text-center flex-0 sm:w-3/12 md:w-2/12 lg:w-1/12">
+      <a href="javascript:;" 
+         class="inline-flex items-center justify-center text-sm text-white transition-all duration-200 ease-in-out border-0 w-14 h-14 rounded-circle"
+         [ngClass]="story.isAddStory ? 'bg-gradient-to-tl from-blue-500 to-violet-500' : 'border border-blue-500 border-solid'">
+        <i *ngIf="story.isAddStory" class="text-white fas fa-plus"></i>
+        <img *ngIf="!story.isAddStory" [src]="story.avatar" [alt]="story.name" class="w-full p-1 rounded-circle" />
+      </a>
+      <p class="text-sm mb-0 mt-1.5 leading-normal dark:text-white dark:opacity-60">{{ story.name }}</p>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,117 @@
+<div [class]="formContainerClasses()">
+        <!-- Form Header -->
+        <h6 [class]="headerClasses()">{{ data.header.title }}</h6>
+        <p [class]="descriptionClasses()">{{ data.header.description }}</p>
+        
+        <!-- Form Divider -->
+        <hr [class]="dividerClasses()" />
+        
+        <!-- Project Name Field -->
+        <label [class]="labelMarginClasses('projectName')" for="projectName">{{ data.projectName.label }}</label>
+        <input 
+          type="text" 
+          name="projectName" 
+          [placeholder]="data.projectName.placeholder"
+          [value]="data.projectName.value"
+          [class]="inputClasses()" 
+        />
+        
+        <!-- Private Project Toggle -->
+        <div class="mt-6">
+        <div [class]="formRowClasses()">
+          <div class="w-full max-w-full px-3 flex-0 md:w-6/12">
+            <div class="mb-4">
+              <label [class]="labelMarginClasses('privateProject')" for="privateProject">{{ data.privateProject.label }}</label>
+              <p [class]="fieldDescriptionClasses()">{{ data.privateProject.description }}</p>
+              <div [class]="checkboxContainerClasses()">
+                <input 
+                  type="checkbox" 
+                  [checked]="data.privateProject.checked"
+                  (change)="onPrivateProjectToggle()"
+                  [class]="checkboxClasses()"
+                  [attr.data-type]="data.privateProject.notification.type"
+                  [attr.data-content]="data.privateProject.notification.content"
+                  [attr.data-title]="data.privateProject.notification.title"
+                  [attr.data-icon]="data.privateProject.notification.icon"
+                  notification
+                  onclick="notify(this)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        
+        <!-- Project Description Field -->
+        <label [class]="labelMarginClasses('projectDescription')" for="Project Description">{{ data.projectDescription.label }}</label>
+        <p [class]="fieldDescriptionClasses()">{{ data.projectDescription.description }}</p>
+        <div id="quill-editor" class="mb-4"></div>
+        
+        <!-- Project Tags Field -->
+        <label [class]="labelMarginClasses('projectTags')" for="Project Description">{{ data.projectTags.label }}</label>
+        <input 
+          choice 
+          name="choices-multiple-remove-button" 
+          id="choices-multiple-remove-button" 
+          type="text" 
+          [value]="data.projectTags.value" 
+          [placeholder]="data.projectTags.placeholder" 
+        />
+        
+        <!-- Date Fields -->
+        <div [class]="formRowClasses()">
+          <div [class]="formColumnClasses(true)">
+            <label [class]="labelMarginClasses('dateField')" for="Start Date">{{ data.dates.startDate.label }}</label>
+            <input 
+              datetimepicker 
+              [class]="inputClasses()" 
+              type="text" 
+              [placeholder]="data.dates.startDate.placeholder" 
+              [value]="data.dates.startDate.value"
+              data-input 
+            />
+          </div>
+          <div [class]="formColumnClasses(true)">
+            <label [class]="labelMarginClasses('dateField')" for="End Date">{{ data.dates.endDate.label }}</label>
+            <input 
+              datetimepicker 
+              [class]="inputClasses()" 
+              type="text" 
+              [placeholder]="data.dates.endDate.placeholder" 
+              [value]="data.dates.endDate.value"
+              data-input 
+            />
+          </div>
+        </div>
+        
+        <!-- Starting Files Field -->
+        <label [class]="labelMarginClasses('startingFiles')" for="Starting Files">{{ data.startingFiles.label }}</label>
+        <form 
+          dropzone 
+          [action]="data.startingFiles.dropzoneConfig.url" 
+          [class]="dropzoneClasses()" 
+          id="dropzone"
+        >
+          <div class="fallback">
+            <input name="file" type="file" multiple />
+          </div>
+        </form>
+        
+        <!-- Action Buttons -->
+        <div [class]="actionContainerClasses()">
+          <button 
+            type="button" 
+            [class]="actionButtonClasses(false)"
+            (click)="onCancel()"
+          >
+            {{ data.actions.cancel.text }}
+          </button>
+          <button 
+            type="button" 
+            [class]="actionButtonClasses(true)"
+            (click)="onSubmit()"
+          >
+            {{ data.actions.create.text }}
+          </button>
+        </div>
+</div> 

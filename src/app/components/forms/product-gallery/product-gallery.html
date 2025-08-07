@@ -1,0 +1,57 @@
+<!-- Product Gallery Component -->
+<div class="w-full">
+  <!-- Gallery Container for PhotoSwipe -->
+  <div class="my-gallery flex flex-col items-center" itemscope itemtype="http://schema.org/ImageGallery">
+    <!-- Main Product Image (abre PhotoSwipe) -->
+    <figure class="mb-4" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+      <a [href]="data.mainImage.mainImage" [attr.data-size]="data.mainImage.dataSize" itemprop="contentUrl">
+        <img class="w-full mx-auto rounded-xl shadow-3xl" [src]="data.mainImage.mainImage" [alt]="data.mainImage.alt" itemprop="thumbnail" loading="lazy">
+      </a>
+      <figcaption *ngIf="data.mainImage.description" itemprop="caption description" class="text-xs text-slate-500 mt-2">{{ data.mainImage.description }}</figcaption>
+    </figure>
+    <!-- Thumbnails (cada una abre PhotoSwipe) -->
+    <div class="flex pt-2 mt-2 gap-2">
+      <figure *ngFor="let thumb of data.thumbnails" class="mb-0" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a [href]="thumb.mainImage" [attr.data-size]="thumb.dataSize" itemprop="contentUrl">
+          <img class="w-20 h-20 object-cover rounded-xl border border-slate-200 dark:border-slate-700 hover:opacity-80 transition" [src]="thumb.thumbnail" [alt]="thumb.alt" itemprop="thumbnail" loading="lazy" />
+        </a>
+        <figcaption *ngIf="thumb.description" itemprop="caption description" class="text-xs text-slate-500 mt-1">{{ thumb.description }}</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- PhotoSwipe Root Element (debe estar en el DOM) -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+      <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp__top-bar">
+          <div class="pswp__counter"></div>
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

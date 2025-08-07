@@ -1,0 +1,54 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <div class="flex flex-wrap -mx-3">
+      <h5 class="w-full max-w-full px-3 font-bold dark:text-white shrink-0">{{ data.sectionTitle }}</h5>
+      <div class="w-3/12 max-w-full px-3 flex-0">
+        <label class="mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Price">{{ data.fields.price.label }}</label>
+        <input 
+          type="number" 
+          name="Price" 
+          [value]="data.fields.price.value"
+          [placeholder]="data.fields.price.placeholder"
+          (input)="onPriceChange($event)"
+          [class]="'focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none ' + (validatePrice() ? 'border-gray-300' : 'border-red-500')" />                    
+      </div>
+      <div class="w-4/12 max-w-full px-3 flex-0">
+        <label class="mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Currency">{{ data.fields.currency.label }}</label>
+        <select 
+          name="choices-sizes" 
+          choices-select
+          (change)="onCurrencyChange($event)">
+          <option 
+            *ngFor="let currency of data.fields.currency.options" 
+            [value]="currency.value"
+            [selected]="currency.selected">
+            {{ currency.label }}
+          </option>
+        </select>
+      </div>
+      <div class="w-5/12 max-w-full px-3 flex-0">
+        <label class="mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="SKU">{{ data.fields.sku.label }}</label>
+        <input 
+          type="text" 
+          name="SKU" 
+          [value]="data.fields.sku.value"
+          [placeholder]="data.fields.sku.placeholder"
+          (input)="onSkuChange($event)"
+          [class]="'focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none ' + (validateSku() ? 'border-gray-300' : 'border-red-500')" />
+      </div>
+    </div>
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full max-w-full px-3 flex-0">
+        <label class="mt-6 mb-2 ml-1 text-xs font-bold text-slate-700 dark:text-white/80" for="Tags">{{ data.fields.tags.label }}</label>
+        <input 
+          choice 
+          name="Tags" 
+          id="choices-multiple-remove-button" 
+          type="text" 
+          [value]="data.fields.tags.value"
+          [placeholder]="data.fields.tags.placeholder"
+          (input)="onTagsChange($event)" />
+      </div>
+    </div>
+  </div>
+</div> 

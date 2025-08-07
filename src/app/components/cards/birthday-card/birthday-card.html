@@ -1,0 +1,13 @@
+<div class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border p-4">
+  <div class="relative h-full overflow-hidden rounded-xl" [style.background-image]="'url(' + data.backgroundImage + ')'" style="background-size: cover; background-position: center;">
+    <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 opacity-80"></span>
+    <div class="relative z-10 flex-auto h-full p-4">
+      <h6 class="mb-4 font-bold text-white">{{data.title}}</h6>
+      <p *ngIf="data.message" class="mb-4 text-white dark:opacity-60">{{data.message}}</p>
+      <a class="active:shadow-xs active:opacity-85 leading-pro text-xs ease-in rounded-3.5xl hover:-translate-y-px mb-0 inline-block cursor-pointer border border-solid border-white/75 bg-white/10 py-3 px-6 text-center align-middle font-bold uppercase text-white shadow-none transition-all hover:border-white hover:bg-transparent hover:text-white hover:opacity-75 hover:shadow-none active:border-white active:bg-white active:text-black hover:active:bg-transparent hover:active:text-white hover:active:opacity-75 hover:active:shadow-none" href="javascript:;">
+        {{data.buttonText}}
+        <i class="ml-1 text-sm leading-normal fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div> 

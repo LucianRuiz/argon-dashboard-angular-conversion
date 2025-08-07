@@ -1,0 +1,41 @@
+<!-- Progreso de redes sociales -->
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <div class="flex items-center">
+      <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+      <button type="button" class="active:shadow-xs active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 ml-auto flex cursor-pointer items-center justify-center border border-solid border-slate-400 bg-transparent text-center align-middle font-bold text-slate-400 shadow-none transition-all hover:bg-transparent hover:text-slate-400 hover:opacity-75 hover:shadow-none active:bg-slate-400 active:text-black hover:active:bg-transparent hover:active:text-slate-400 hover:active:opacity-75 hover:active:shadow-none" data-target="tooltip_trigger">
+        <i class="fas fa-info text-3xs"></i>
+      </button>
+      <div class="z-50 hidden px-2 py-1 text-sm text-center text-white bg-black rounded-lg max-w-46" id="tooltip" role="tooltip" data-popper-placement="bottom">
+        {{ data.tooltipText }}
+        <div id="arrow" class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-auto p-4">
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li *ngFor="let network of data.networks; let first = first; let last = last" 
+          class="border-black/12.5 relative border-solid py-2 text-inherit border-0 flex items-center px-0 mb-2"
+          [class.rounded-t-inherit]="first"
+          [class.rounded-b-inherit]="last">
+        <div class="w-full">
+          <div class="flex items-center mb-2">
+            <a class="inline-block p-0 text-xs font-bold text-center uppercase align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro tracking-tight-rem hover:-translate-y-px active:opacity-85"
+               [style.color]="network.color">
+              <i [class]="network.icon + ' text-5.3 leading-3 font-normal align-[-0.0667em]'"></i>
+            </a>
+            <span class="mx-2 text-sm font-semibold leading-normal capitalize">{{ network.name }}</span>
+            <span class="ml-auto text-sm font-semibold leading-normal">{{ network.percentage }}%</span>
+          </div>
+          <div>
+            <div class="flex h-2 overflow-visible text-xs bg-gray-200 rounded-lg dark:bg-gradient-to-tl dark:from-zinc-800 dark:to-zinc-700">
+              <div class="flex flex-col justify-center h-2 -ml-px overflow-hidden text-center text-white dark:bg-gray-200 dark:bg-none bg-gradient-to-tl from-zinc-800 to-zinc-700 transition-width duration-600 ease rounded-1 whitespace-nowrap"
+                   [style.width]="getProgressWidth(network.percentage)"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> 

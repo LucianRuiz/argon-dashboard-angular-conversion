@@ -1,0 +1,31 @@
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+    <h5 class="mb-0 capitalize dark:text-white">{{ title }}</h5>
+  </div>
+  <div class="flex-auto p-6 pt-0">
+    <ul class="flex flex-col pl-0 mb-0 rounded-none">
+      <li *ngFor="let item of items; let last = last; let i = index; trackBy: trackByTodo" 
+          class="border-black/12.5 relative block py-2 px-0 text-inherit"
+          [ngClass]="{
+            'border-b border-solid': !last,
+            'rounded-t-inherit': i === 0,
+            'rounded-b-inherit': last,
+            'border-t-0': i > 0 && !last
+          }">
+        <div class="flex">
+          <div>
+            <h6 class="mb-0 dark:text-white/80">{{ item.title }}</h6>
+            <small class="text-xs leading-tight">{{ item.time }}</small>
+          </div>
+          <div class="block my-auto ml-auto min-h-6">
+            <input 
+              [checked]="item.completed" 
+              (change)="onToggle(item)" 
+              class="w-5 h-5 ease -ml-7 rounded-1.4 checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-250 after:ease-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-200 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100" 
+              type="checkbox" />
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> 

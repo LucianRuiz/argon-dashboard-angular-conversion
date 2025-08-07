@@ -1,0 +1,62 @@
+<!-- Profile Information Widget -->
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <!-- Header -->
+  <div class="p-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
+    <div class="flex flex-wrap -mx-3">
+      <div class="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
+        <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+      </div>
+      <div class="w-full max-w-full px-3 text-right shrink-0 md:w-4/12 md:flex-none">
+        <button 
+          type="button"
+          class="inline-block p-2 text-sm leading-normal transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer hover:scale-110 active:scale-100">
+          <i class="text-sm leading-normal fas fa-user-edit text-slate-400 dark:text-white dark:opacity-80"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex-auto p-4">
+    <!-- Description -->
+    <p class="text-sm leading-normal dark:text-white dark:opacity-60 mb-6">
+      {{ data.description }}
+    </p>
+
+    <!-- Separator -->
+    <hr class="h-px my-6 bg-transparent bg-gradient-to-r from-transparent via-white to-transparent" />
+
+    <!-- Personal Information -->
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngIf="hasPersonalInfo()">
+      <li 
+        class="relative block px-4 py-2 text-sm leading-normal border-0" 
+        [class.pt-0]="i === 0"
+        [class.pl-0]="i === 0"
+        [class.rounded-t-lg]="i === 0"
+        [class.border-t-0]="i > 0"
+        [class.rounded-b-lg]="i === data.personalInfo.length - 1"
+        *ngFor="let info of data.personalInfo; let i = index">
+        <strong class="text-slate-700 dark:text-white">{{ info.label }}:</strong>
+        &nbsp; {{ info.value }}
+      </li>
+
+      <!-- Social Links -->
+      <li 
+        class="relative block px-4 py-2 pb-0 pl-0 border-0 border-t-0 rounded-b-lg" 
+        *ngIf="hasSocialLinks()">
+        <strong class="text-sm leading-normal text-slate-700 dark:text-white">Social:</strong>
+        &nbsp;
+        <span *ngFor="let socialLink of data.socialLinks; let last = last">
+          <a 
+            class="inline-block py-0 pl-1 pr-2 mb-0 text-xs font-bold text-center align-middle transition-all ease-in bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro bg-none hover:scale-110 active:scale-100"
+            [class]="socialLink.color"
+                         [href]="socialLink.url"
+             [title]="socialLink.platform"
+             target="_blank">
+            <i [class]="socialLink.icon + ' fa-lg'"></i>
+          </a>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div> 

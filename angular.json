@@ -22,10 +22,25 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/argon-dashboard-tailwind.css",
+              "src/assets/css/nucleo-icons.css",
+              "src/assets/css/nucleo-svg.css",
+              "src/assets/css/perfect-scrollbar.css",
+              "src/assets/css/leaflet.css"
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/chart.umd.min.js",
+              "src/assets/js/plugins/datatables.min.js",
+              "src/assets/js/datatable.js"
             ]
           },
           "configurations": {

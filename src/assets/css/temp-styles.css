@@ -1,0 +1,82 @@
+/*!
+
+=========================================================
+* Argon Dashboard 2 Pro Tailwind - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro-tailwind
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+/*!
+ * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2021 Fonticons, Inc.
+ */
+@font-face {
+  font-family: "Nucleo-Icons";
+  src: url("/assets/fonts/nucleo-icons.eot");
+  src: url("/assets/fonts/nucleo-icons.eot") format("embedded-opentype"), url("/assets/fonts/nucleo-icons.ttf") format("truetype"), url("/assets/fonts/nucleo-icons.woff") format("woff"), url("/assets/fonts/nucleo-icons.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.ni {
+  display: inline-block;
+  font: normal normal normal 14px/1 "Nucleo-Icons";
+  font-size: inherit;
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: "Nucleo-Arrows";
+  src: url("/assets/fonts/nucleo-icons.eot");
+  src: url("/assets/fonts/nucleo-icons.eot") format("embedded-opentype"), url("/assets/fonts/nucleo-icons.ttf") format("truetype"), url("/assets/fonts/nucleo-icons.woff") format("woff"), url("/assets/fonts/nucleo-icons.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.arrow {
+  display: inline-block;
+  font: normal normal normal 14px/1 "Nucleo-Arrows";
+  font-size: inherit;
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.bg-\[url\(\'\/assets\/img\/curved-images\/curved8\.jpg\'\)\] {
+  background-image: url('/assets/img/curved-images/curved8.jpg');
+}
+.bg-\[url\(\'\/assets\/img\/vr-bg\.jpg\'\)\] {
+  background-image: url('/assets/img/vr-bg.jpg');
+}
+.bg-\[url\(\'\/assets\/img\/img-1-1200x1000\.jpg\'\)\] {
+  background-image: url('/assets/img/img-1-1200x1000.jpg');
+}
+/* Other styles */
+.bg-\[url\(\'https\:\/\/raw\.githubusercontent\.com\/creativetimofficial\/public-assets\/master\/argon-dashboard-pro\/assets\/img\/ivancik\.jpg\'\)\] {
+  background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/ivancik.jpg');
+}
+.bg-\[url\(\'https\:\/\/raw\.githubusercontent\.com\/creativetimofficial\/public-assets\/master\/argon-dashboard-pro\/assets\/img\/pricing-header-bg\.jpg\'\)\] {
+  background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/pricing-header-bg.jpg');
+}
+.bg-\[url\(\'\/assets\/img\/illustrations\/404\.svg\'\)\] {
+  background-image: url('/assets/img/illustrations/404.svg');
+}
+/* More styles */
+body {
+  font-family: "Open Sans", sans-serif;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, a, .text-sm, .text-lg, .text-xs {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* ... and all the other content from argon-dashboard-tailwind.css */ 

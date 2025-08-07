@@ -1,0 +1,49 @@
+<div *ngIf="data">
+  <div *ngFor="let team of data; trackBy: trackByTeam" class="relative flex flex-col min-w-0 mt-6 mb-4 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border lg:mt-0">
+    <div class="flex-auto p-6 pb-0">
+      <div class="flex flex-wrap items-center mb-4 -mx-3">
+        <div class="w-full max-w-full px-3 flex-0">
+          <h5 class="z-10 mb-1 text-transparent bg-clip-text bg-gradient-to-tl from-blue-500 to-violet-500">
+            <a href="javascript:;" class="text-transparent">{{ team.name }}</a>
+          </h5>
+        </div>
+      </div>
+      <p class="dark:text-white/60">{{ team.description }}</p>
+      <ul class="pl-0 mx-auto mb-4 list-none">
+        <li class="flex">
+          <p class="mb-0 dark:text-white/60">Industry:</p>
+          <span class="py-1.75 px-2.7 text-xs rounded-1.8 inline-block whitespace-nowrap ml-auto bg-slate-100 text-center align-baseline font-bold uppercase leading-none text-slate-600">{{ team.industry }}</span>
+        </li>
+        <li>
+          <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent">
+        </li>
+        <li class="flex">
+          <p class="mb-0 dark:text-white/60">Rating:</p>
+          <div class="float-left ml-auto border-none">
+            <i *ngFor="let star of getStars(team.rating)" 
+               class="fas"
+               [ngClass]="{
+                 'fa-star': star <= team.rating,
+                 'fa-star-half-alt': isHalfStar(team.rating, star),
+                 'far fa-star': star > team.rating && !isHalfStar(team.rating, star)
+               }"></i>
+          </div>
+        </li>
+        <li>
+          <hr class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent">
+        </li>
+        <li class="flex">
+          <p class="mb-0 dark:text-white/60">Members:</p>
+          <div class="ml-auto">
+            <a *ngFor="let member of team.members; trackBy: trackByMember; let i = index" 
+               href="javascript:;" 
+               class="relative z-20 inline-flex items-center justify-center w-6 h-6 text-xs text-white transition-all duration-200 ease-in-out border-2 border-white border-solid rounded-circle hover:z-30"
+               [ngClass]="{'ml-0': i === 0, '-ml-4': i > 0}">
+              <img class="w-full rounded-circle" [src]="member.avatar" [alt]="member.name" />
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

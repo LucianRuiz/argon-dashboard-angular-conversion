@@ -1,0 +1,14 @@
+<!-- Product Actions Component -->
+<div class="flex flex-wrap mt-6 -mx-3">
+  <!-- Primary Action (Add to Cart) -->
+  <div class="w-full max-w-full px-3 shrink-0 lg:flex-0 lg:w-5/12">
+    <button 
+      type="button" 
+      [class]="getPrimaryActionClasses()"
+      [disabled]="isPrimaryActionDisabled()"
+      (click)="onActionClick(data.primaryAction)">
+      <i *ngIf="data.primaryAction.icon" [class]="data.primaryAction.icon" class="mr-2"></i>
+      {{ data.primaryAction.text }}
+    </button>
+  </div>
+</div> 

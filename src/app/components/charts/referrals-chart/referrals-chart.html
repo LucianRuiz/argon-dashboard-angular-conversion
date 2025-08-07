@@ -1,0 +1,52 @@
+<!-- Gráfico de referencias -->
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <div class="flex items-center">
+      <h6 class="mb-0 dark:text-white">{{ data.title }}</h6>
+      <button type="button" class="active:shadow-xs active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 ml-auto flex cursor-pointer items-center justify-center border border-solid border-slate-400 bg-transparent text-center align-middle font-bold text-slate-400 shadow-none transition-all hover:bg-transparent hover:text-slate-400 hover:opacity-75 hover:shadow-none active:bg-slate-400 active:text-black hover:active:bg-transparent hover:active:text-slate-400 hover:active:opacity-75 hover:active:shadow-none" data-target="tooltip_trigger">
+        <i class="fas fa-info text-3xs"></i>
+      </button>
+      <div class="z-50 hidden px-2 py-1 text-sm text-center text-white bg-black rounded-lg max-w-46" id="tooltip" role="tooltip" data-popper-placement="bottom">
+        {{ data.tooltipText }}
+        <div id="arrow" class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-auto p-4">
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full max-w-full px-3 text-center flex-0 lg:w-5/12">
+        <div class="mt-12">
+          <canvas id="chart-doughnut-referrals" [height]="data.height || 200"></canvas>
+        </div>
+        <a href="javascript:;" class="inline-block px-8 py-2 mt-6 mb-4 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer tracking-tight-rem bg-gradient-to-tl from-slate-600 to-slate-300 bg-150 bg-x-25 hover:-translate-y-px active:opacity-85">{{ data.buttonText }}</a>
+      </div>
+      <div class="w-full max-w-full px-3 flex-0 lg:w-7/12">
+        <div class="overscroll-x-auto">
+          <table class="items-center w-full mb-0 align-top border-collapse border-gray-200 text-slate-500">
+            <tbody class="align-top">
+              <tr *ngFor="let referral of data.referrals; let last = last">
+                <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit" [class.border-b-0]="last">
+                  <div class="flex px-2 py-1">
+                    <div>
+                      <img 
+                        [src]="referral.logo" 
+                        [alt]="referral.altText || referral.name + ' logo'"
+                        class="inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl" />
+                    </div>
+                    <div class="flex flex-col justify-center">
+                      <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ referral.name }}</h6>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-2 text-sm leading-normal text-center align-middle border-b border-gray-200 border-solid whitespace-nowrap" [class.border-b-0]="last">
+                  <span class="text-xs font-semibold leading-tight dark:text-white">{{ referral.percentage }}%</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

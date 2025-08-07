@@ -1,0 +1,27 @@
+<div class="max-w-full px-3 pt-12 text-center md:w-1/12 md:flex-none lg:ml-12 lg:pt-0">
+  <a href="javascript:;" class="items-center justify-center block w-12 h-12 mx-auto mb-4 text-base text-white align-middle transition-all duration-200 ease-in-out border-0 rounded-xl" data-target="tooltip_trigger">
+    <img class="w-full rounded-xl" [src]="data.profileImage" alt="Image placeholder" />
+  </a>
+  <div data-target="tooltip" id="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg z-110" data-popper-placement="right">
+    My Profile
+    <div class="invisible absolute -right-2 h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+  </div>
+  
+  <button 
+    *ngFor="let button of data.buttons; let i = index; trackBy: trackByButton"
+    class="block p-2 mx-auto mb-4 text-xs font-bold tracking-tight text-center text-black uppercase align-middle transition-all duration-200 ease-in bg-white border-0 border-white shadow-md cursor-pointer hover:-translate-y-px hover:shadow-xs active:opacity-85 leading-pro bg-150 rounded-xl bg-x-25" 
+    type="button" 
+    [attr.data-target]="'tooltip_trigger_' + i">
+    <i [class]="button.icon + ' p-2'"></i>
+  </button>
+  
+  <div 
+    *ngFor="let button of data.buttons; let i = index; trackBy: trackByButton"
+    data-target="tooltip" 
+    [id]="'tooltip_' + i"
+    class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg z-110" 
+    data-popper-placement="right">
+    {{button.tooltip}}
+    <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+  </div>
+</div> 

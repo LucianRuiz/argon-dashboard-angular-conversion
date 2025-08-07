@@ -1,0 +1,19 @@
+<div class="relative flex flex-col min-w-0 break-words transition-all duration-200 ease-out bg-white border-0 border-transparent shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-none bg-gradient-to-tl from-zinc-800 to-zinc-700 hover:transform3d-hover transform3d rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <div class="flex">
+      <h5 class="mb-0 text-white">To Do</h5>
+      <div class="ml-auto">
+        <h1 class="mb-0 -mt-2 text-right text-white">{{data.totalItems}}</h1>
+        <p class="mb-0 text-sm leading-normal text-white dark:opacity-60">items</p>
+      </div>
+    </div>
+    <p class="mb-0 text-white dark:opacity-60" *ngFor="let item of data.items">{{item}}</p>
+  </div>
+  <a href="javascript:;" class="w-full py-1 text-center" data-target="tooltip_trigger">
+    <i class="text-white fas fa-chevron-down"></i>
+  </a>
+  <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+    Show More
+    <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+  </div>
+</div> 

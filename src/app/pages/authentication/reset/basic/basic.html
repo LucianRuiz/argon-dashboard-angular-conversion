@@ -1,0 +1,25 @@
+<!-- Page Layout with Navbar and Footer -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white min-h-screen w-full overflow-x-hidden">
+
+  <!-- Main Content Area with Background -->
+  <main class="mt-0 transition-all duration-200 ease-in-out w-full">
+    <div class="w-full h-full min-h-screen items-start p-0 relative overflow-hidden flex bg-cover bg-center bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/reset-basic.jpg')]">
+      <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover opacity-60 bg-gradient-to-tl from-zinc-800 to-zinc-700"></span>
+      
+      <!-- Navbar positioned above background -->
+      <app-secondary-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData" theme="default" mode="auth"></app-secondary-navbar>
+      
+      <div class="container mx-auto px-4 w-full">
+        <div class="flex flex-wrap justify-center mt-48 lg:mt-48 md:mt-56">
+          <div class="w-full max-w-full px-6 mx-auto shrink-0 md:flex-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
+            <app-reset-password-card *ngIf="resetPasswordCardData$ | async as resetPasswordCardData" [data]="resetPasswordCardData"></app-reset-password-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <app-secondary-footer></app-secondary-footer>
+
+</div> 

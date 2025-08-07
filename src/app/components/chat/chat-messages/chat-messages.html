@@ -1,0 +1,139 @@
+<!-- First message from other person -->
+<div class="flex flex-wrap justify-start mb-6 -mx-3">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1">{{ messagesData[0]?.content }}</p>
+        <div class="flex items-center text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[0]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- First message from current user -->
+<div class="flex flex-wrap justify-end mb-6 -mx-3 text-right">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-gray-200 border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1">{{ messagesData[1]?.content }}</p>
+        <div class="flex items-center justify-end text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[1]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Date separator -->
+<div class="flex flex-wrap mt-6 -mx-3">
+  <div class="w-full max-w-full px-3 text-center shrink-0 md:flex-0 md:w-full">
+    <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-slate-700">{{ messagesData[2]?.content }}</span>
+  </div>
+</div>
+
+<!-- Second message from other person -->
+<div class="flex flex-wrap justify-start mb-6 -mx-3">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1">{{ messagesData[3]?.content }}</p>
+        <div class="flex items-center text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[3]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Second message from current user -->
+<div class="flex flex-wrap justify-end mb-6 -mx-3 text-right">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-gray-200 border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1">{{ messagesData[4]?.content }}</p>
+        <div class="flex items-center justify-end text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[4]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Third message from other person -->
+<div class="flex flex-wrap justify-start mb-6 -mx-3">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1">{{ messagesData[5]?.content }}</p>
+        <div class="flex items-center text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[5]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Third message from current user -->
+<div class="flex flex-wrap justify-end mb-6 -mx-3 text-right">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-gray-200 border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-1" [innerHTML]="messagesData[6]?.content"></p>
+        <div class="flex items-center justify-end text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[6]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image message from other person -->
+<div class="flex flex-wrap justify-start mb-6 -mx-3">
+  <div class="w-5/12 max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto p-2">
+        <div class="w-full max-w-full p-0 flex-0">
+          <img class="h-auto max-w-full mb-2 rounded-xl" [src]="messagesData[7]?.imageUrl" alt="Rounded Image">
+        </div>
+        <div class="flex items-center text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[7]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fourth message from current user -->
+<div class="flex flex-wrap justify-end mb-6 -mx-3 text-right">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-gray-200 border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-0">{{ messagesData[8]?.content }}</p>
+        <div class="flex items-center justify-end text-sm leading-normal opacity-60">
+          <i class="mr-1 text-sm leading-normal ni ni-check-bold"></i>
+          <small>{{ messagesData[8]?.timestamp }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Typing message from other person -->
+<div class="flex flex-wrap justify-start -mx-3">
+  <div class="w-auto max-w-full px-3 flex-0">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto px-4 py-2">
+        <p class="mb-0">{{ messagesData[9]?.content }}</p>
+      </div>
+    </div>
+  </div>
+</div> 

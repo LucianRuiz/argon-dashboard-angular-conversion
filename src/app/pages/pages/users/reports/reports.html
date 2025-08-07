@@ -1,0 +1,37 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full p-6 mx-auto">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 flex-0 lg:w-6/12">
+          <app-report-cards *ngIf="reportCards$ | async as reportCards" [cards]="reportCards"></app-report-cards>
+        </div>
+        <div class="w-full max-w-full px-3 flex-0 lg:w-6/12">
+          <app-review-stats *ngIf="reviewStats$ | async as reviewStats" [stats]="reviewStats"></app-review-stats>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap my-6 -mx-3">
+        <div class="w-full max-w-full px-3 flex-0">
+          <app-user-reviews-table *ngIf="userReviews$ | async as userReviews" [users]="userReviews"></app-user-reviews-table>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

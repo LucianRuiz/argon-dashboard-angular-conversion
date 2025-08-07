@@ -1,0 +1,112 @@
+<div class="flex flex-wrap -mx-3">
+  <div class="w-full max-w-full px-3 mx-auto sm:flex-0 shrink-0 sm:w-10/12 md:w-8/12">
+    <form action="index.html" method="post">
+      <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border sm:my-12">
+      
+      <!-- Invoice Header -->
+      <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 text-center">
+        <div class="flex flex-wrap justify-between -mx-3">
+          <!-- Company Info -->
+          <div class="w-full max-w-full px-3 text-left md:flex-0 shrink-0 md:w-4/12">
+            <img class="block w-1/4 p-2 mb-2 dark:hidden" [src]="data.companyInfo.logo" alt="Logo" />
+            <img class="hidden w-1/4 p-2 mb-2 dark:block" [src]="data.companyInfo.logoDark" alt="Logo" />
+            <h6 class="dark:text-white">{{ data.companyInfo.address }}</h6>
+            <p class="block text-slate-400 dark:text-white dark:opacity-80">tel: {{ data.companyInfo.phone }}</p>
+          </div>
+          
+          <!-- Billing Info -->
+          <div class="w-full max-w-full px-3 mt-12 text-left md:flex-0 shrink-0 md:w-7/12 md:text-right lg:w-3/12">
+            <h6 class="block mt-2 mb-0 dark:text-white">Billed to: {{ data.billingInfo.customerName }}</h6>
+            <p class="text-slate-400 dark:text-white dark:opacity-80">
+              <span *ngFor="let addressLine of data.billingInfo.address; let last = last">
+                {{ addressLine }}<br *ngIf="!last" />
+              </span>
+            </p>
+          </div>
+        </div>
+        
+        <br />
+        
+        <!-- Invoice Details -->
+        <div class="flex flex-wrap -mx-3 md:justify-between">
+          <div class="w-full max-w-full px-3 mt-auto md:flex-0 shrink-0 md:w-4/12">
+            <h6 class="mb-0 text-left text-slate-400 dark:text-white dark:opacity-80">Invoice no</h6>
+            <h5 class="mb-0 text-left dark:text-white">{{ data.invoiceDetails.number }}</h5>
+          </div>
+          <div class="w-full max-w-full px-3 mt-auto md:flex-0 shrink-0 md:w-7/12 lg:w-5/12">
+            <div class="flex flex-wrap mt-6 -mx-3 text-left md:mt-12 md:text-right">
+              <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                <h6 class="mb-0 text-slate-400 dark:text-white dark:opacity-80">Invoice date:</h6>
+              </div>
+              <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                <h6 class="mb-0 text-slate-700 dark:text-white">{{ data.invoiceDetails.invoiceDate }}</h6>
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 text-left md:text-right">
+              <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                <h6 class="mb-0 text-slate-400 dark:text-white dark:opacity-80">Due date:</h6>
+              </div>
+              <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+                <h6 class="mb-0 text-slate-700 dark:text-white">{{ data.invoiceDetails.dueDate }}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Invoice Items Table -->
+      <div class="flex-auto p-6">
+        <div class="flex flex-wrap -mx-3">
+          <div class="w-full max-w-full px-3 flex-0">
+            <div class="overflow-x-auto rounded-t-xl">
+              <table class="w-full mb-4 align-top border-collapse border-gray-200 text-slate-500 dark:border-white/40">
+                <thead class="text-white align-bottom bg-slate-700 dark:bg-slate-700">
+                  <tr>
+                    <th scope="col" class="px-2 py-3 font-semibold text-left capitalize bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">Item</th>
+                    <th scope="col" class="px-2 py-3 pl-6 font-semibold capitalize bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">Qty</th>
+                    <th scope="col" class="px-2 py-3 pl-6 font-semibold capitalize bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white" colspan="2">Rate</th>
+                    <th scope="col" class="px-2 py-3 pl-6 font-semibold capitalize bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="border-t-2">
+                  <tr *ngFor="let item of data.items; trackBy: trackByItem; let last = last">
+                    <td class="p-2 text-left border-b whitespace-nowrap dark:border-white/40 dark:text-white/60" [class.border-b-0]="last">{{ item.item }}</td>
+                    <td class="p-2 pl-6 border-b whitespace-nowrap dark:border-white/40 dark:text-white/60" [class.border-b-0]="last">{{ item.qty }}</td>
+                    <td class="p-2 pl-6 border-b whitespace-nowrap dark:border-white/40 dark:text-white/60" [class.border-b-0]="last" colspan="2">$ {{ item.rate.toFixed(2) }}</td>
+                    <td class="p-2 pl-6 border-b whitespace-nowrap dark:border-white/40 dark:text-white/60" [class.border-b-0]="last">$ {{ item.amount.toFixed(2) }}</td>
+                  </tr>
+                </tbody>
+                <tfoot class="border-t border-solid">
+                  <tr>
+                    <th class="p-2 font-semibold bg-transparent border-b shadow-none whitespace-nowrap dark:border-white/40 dark:text-white/60"></th>
+                    <th class="p-2 font-semibold bg-transparent border-b shadow-none whitespace-nowrap dark:border-white/40 dark:text-white/60"></th>
+                    <th class="p-2 pl-6 mt-0 mb-2 text-xl font-semibold leading-snug bg-transparent border-b shadow-none whitespace-nowrap text-slate-700 dark:border-white/40 dark:text-white/60" colspan="2">Total</th>
+                    <th class="p-2 pl-6 mt-0 mb-2 text-xl font-semibold leading-snug bg-transparent border-b shadow-none whitespace-nowrap text-slate-700 dark:border-white/40 dark:text-white/60" colspan="1">$ {{ data.total }}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Invoice Footer -->
+      <div class="border-black/12.5 mt-6 rounded-b-2xl border-t-0 border-solid p-6 md:mt-12">
+        <div class="flex flex-wrap -mx-3">
+          <div class="w-full max-w-full px-3 text-left lg:flex-0 shrink-0 lg:w-5/12">
+            <h5 class="dark:text-white">Thank you!</h5>
+            <p class="text-sm leading-normal text-slate-400 dark:text-white dark:opacity-80">If you encounter any issues related to the invoice you can contact us at:</p>
+            <h6 class="mb-0 text-slate-400 dark:text-white dark:opacity-80">
+              email:
+              <span class="text-slate-700 dark:text-white">{{ data.contactInfo.email }}</span>
+            </h6>
+          </div>
+          <div class="w-full max-w-full px-3 mt-4 lg:flex-0 shrink-0 md:mt-0 md:text-right lg:w-7/12">
+            <button type="button" class="inline-block px-5 py-2.5 mb-0 text-sm font-bold leading-normal text-right text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs tracking-tight-rem bg-150 bg-x-25 lg:mt-24">Print</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+</div> 

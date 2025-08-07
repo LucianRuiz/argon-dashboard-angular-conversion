@@ -1,0 +1,129 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full px-6 py-6 mx-auto">
+
+      <!-- Row 1 - Stats Cards -->
+      <div class="flex flex-wrap -mx-3" *ngIf="statsCards$ | async as statsCards">
+        <div *ngFor="let card of statsCards; let i = index" class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+          <app-stats-card [data]="card"></app-stats-card>
+        </div>
+      </div>
+
+      <!-- Row 2 - Sales Overview & Carousel -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+          <app-sales-overview *ngIf="salesOverviewData$ | async as salesOverviewData" [data]="salesOverviewData"></app-sales-overview>
+        </div>
+        <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
+          <app-carousel *ngIf="carouselSlides$ | async as carouselSlides" [slides]="carouselSlides" height="h-full"></app-carousel>
+        </div>
+      </div>
+
+      <!-- Row 3 - Team Members, To Do List, Progress Track -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 lg:flex-none lg:mb-0">
+          <app-team-members
+            *ngIf="teamMembers$ | async as teamMembers"
+            [members]="teamMembers">
+          </app-team-members>
+        </div>
+        <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 lg:flex-none lg:mb-0">
+          <app-todo-list
+            *ngIf="todoItems$ | async as todoItems"
+            [items]="todoItems">
+          </app-todo-list>
+        </div>
+        <div class="w-full max-w-full px-3 lg:w-4/12 lg:flex-none">
+          <app-progress-track
+            *ngIf="progressItems$ | async as progressItems"
+            [items]="progressItems">
+          </app-progress-track>
+        </div>
+      </div>
+
+      <!-- Row 4 - Complex Row -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <!-- Left Side: Social Post -->
+        <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
+          <app-social-post
+            *ngIf="socialPostData$ | async as socialPostData"
+            [data]="socialPostData">
+          </app-social-post>
+        </div>
+
+        <!-- Right Side: Vertical Stack -->
+        <div class="w-full max-w-full px-3 lg:w-7/12 lg:flex-none">
+          <!-- 1. Projects Table -->
+          <div class="mb-6">
+            <app-projects-table
+              *ngIf="projects$ | async as projects"
+              [projects]="projects">
+            </app-projects-table>
+          </div>
+
+          <!-- 2. Balance & Crypto Cards -->
+          <div class="flex flex-wrap mb-6 -mx-3">
+            <div class="w-full max-w-full px-3 mb-6 lg:w-1/2 lg:flex-none lg:mb-0">
+              <app-balance-card
+                *ngIf="balanceData$ | async as balanceData"
+                [balanceData]="balanceData">
+              </app-balance-card>
+            </div>
+            <div class="w-full max-w-full px-3 lg:w-1/2 lg:flex-none">
+              <app-crypto-card
+                *ngIf="cryptoData$ | async as cryptoData"
+                [cryptoData]="cryptoData">
+              </app-crypto-card>
+            </div>
+          </div>
+
+          <!-- 3. Sales by Country -->
+          <div>
+            <app-sales-by-country
+              *ngIf="countries$ | async as countries"
+              [countries]="countries"
+              title="Sales by Country">
+            </app-sales-by-country>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 5 - Authors Table & Categories -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 mb-6 lg:w-8/12 lg:flex-none lg:mb-0">
+          <app-authors-table
+            *ngIf="authors$ | async as authors"
+            [authors]="authors">
+          </app-authors-table>
+        </div>
+        <div class="w-full max-w-full px-3 lg:w-4/12 lg:flex-none">
+          <app-categories
+            *ngIf="categories$ | async as categories"
+            [categories]="categories"
+            title="Categories">
+          </app-categories>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer *ngIf="footerData$ | async as footerData" [data]="footerData"></app-footer>
+
+    </div>
+
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div>

@@ -1,0 +1,83 @@
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80 h-screen overflow-hidden">
+  <!-- Background gradient -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main content -->
+  <main class="relative h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+    
+    <!-- Page content -->
+    <div class="w-full p-6 mx-auto">
+      
+      <!-- Page header -->
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <h5 class="mb-0 text-white">Charts</h5>
+          <p class="mb-0 text-sm leading-normal text-white">
+            Charts on this page use Chart.js - Simple yet flexible JavaScript charting for designers & developers.
+          </p>
+        </div>
+      </div>
+
+      <!-- First row of charts -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <app-line-chart *ngIf="lineChartData$ | async as lineChartData" [data]="lineChartData"></app-line-chart>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 md:mt-0">
+          <app-line-chart-gradient *ngIf="lineChartGradientData$ | async as lineChartGradientData" [data]="lineChartGradientData"></app-line-chart-gradient>
+        </div>
+      </div>
+
+      <!-- Second row of charts -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <app-bar-chart *ngIf="barChartData$ | async as barChartData" [data]="barChartData"></app-bar-chart>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 md:mt-0">
+          <app-bar-chart-horizontal *ngIf="barChartHorizontalData$ | async as barChartHorizontalData" [data]="barChartHorizontalData"></app-bar-chart-horizontal>
+        </div>
+      </div>
+
+      <!-- Third row of charts -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <app-mixed-chart *ngIf="mixedChartData$ | async as mixedChartData" [data]="mixedChartData"></app-mixed-chart>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 md:mt-0">
+          <app-bubble-chart *ngIf="bubbleChartData$ | async as bubbleChartData" [data]="bubbleChartData"></app-bubble-chart>
+        </div>
+      </div>
+
+      <!-- Fourth row of charts -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <app-doughnut-chart *ngIf="doughnutChartData$ | async as doughnutChartData" [data]="doughnutChartData"></app-doughnut-chart>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 md:mt-0">
+          <app-pie-chart *ngIf="pieChartData$ | async as pieChartData" [data]="pieChartData"></app-pie-chart>
+        </div>
+      </div>
+
+      <!-- Fifth row of charts -->
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 shrink-0 md:flex-0 md:w-6/12">
+          <app-radar-chart *ngIf="radarChartData$ | async as radarChartData" [data]="radarChartData"></app-radar-chart>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 md:mt-0">
+          <app-polar-chart *ngIf="polarChartData$ | async as polarChartData" [data]="polarChartData"></app-polar-chart>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

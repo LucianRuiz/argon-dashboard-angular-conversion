@@ -1,0 +1,51 @@
+<!-- Pricing Cards Section -->
+<div class="-mt-32">
+  <div class="container">
+    <div>
+      <div class="block">
+        <div class="flex flex-wrap -mx-3">
+          <div 
+            *ngFor="let plan of pricingPlans; let i = index"
+            class="w-full max-w-full px-3 mb-6 lg:w-4/12 lg:mb-0 shrink-0">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+              <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 text-center pb-4">
+                <span class="py-2 px-3 text-base rounded-lg inline-block whitespace-nowrap text-center align-baseline font-semibold uppercase leading-none text-slate-700">
+                  {{ plan.name }}
+                </span>
+                <h1 class="mt-2 font-semibold">
+                  <small>$</small>{{ getCurrentPrice(plan) }}
+                </h1>
+                <div *ngIf="isAnnual && getAnnualDiscount(plan) > 0" class="mt-2">
+                  <span class="text-sm text-emerald-500 font-medium">
+                    Save {{ getAnnualDiscount(plan) }}%
+                  </span>
+                </div>
+              </div>
+              <div class="flex-auto p-6 pt-0 text-center lg:text-left">
+                <div 
+                  *ngFor="let feature of plan.features"
+                  class="flex justify-center p-2 lg:justify-start">
+                  <div class="inline-block w-6 h-6 text-center text-black bg-center shadow-2xl fill-current rounded-full stroke-none"
+                       [class]="feature.included ? 'bg-gradient-to-tl from-emerald-500 to-teal-400' : 'bg-gradient-to-tl from-slate-600 to-slate-300'">
+                    <i class="relative text-white -top-1 text-xs"
+                       [class]="feature.included ? 'fas fa-check' : 'fas fa-minus opacity-80'"></i>
+                  </div>
+                  <div>
+                    <span class="pl-4">{{ feature.text }}</span>
+                  </div>
+                </div>
+                <button 
+                  class="inline-block px-6 py-3 mt-4 text-xs font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer lg:w-full hover:-translate-y-px active:opacity-85 hover:shadow-lg leading-relaxed tracking-tight"
+                  [class]="plan.buttonClass"
+                  (click)="onPlanSelect(plan)">
+                  {{ plan.buttonText }}
+                  <i class="ml-1 fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

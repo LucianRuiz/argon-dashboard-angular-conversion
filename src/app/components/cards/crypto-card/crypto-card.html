@@ -1,0 +1,47 @@
+<div class="relative flex flex-col h-full min-w-0 break-words shadow-xl bg-gradient-to-tl from-red-600 to-orange-600 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <div class="flex flex-wrap items-center justify-between -mx-3">
+      <div class="w-full max-w-full px-3 flex-1-0">
+        <img class="rounded-lg w-3/10" [src]="cryptoData.logo" [alt]="cryptoData.name">
+      </div>
+      <div class="w-auto max-w-full px-3 flex-0">
+        <span class="py-2.5 px-4 bg text-xs rounded-lg inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-emerald-600 bg-emerald-200" 
+              [ngClass]="cryptoData.statusClass">
+          {{ cryptoData.status }}
+        </span>
+      </div>
+    </div>
+    <div class="my-6">
+      <p class="mb-0 text-sm leading-normal text-white/80">Address</p>
+      <div class="mb-2 text-base font-semibold leading-relaxed text-white cursor-pointer">{{ cryptoData.address }}</div>
+    </div>
+    <div class="flex flex-wrap mt-12 -mx-3">
+      <div class="w-full max-w-full px-3 flex-1-0">
+        <p class="mb-0 text-sm leading-normal text-white/80">Name</p>
+        <span class="block mb-2 text-base font-semibold leading-relaxed text-white">{{ cryptoData.owner.name }}</span>
+      </div>
+      <div class="w-full max-w-full px-3 ml-auto text-right flex-1-0">
+        <div class="mt-4">
+          <div *ngIf="cryptoData.actions.receive" 
+               class="inline-block p-1 text-xs font-bold leading-normal tracking-tight text-center text-black align-middle transition-all ease-in bg-white border-0 shadow-md cursor-pointer rounded-circle hover:-translate-y-px active:-translate-y-px hover:shadow-xs bg-150 bg-x-25"
+               (click)="onActionClick('receive')"
+               title="Receive">
+            <i class="p-2 ni ni-bold-down"></i>
+          </div>
+          <div *ngIf="cryptoData.actions.send" 
+               class="inline-block p-1 text-xs font-bold leading-normal tracking-tight text-center text-black align-middle transition-all ease-in bg-white border-0 shadow-md cursor-pointer rounded-circle hover:-translate-y-px active:-translate-y-px hover:shadow-xs bg-150 bg-x-25"
+               (click)="onActionClick('send')"
+               title="Send">
+            <i class="p-2 ni ni-bold-up"></i>
+          </div>
+          <div *ngIf="cryptoData.actions.swap" 
+               class="inline-block p-1 text-xs font-bold leading-normal tracking-tight text-center text-black align-middle transition-all ease-in bg-white border-0 shadow-md cursor-pointer rounded-circle hover:-translate-y-px active:-translate-y-px hover:shadow-xs bg-150 bg-x-25"
+               (click)="onActionClick('swap')"
+               title="Swap">
+            <i class="p-2 ni ni-curved-next"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

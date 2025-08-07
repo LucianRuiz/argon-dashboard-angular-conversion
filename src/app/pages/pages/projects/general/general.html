@@ -1,0 +1,59 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full p-6 pt-4 mx-auto">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 flex-0 lg:w-8/12">
+          <div class="flex flex-wrap h-full -mx-3">
+            <!-- Earnings Card -->
+            <div class="w-full h-full max-w-full px-3 flex-0 lg:w-4/12">
+              <app-earnings-card *ngIf="earningsCardData$ | async as earningsData" [data]="earningsData"></app-earnings-card>
+            </div>
+            <!-- Stats Cards Column 1 -->
+            <div class="w-full max-w-full px-3 mt-6 flex-0 md:w-6/12 lg:mt-0 lg:w-4/12">
+              <app-stats-card *ngIf="statsData$ | async as statsData" [data]="statsData[0]"></app-stats-card>
+              <div class="mt-6"></div>
+              <app-stats-card *ngIf="statsData$ | async as statsData" [data]="statsData[1]"></app-stats-card>
+            </div>
+            <!-- Stats Cards Column 2 -->
+            <div class="w-full max-w-full px-3 mt-6 flex-0 md:w-6/12 lg:mt-0 lg:w-4/12">
+              <app-stats-card *ngIf="statsData$ | async as statsData" [data]="statsData[2]"></app-stats-card>
+              <div class="mt-6"></div>
+              <app-stats-card *ngIf="statsData$ | async as statsData" [data]="statsData[3]"></app-stats-card>
+            </div>
+          </div>
+        </div>
+        <!-- Recommendation Card -->
+        <div class="w-full max-w-full px-3 mt-6 flex-0 lg:mt-0 lg:w-4/12">
+          <app-recommendation-card *ngIf="recommendationCardData$ | async as recommendationData" [data]="recommendationData"></app-recommendation-card>
+        </div>
+      </div>
+      <div class="flex flex-wrap mt-6 -mx-3">
+        <div class="w-full max-w-full px-3 flex-0 lg:w-8/12">
+          <app-todo-list-card *ngIf="todoListCardData$ | async as todoListData" [data]="todoListData"></app-todo-list-card>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 flex-0 lg:mt-0 lg:w-4/12">
+          <!-- Tasks Stats Card -->
+          <app-tasks-stats-card *ngIf="tasksStatsCardData$ | async as tasksStatsData" [data]="tasksStatsData"></app-tasks-stats-card>
+          <!-- Projects Stats Card -->
+          <app-projects-stats-card *ngIf="projectsStatsCardData$ | async as projectsStatsData" [data]="projectsStatsData"></app-projects-stats-card>
+        </div>
+      </div>
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

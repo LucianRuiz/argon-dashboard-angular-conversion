@@ -1,0 +1,23 @@
+<!-- Filtro de fechas -->
+<div class="relative ml-4">
+  <button 
+    type="button" 
+    (click)="toggleDropdown()"
+    class="after:inline-block after:ml-1 after:content-[''] after:align-[.255em] after:border-4 after:border-t-white after:border-solid after:border-b-0 after:border-transparent after:text-white inline-block px-5 py-2.5 mb-4 font-bold text-center text-white align-middle transition-all border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 bg-gradient-to-tl from-zinc-800 to-zinc-700 leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" 
+    [attr.aria-expanded]="isDropdownOpen">
+    {{ selectedLabel }}
+  </button>
+  
+  <!-- Dropdown menu -->
+  <ul 
+    *ngIf="isDropdownOpen"
+    class="dark:shadow-dark-xl z-100 dark:bg-slate-850 text-sm top-1 lg:shadow-3xl duration-250 before:duration-350 before:font-awesome before:ease min-w-44 before:text-5.5 absolute right-0 left-auto m-0 -mr-4 mt-2 list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-0 py-2 text-left text-slate-500 before:absolute before:right-7 before:left-auto before:top-0 before:z-40 before:text-white before:transition-all before:content-['\f0d8']">
+    <li *ngFor="let option of data.options">
+      <a 
+        (click)="selectOption(option.value)"
+        class="py-1.2 lg:ease clear-both block w-full whitespace-nowrap rounded-lg border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300 cursor-pointer">
+        {{ option.label }}
+      </a>
+    </li>
+  </ul>
+</div> 

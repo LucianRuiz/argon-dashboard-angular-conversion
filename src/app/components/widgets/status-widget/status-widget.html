@@ -1,0 +1,37 @@
+<!-- Widget tipo texto (Full Body) -->
+<div *ngIf="data.widgetType === 'text'" class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="pb-0 border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+    <div class="flex">
+      <p>{{ data.title }}</p>
+      <div class="ml-auto" *ngIf="data.badge">
+        <span class="py-1.5 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none" [ngClass]="data.badge.color">{{ data.badge.text }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto p-6 pt-0">
+    <p class="mb-0">{{ data.description }}</p>
+  </div>
+</div>
+
+<!-- Widget tipo toggle (Lights) -->
+<div *ngIf="data.widgetType === 'toggle'" class="relative flex flex-col min-w-0 break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border shadow-blur">
+  <div class="flex-auto p-6">
+    <div class="flex">
+      <p class="mb-0">On</p>
+      <div class="min-h-6 mb-0.5 block pl-12 ml-auto">
+        <input class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 mt-0.5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right mr-0" type="checkbox" [checked]="data.isChecked" id="flexSwitchCheckDefault">
+      </div>
+    </div>
+    <img *ngIf="data.imageUrl" class="h-auto max-w-full pt-4 pb-2" [src]="data.imageUrl" alt="logo image">
+    <p class="mb-0">{{ data.title }}</p>
+  </div>
+</div>
+
+<!-- Widget tipo valor (Steps) -->
+<div *ngIf="data.widgetType === 'value'" class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6">
+    <p>{{ data.title }}</p>
+    <h3 *ngIf="data.value">{{ data.value }}</h3>
+    <span *ngIf="data.badge" class="py-1.5 px-2.5 text-xs rounded-1.8 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none" [ngClass]="data.badge.color">{{ data.badge.text }}</span>
+  </div>
+</div> 

@@ -1,0 +1,78 @@
+<!-- Notifications Section Widget -->
+<div id="notifications" class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <!-- Header -->
+  <div class="p-6 rounded-t-2xl">
+    <h5 class="dark:text-white">{{ data.title }}</h5>
+    <p class="text-sm leading-normal dark:text-white/60">{{ data.description }}</p>
+  </div>
+  
+  <!-- Content -->
+  <div class="flex-auto p-6 pt-0">
+    <div class="overflow-x-auto">
+      <table class="w-full mb-0 align-top border-gray-200 text-slate-500 dark:border-white/40">
+        <!-- Table Header -->
+        <thead class="align-bottom">
+          <tr>
+            <th colspan="4" class="px-6 py-3 pl-1 font-semibold capitalize align-middle bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">
+              <p class="mb-0 dark:text-white/60">Activity</p>
+            </th>
+            <th class="px-6 py-3 font-semibold text-center capitalize align-middle bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">
+              <p class="mb-0 dark:text-white/60">Email</p>
+            </th>
+            <th class="px-6 py-3 font-semibold text-center capitalize align-middle bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">
+              <p class="mb-0 dark:text-white/60">Push</p>
+            </th>
+            <th class="px-6 py-3 font-semibold text-center capitalize align-middle bg-transparent border-b border-solid shadow-none tracking-none whitespace-nowrap border-b-gray-200 dark:border-white/40 dark:text-white">
+              <p class="mb-0 dark:text-white/60">SMS</p>
+            </th>
+          </tr>
+        </thead>
+        
+        <!-- Table Body -->
+        <tbody>
+          <tr *ngFor="let setting of data.settings; trackBy: trackByIndex; let last = last">
+            <!-- Activity Info -->
+            <td class="p-2 pl-1 align-top border-b whitespace-nowrap dark:border-white/40 dark:text-white" 
+                [class.border-b-0]="last" 
+                colspan="4">
+              <div class="my-auto">
+                <span class="block text-sm leading-normal text-slate-700 dark:text-white">{{ setting.activity }}</span>
+                <span class="text-xs font-normal leading-tight dark:text-white/60">{{ setting.description }}</span>
+              </div>
+            </td>
+            
+            <!-- Email Toggle -->
+            <td class="p-2 align-top bg-transparent border-b whitespace-nowrap dark:border-white/40 dark:text-white" 
+                [class.border-b-0]="last">
+              <div class="flex items-center justify-center pl-12 mb-0 min-h-6">
+                <input class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 mt-0.5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+                       type="checkbox" 
+                       [checked]="setting.emailEnabled" />
+              </div>
+            </td>
+            
+            <!-- Push Toggle -->
+            <td class="p-2 align-top bg-transparent border-b whitespace-nowrap dark:border-white/40 dark:text-white" 
+                [class.border-b-0]="last">
+              <div class="flex items-center justify-center pl-12 mb-0 min-h-6">
+                <input class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 mt-0.5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+                       type="checkbox" 
+                       [checked]="setting.pushEnabled" />
+              </div>
+            </td>
+            
+            <!-- SMS Toggle -->
+            <td class="p-2 align-top bg-transparent border-b whitespace-nowrap dark:border-white/40 dark:text-white" 
+                [class.border-b-0]="last">
+              <div class="flex items-center justify-center pl-12 mb-0 min-h-6">
+                <input class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 mt-0.5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+                       type="checkbox" 
+                       [checked]="setting.smsEnabled" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 

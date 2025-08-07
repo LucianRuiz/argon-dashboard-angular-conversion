@@ -1,0 +1,48 @@
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl border-slate-100 bg-clip-border dark:border-slate-700">
+  <div class="p-4 pb-0 rounded-t-2xl">
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+        <h6 class="mb-0 dark:text-white">{{data.title}}</h6>
+      </div>
+      <div class="flex items-center justify-end w-full max-w-full px-3 md:flex-0 shrink-0 md:w-6/12">
+        <i class="mr-2 far fa-calendar-alt"></i>
+        <small>{{data.period}}</small>
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto p-4">
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li *ngFor="let transaction of data.transactions; let last = last" 
+          class="relative justify-between block py-2 pb-0 pl-0 pr-4 border-0 rounded-xl text-inherit"
+          [class.rounded-t-inherit]="!last"
+          [class.rounded-b-inherit]="last">
+        <div class="flex">
+          <div class="flex items-center">
+            <button class="active:shadow-xs active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl h-6 w-6 mb-0 mr-4 flex cursor-pointer items-center justify-center border border-solid bg-transparent p-4 text-center align-middle font-bold shadow-none transition-all hover:bg-transparent hover:opacity-75 hover:shadow-none active:bg-transparent active:text-black hover:active:bg-transparent hover:active:opacity-75 hover:active:shadow-none"
+                    [class.border-red-600]="transaction.type === 'expense'"
+                    [class.text-red-600]="transaction.type === 'expense'"
+                    [class.hover:text-red-600]="transaction.type === 'expense'"
+                    [class.active:bg-red-600]="transaction.type === 'expense'"
+                    [class.hover:active:text-red-600]="transaction.type === 'expense'"
+                    [class.border-lime-500]="transaction.type === 'income'"
+                    [class.text-lime-500]="transaction.type === 'income'"
+                    [class.hover:text-lime-500]="transaction.type === 'income'"
+                    [class.active:bg-lime-500]="transaction.type === 'income'"
+                    [class.hover:active:text-lime-500]="transaction.type === 'income'">
+              <i class="fas fa-arrow-down text-3xs" *ngIf="transaction.type === 'expense'"></i>
+              <i class="fas fa-arrow-up text-3xs" *ngIf="transaction.type === 'income'"></i>
+            </button>
+            <div class="flex flex-col">
+              <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">{{transaction.company}}</h6>
+              <span class="text-xs leading-tight">{{transaction.date}}</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-center ml-auto">
+            <p class="relative z-10 inline-block mb-0 text-sm font-semibold leading-normal text-transparent bg-gradient-to-tl {{transaction.amountColor}} bg-clip-text">{{transaction.amount}}</p>
+          </div>
+        </div>
+        <hr *ngIf="!last" class="h-px mt-4 mb-2 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+      </li>
+    </ul>
+  </div>
+</div> 

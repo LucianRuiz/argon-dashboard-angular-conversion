@@ -1,0 +1,26 @@
+<div [class]="getContainerClasses()">
+  <!-- Step Navigation -->
+  <div [class]="getNavigationClasses()">
+    <div [class]="getNavigationContainerClasses()">
+      <div class="grid" [class]="getGridClasses()">
+        <button 
+          *ngFor="let step of data.steps; let i = index; trackBy: trackByStep" 
+          type="button" 
+          [class]="getStepButtonClasses(step, i)"
+          (click)="onStepClick(step.id)"
+          [title]="step.title">
+          <span [class]="getStepTextClasses(step)">{{ step.title }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Content -->
+  <div [class]="getContentWrapperClasses()">
+    <div [class]="getContentContainerClasses()">
+      <div class="relative min-h-[450px]">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div> 

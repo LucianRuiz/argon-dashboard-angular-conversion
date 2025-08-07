@@ -1,0 +1,17 @@
+<form class="items-center" (submit)="$event.preventDefault(); onSendMessage()">
+  <div class="flex">
+    <input 
+      type="text" 
+      placeholder="Type here" 
+      [(ngModel)]="messageText"
+      (keypress)="onKeyPress($event)"
+      class="focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+    
+    <button 
+      type="button" 
+      (click)="onSendMessage()"
+      class="inline-block px-5 py-2.5 mb-0 ml-2 text-sm font-bold text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs bg-gradient-to-tl from-blue-500 to-violet-500 leading-normal tracking-tight-rem bg-150 bg-x-25">
+      <i class="leading-none ni ni-send"></i>
+    </button>
+  </div>
+</form> 

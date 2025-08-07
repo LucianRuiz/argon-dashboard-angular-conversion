@@ -1,0 +1,60 @@
+<div class="border-black/12.5 dark:shadow-dark-xl shadow-xl dark:bg-slate-850 relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+  <div class="border-b-black/12.5 flex rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <h6 class="my-auto dark:text-white">{{ data.title }}</h6>
+    <div class="relative w-1/2 ml-auto">
+      <ul class="relative flex flex-wrap p-1 mb-0 list-none rounded-xl bg-gray-50">
+        <li class="z-30 flex-auto text-center" *ngFor="let camera of data.cameras">
+          <a 
+            (click)="selectCamera(camera)"
+            [class]="'block w-full py-1 transition-colors ease-in-out border-0 rounded-lg bg-inherit cursor-pointer ' + (camera.active ? 'bg-white text-slate-700 shadow-lg' : 'text-slate-500')"
+          >
+            {{ camera.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="relative pt-2">
+      <a href="javascript:;" 
+         (click)="toggleDropdown()"
+         class="pl-6 cursor-pointer text-slate-400 dark:text-white dark:opacity-80">
+        <i class="fas fa-ellipsis-v"></i>
+      </a>
+      <ul *ngIf="dropdownOpen" 
+          class="z-100 min-w-44 text-sm shadow-3xl duration-250 transform-dropdown absolute top-0 right-0 left-auto m-0 mt-2 block origin-top cursor-pointer list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 dark:bg-slate-850">
+        <li class="relative">
+          <a class="py-1.2 lg:ease clear-both block w-full whitespace-nowrap rounded-lg px-4 font-normal text-slate-500 transition-colors hover:bg-gray-200 hover:text-slate-700 focus:bg-gray-200 focus:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:duration-300" 
+             href="javascript:;" (click)="dropdownAction('pause')">Pause</a>
+        </li>
+        <li class="relative">
+          <a class="py-1.2 lg:ease clear-both block w-full whitespace-nowrap rounded-lg px-4 font-normal text-slate-500 transition-colors hover:bg-gray-200 hover:text-slate-700 focus:bg-gray-200 focus:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:duration-300" 
+             href="javascript:;" (click)="dropdownAction('stop')">Stop</a>
+        </li>
+        <li class="relative">
+          <a class="py-1.2 lg:ease clear-both block w-full whitespace-nowrap rounded-lg px-4 font-normal text-slate-500 transition-colors hover:bg-gray-200 hover:text-slate-700 focus:bg-gray-200 focus:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:duration-300" 
+             href="javascript:;" (click)="dropdownAction('schedule')">Schedule</a>
+        </li>
+        <li class="relative">
+          <hr class="h-px my-2 bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+        </li>
+        <li class="relative">
+          <a class="py-1.2 text-danger lg:ease clear-both block w-full whitespace-nowrap rounded-lg px-4 font-normal text-red-600 transition-colors hover:bg-gray-200 focus:bg-gray-200 dark:hover:bg-gray-200/80 lg:duration-300" 
+             href="javascript:;" (click)="dropdownAction('remove')">Remove</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex-auto p-4 mt-2">
+    <div class="h-100 relative block rounded-xl bg-cover transition-opacity duration-300 ease-linear"
+         [style.background-image]="'url(' + activeCamera?.backgroundImage + ')'">
+      <div class="absolute top-0 flex w-full">
+        <p class="p-4 mb-0 text-white">{{ activeCamera?.timestamp }}</p>
+        <div class="p-4 ml-auto">
+          <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap bg-slate-200 text-center align-baseline font-bold uppercase leading-none text-slate-600">
+            <i class="text-red-600 fas fa-dot-circle"></i>
+            {{ activeCamera?.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

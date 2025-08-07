@@ -1,0 +1,30 @@
+<!-- Page Layout with Navbar and Footer -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white min-h-screen w-full overflow-x-hidden">
+
+  <!-- Main Content Area with Background -->
+  <main class="mt-0 transition-all duration-200 ease-in-out w-full">
+    <div class="pb-0 pt-0 h-full min-h-screen items-start p-0 relative overflow-hidden flex bg-cover bg-center bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/error-500.jpg')]">
+      <span class="absolute top-0 left-0 w-full h-full bg-center bg-gradient-to-tl from-orange-500 to-yellow-500 opacity-40"></span>
+      
+      <!-- Navbar positioned above background -->
+      <app-secondary-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData" theme="default" mode="auth"></app-secondary-navbar>
+      
+      <div class="container">
+        <div class="flex flex-wrap items-center justify-center -mx-3 mt-42 lg:mt-75">
+          <!-- Contenido con descripción hardcodeada -->
+          <div class="w-full max-w-full px-6 mx-auto text-center shrink-0 md:flex-0 md:w-7/12 lg:w-6/12" *ngIf="error500ButtonData$ | async as buttonData">
+            <h1 class="animate-fade-up leading-tighter text-['calc(1.625rem_+_4.5vw)'] font-bold text-white z-1 relative xl:text-20">Error 500</h1>
+            <h2 class="text-white opacity-80 animate-fade-up">Something went wrong</h2>
+            <p class="text-xl font-normal leading-relaxed text-white animate-fade-up">We suggest you to go to the homepage while we solve this issue.</p>
+            <!-- Solo el botón como componente con datos del service -->
+            <app-error-button [buttonText]="buttonData.buttonText" [buttonLink]="buttonData.buttonLink" [buttonClass]="buttonData.buttonClass || ''"></app-error-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <app-secondary-footer></app-secondary-footer>
+
+</div> 

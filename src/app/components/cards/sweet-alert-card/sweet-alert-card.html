@@ -1,0 +1,10 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="flex-auto p-6 text-center">
+    <p>{{ data.title }}</p>
+    <button 
+      class="inline-block px-5 py-2.5 mb-0 text-sm font-bold text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs leading-normal tracking-tight-rem bg-150 bg-x-25" 
+      (click)="showSweetAlert(data.alertType)">
+      {{ data.buttonText }}
+    </button>
+  </div>
+</div> 

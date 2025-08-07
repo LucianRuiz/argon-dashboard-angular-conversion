@@ -1,0 +1,39 @@
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+    <h5 class="mb-0 capitalize dark:text-white">{{ title }}</h5>
+  </div>
+  <div class="flex-auto p-6 pt-0">
+    <ul class="flex flex-col pl-0 mb-0 rounded-none">
+      <li *ngFor="let member of members; let last = last; let first = first; let i = index; trackBy: trackByMember" 
+          class="relative block py-2 px-0 text-inherit"
+          [ngClass]="{
+            'border-black/12.5 rounded-t-inherit border-b border-solid': first,
+            'border-black/12.5 border-b border-t-0 border-solid': !first && !last,
+            'border-black/12.5 rounded-b-inherit': last
+          }">
+        <div class="flex flex-wrap items-center -mx-3">
+          <div class="flex items-center w-auto max-w-full px-3 flex-0">
+            <a href="javascript:;" class="inline-flex items-center justify-center w-12 h-12 text-base text-white transition-all duration-200 ease-in-out leading-inherit rounded-xl">
+              <img class="w-full rounded-xl" [src]="member.avatar" [alt]="member.name" />
+            </a>
+          </div>
+          <div class="w-full max-w-full px-3 flex-1-0">
+            <h6 class="mb-0">
+              <a class="dark:text-white/80" href="javascript:;">{{ member.name }}</a>
+            </h6>
+            <span class="py-1.2 px-2 text-xxs rounded-1 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none" [ngClass]="member.statusColor">
+              {{ member.status }}
+            </span>
+          </div>
+          <div class="w-auto max-w-full px-3 flex-0">
+            <button type="button" 
+                    class="inline-block font-bold leading-normal text-blue-500 text-center align-middle cursor-pointer select-none border border-solid border-blue-500 rounded-lg bg-transparent transition-all ease-in tracking-tight-rem shadow-none px-4 py-1.5 text-xs hover:opacity-75 hover:-translate-y-px active:hover:opacity-75 active:hover:-translate-y-px active:-translate-y-px active:hover:shadow-none active:hover:bg-transparent active:hover:text-blue-500 active:bg-blue-500 active:shadow-xs active:text-black" 
+                    (click)="onMemberAction(member, 'add')">
+              {{ actionButtonText }}
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div> 

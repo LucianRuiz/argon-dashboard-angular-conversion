@@ -1,0 +1,20 @@
+<div class="flex w-full px-3 mb-6 ml-auto">
+  <div class="flex ml-auto">
+    <div class="relative pr-6 mt-1">
+      <p class="mb-2 text-xs font-semibold leading-tight text-white">{{ data.title }}</p>
+      <div class="flex items-center justify-center">
+        <div>
+          <a href="javascript:;" class="relative z-20 inline-flex items-center justify-center text-sm text-white transition-all duration-200 ease-in-out border-2 border-white border-solid w-9 h-9 rounded-circle hover:z-30" *ngFor="let member of data.members; let i = index" [ngClass]="{'ml-[-1rem]': i > 0}">
+            <img class="w-full rounded-circle" alt="Image placeholder" [src]="member.image" />
+          </a>
+        </div>
+      </div>
+      <hr class="absolute top-0 right-0 w-px h-full mt-0 bg-transparent bg-gradient-to-b from-transparent via-white to-transparent">
+    </div>
+    <div class="pl-6">
+      <button type="button" class="mt-4 flex items-center justify-center w-10 h-10 p-2.8 mb-0 font-bold text-center uppercase align-middle transition-all bg-white/13 border border-white border-solid rounded-lg cursor-pointer leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 hover:bg-transparent active:opacity-85 text-white active:bg-white active:text-black hover:active:bg-transparent hover:active:text-white">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div> 

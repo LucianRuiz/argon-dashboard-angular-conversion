@@ -1,0 +1,19 @@
+<!-- Desktop version - visible only on medium screens and up -->
+<div *ngIf="!isMobile" [class]="getContainerClasses()" (click)="onImageClick()">
+  <a *ngIf="imageData.isClickable && imageData.link; else nonClickableImage" [href]="imageData.link" class="w-full">
+    <img [class]="getImageClasses()" [src]="imageData.src" [alt]="imageData.alt">
+  </a>
+  <ng-template #nonClickableImage>
+    <img [class]="getImageClasses()" [src]="imageData.src" [alt]="imageData.alt">
+  </ng-template>
+</div>
+
+<!-- Mobile version - visible only on small screens -->
+<div *ngIf="isMobile" [class]="getMobileContainerClasses()" (click)="onImageClick()">
+  <a *ngIf="imageData.isClickable && imageData.link; else nonClickableImageMobile" [href]="imageData.link" class="w-full">
+    <img [class]="getImageClasses()" [src]="imageData.src" [alt]="imageData.alt">
+  </a>
+  <ng-template #nonClickableImageMobile>
+    <img [class]="getImageClasses()" [src]="imageData.src" [alt]="imageData.alt">
+  </ng-template>
+</div> 

@@ -1,0 +1,22 @@
+<!-- Fondo gradiente absoluto -->
+<div class="absolute w-full bg-[radial-gradient(circle_at_bottom_right,#3c9add,#191452)] h-full"></div>
+
+<!-- Sidebar component (ya existente) -->
+<app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData" [theme]="'transparent'"></app-sidebar>
+
+<!-- Main content -->
+<main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+  <div class="container p-6">
+    <div class="flex flex-wrap -mx-3 min-h-80-screen">
+      <!-- Image Gallery Component -->
+      <ng-container *ngIf="desktopImages$ | async as desktopImages">
+        <ng-container *ngIf="mobileImages$ | async as mobileImages">
+          <app-image-gallery 
+            [desktopImages]="desktopImages"
+            [mobileImages]="mobileImages">
+          </app-image-gallery>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</main> 

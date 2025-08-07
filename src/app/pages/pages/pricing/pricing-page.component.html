@@ -1,0 +1,30 @@
+<app-secondary-navbar 
+  [data]="navbarData$ | async" 
+  mode="auth" 
+  theme="transparent">
+</app-secondary-navbar>
+
+<!-- Pricing Header -->
+<app-pricing-header 
+  [isAnnual]="isAnnual"
+  (billingToggle)="toggleBilling()">
+</app-pricing-header>
+
+<!-- Pricing Cards -->
+<app-pricing-cards 
+  [pricingPlans]="pricingPlans"
+  [isAnnual]="isAnnual"
+  (planSelected)="onPlanSelected($event)">
+</app-pricing-cards>
+
+<!-- Brands Section -->
+<app-brands-section 
+  [brandLogos]="brandLogos">
+</app-brands-section>
+
+<!-- FAQ Section -->
+<app-faq-section 
+  [faqItems]="faqItems">
+</app-faq-section>
+
+<app-secondary-footer></app-secondary-footer> 

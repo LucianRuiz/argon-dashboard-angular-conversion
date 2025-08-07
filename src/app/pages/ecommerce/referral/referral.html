@@ -1,0 +1,83 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <div class="w-full px-6 py-6 mx-auto">
+      <!-- Header Section -->
+      <div class="mb-6">
+        <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+          <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+            <h5 class="mb-3 text-xl font-bold dark:text-white">Referral Program</h5>
+            <p class="mb-0 text-slate-600 dark:text-slate-400">Track and find all the details about our referral program, your stats and revenues.</p>
+          </div>
+        </div>
+      </div>
+
+  <!-- Stats Cards Section -->
+  <div class="mb-8">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+        <h6 class="mb-4 text-lg font-semibold dark:text-white">Overview Statistics</h6>
+        <app-referral-stats-card *ngIf="referralStats$ | async as referralStats" [stats]="referralStats"></app-referral-stats-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="mb-8">
+    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+      <div class="flex-auto p-6">
+        <!-- Referral Code and How to Use -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          <!-- Referral Code Section -->
+          <div class="lg:col-span-2">
+            <app-referral-code-section 
+              *ngIf="referralCode$ | async as referralCode" 
+              [referralCode]="referralCode"
+              (copyCode)="onCopyCode($event)">
+            </app-referral-code-section>
+          </div>
+
+          <!-- How to Use Section -->
+          <div class="lg:col-span-3">
+            <h6 class="mb-4 text-lg font-semibold dark:text-white">How to use</h6>
+            <p class="mb-6 text-sm leading-normal text-slate-600 dark:text-slate-400">Integrate your referral code in 3 easy steps.</p>
+            <app-referral-step-card *ngIf="referralSteps$ | async as referralSteps" [steps]="referralSteps"></app-referral-step-card>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="h-px my-8 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent">
+
+        <!-- Other Programs Section -->
+        <div>
+          <h6 class="mb-6 text-lg font-semibold dark:text-white">Other Programs</h6>
+          <app-referral-program-card *ngIf="referralPrograms$ | async as referralPrograms" [programs]="referralPrograms"></app-referral-program-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Top Referred Users Table Section -->
+      <div class="mb-6">
+        <app-referral-users-table *ngIf="topReferredUsers$ | async as topReferredUsers" [users]="topReferredUsers"></app-referral-users-table>
+      </div>
+
+      <!-- Footer -->
+      <app-footer *ngIf="footerData$ | async as footerData" [data]="footerData"></app-footer>
+    </div>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

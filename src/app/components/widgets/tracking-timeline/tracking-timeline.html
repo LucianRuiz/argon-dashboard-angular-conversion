@@ -1,0 +1,13 @@
+<h6 class="mb-4 dark:text-white">{{ data.title }}</h6>
+<div class="relative before:left-4 before:-ml-px before:content-[''] before:absolute before:top-0 before:h-full before:border-r-2 before:border-solid before:border-r-slate-100">
+  <div *ngFor="let step of data.steps; trackBy: trackByStep" 
+       class="relative mb-4">
+    <span class="left-4 absolute inline-flex items-center justify-center w-6.5 h-6.5 rounded-circle bg-white text-center -translate-x-1/2 text-base font-semibold z-1">
+      <i [class]="step.icon + ' ' + (step.isCompleted ? 'text-emerald-500' : 'text-slate-400') + ' leading-pro'"></i>
+    </span>
+    <div class="ml-12 pt-1.4 relative -top-1.5 w-auto lg:max-w-120">
+      <h6 class="mb-0 text-sm font-semibold leading-normal dark:text-white text-slate-700">{{ step.title }}</h6>
+      <p class="mt-1 mb-0 text-xs font-semibold leading-tight text-slate-400">{{ step.time }}</p>
+    </div>
+  </div>
+</div> 

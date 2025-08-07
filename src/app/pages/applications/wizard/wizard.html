@@ -1,0 +1,66 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80 h-screen overflow-hidden">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Content Container -->
+    <div class="w-full p-6 mx-auto">
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 text-center flex-0">
+          <!-- Page Title and Subtitle -->
+          <h3 class="mt-12 text-white">Build Your Profile</h3>
+          <h5 class="font-normal text-white">This information will let us know more about you.</h5>
+          
+          <!-- Wizard Form Container -->
+          <app-multistep-form 
+            *ngIf="multistepFormData$ | async as multistepFormData" 
+            [data]="multistepFormData"
+            (stepChange)="onStepChange($event)">
+            <ng-container *ngIf="formData$ | async as formData">
+              <!-- Step 1: About -->
+              <app-about-step
+                *ngIf="multistepFormData.currentStep === 'about'"
+                [data]="formData.aboutInfo"
+                [isActive]="true"
+                (next)="onNextStep()">
+              </app-about-step>
+
+              <!-- Step 2: Account -->
+              <app-account-step
+                *ngIf="multistepFormData.currentStep === 'account'"
+                [data]="formData.accountInfo"
+                [isActive]="true"
+                (prev)="onPrevStep()"
+                (next)="onNextStep()">
+              </app-account-step>
+
+              <!-- Step 3: Address -->
+              <app-wizard-address-step
+                *ngIf="multistepFormData.currentStep === 'address'"
+                [data]="formData.addressInfo"
+                [isActive]="true"
+                (prev)="onPrevStep()"
+                (send)="onSendForm()">
+              </app-wizard-address-step>
+            </ng-container>
+          </app-multistep-form>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

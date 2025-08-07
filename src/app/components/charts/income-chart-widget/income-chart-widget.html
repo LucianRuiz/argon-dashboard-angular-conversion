@@ -1,0 +1,34 @@
+<div class="relative flex flex-col min-w-0 break-words border-0 shadow-xl rounded-2xl bg-clip-border" 
+     [ngClass]="data.backgroundGradient || 'bg-white dark:bg-slate-850 dark:shadow-dark-xl'">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid bg-transparent p-4 pb-0">
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-7/12 max-w-full px-3 flex-0">
+        <h6 class="mb-0" [ngClass]="data.titleColor || (data.backgroundGradient ? 'text-white' : 'dark:text-white')">{{ data.title }}</h6>
+        <p class="text-sm leading-normal" [ngClass]="data.textColor || (data.backgroundGradient ? 'text-white' : 'dark:text-white')">
+          <i class="fa fa-arrow-up text-emerald-500"></i>
+          <span class="font-semibold">{{ data.value }}</span>
+          {{ data.percentage }}
+        </p>
+      </div>
+      <div class="w-5/12 max-w-full px-3 text-right flex-0">
+        <div class="relative mr-4 text-right">
+          <a href="javascript:;" class="cursor-pointer" dropdown-trigger aria-expanded="false">
+            <i class="fa fa-ellipsis-h" [ngClass]="data.dropdownIconColor || (data.backgroundGradient ? 'text-white' : 'text-slate-500')"></i>
+          </a>
+          <p class="hidden transform-dropdown-show"></p>
+          <ul dropdown-menu class="dark:shadow-dark-xl z-100 dark:bg-slate-850 text-sm lg:shadow-3xl duration-250 before:duration-350 before:font-awesome before:ease min-w-44 before:text-5.5 transform-dropdown pointer-events-none absolute right-0 left-auto top-0 m-0 -mr-4 mt-2 list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-0 py-2 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-7 before:left-auto before:top-0 before:z-40 before:text-white before:transition-all before:content-['\f0d8'] sm:-mr-6">
+            <li *ngFor="let item of data.dropdownItems">
+              <a class="py-1.2 lg:ease clear-both block w-full whitespace-nowrap rounded-lg border-0 bg-transparent px-4 text-left font-normal text-slate-500 hover:bg-gray-200 hover:text-slate-700 dark:text-white dark:hover:bg-gray-200/80 dark:hover:text-slate-700 lg:transition-colors lg:duration-300" [href]="item.href">{{ item.text }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-auto p-0">
+    <div>
+      <canvas [id]="data.chartId" height="100"></canvas>
+    </div>
+  </div>
+</div> 

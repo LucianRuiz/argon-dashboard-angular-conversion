@@ -1,0 +1,24 @@
+<div #tableContainer>
+  <table class="table" [class]="tableClasses" datatable [id]="tableId">
+    <thead [class]="enableSearch ? 'thead-light' : ''">
+      <tr>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Name</th>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Position</th>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Office</th>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Age</th>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Start date</th>
+        <th [class]="enableSearch ? '' : 'font-bold uppercase text-slate-400 text-xxs opacity-70'">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of data">
+        <td class="text-sm font-normal leading-normal">{{ employee.name }}</td>
+        <td class="text-sm font-normal leading-normal">{{ employee.position }}</td>
+        <td class="text-sm font-normal leading-normal">{{ employee.office }}</td>
+        <td class="text-sm font-normal leading-normal">{{ employee.age }}</td>
+        <td class="text-sm font-normal leading-normal">{{ employee.startDate }}</td>
+        <td class="text-sm font-normal leading-normal">{{ employee.salary }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 

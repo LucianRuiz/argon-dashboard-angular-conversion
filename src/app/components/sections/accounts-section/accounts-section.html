@@ -1,0 +1,58 @@
+<!-- Accounts Section Widget -->
+<div id="accounts" class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <!-- Header -->
+  <div class="p-6 rounded-t-2xl">
+    <h5 class="dark:text-white">{{ data.title }}</h5>
+    <p class="text-sm leading-normal dark:text-white/60">{{ data.description }}</p>
+  </div>
+  
+  <!-- Content -->
+  <div class="flex-auto p-6 pt-0">
+    <div *ngFor="let integration of data.integrations; trackBy: trackByIndex; let last = last">
+      <!-- Integration Item -->
+      <div class="flex">
+        <img class="w-12" [src]="integration.logo" [alt]="'logo-' + integration.name.toLowerCase()" />
+        <div class="my-auto ml-4">
+          <div class="h-full">
+            <h5 class="mb-0 dark:text-white">{{ integration.name }}</h5>
+            <p class="mb-0 text-sm leading-normal dark:text-white/60">{{ integration.description }}</p>
+          </div>
+        </div>
+        <p class="my-auto ml-auto mr-4 text-sm leading-normal text-slate-400 dark:text-white/80">{{ integration.status }}</p>
+        <div class="block pl-12 my-auto min-h-6">
+          <input class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 mt-0.5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-blue-500/95 checked:bg-blue-500/95 checked:bg-none checked:bg-right" 
+                 type="checkbox" 
+                 [checked]="integration.isEnabled" />
+        </div>
+      </div>
+      
+      <!-- Expanded Configuration Info -->
+      <div *ngIf="integration.showExpanded && integration.configInfo" class="pt-4 pl-12 ml-4">
+        <p class="mb-0 text-sm leading-normal dark:text-white/60">
+          You haven't added your {{ integration.name }} yet or you aren't authorized. Please add our {{ integration.name }} Bot to your account by clicking on
+          <a class="dark:text-white" href="javascript:;">here</a>. When you've added the bot, send your verification code that you have received.
+        </p>
+        
+        <!-- Verification Code -->
+        <div *ngIf="integration.configInfo.verificationCode" class="p-2 my-6 rounded-xl bg-gray-50 dark:bg-gray-600 sm:flex">
+          <p class="my-auto text-sm font-semibold leading-normal sm:pl-2">Verification Code</p>
+          <input class="min-h-unset sm:w-15/100 text-xs focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease mt-2 block w-2/5 appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none sm:mt-0 sm:ml-auto" 
+                 type="text" 
+                 name="code" 
+                 [value]="integration.configInfo.verificationCode" 
+                 data-target="tooltip_trigger" />
+        </div>
+        
+        <!-- Connected Account -->
+        <div *ngIf="integration.configInfo.connectedAccount" class="p-2 my-6 rounded-xl bg-gray-50 dark:bg-gray-600 sm:flex">
+          <p class="my-auto text-sm font-semibold leading-normal sm:pl-2">Connected account</p>
+          <h6 class="my-auto ml-auto mr-4 text-sm leading-normal dark:text-white">{{ integration.configInfo.connectedAccount }}</h6>
+          <button type="button" class="inline-block px-8 py-2 m-0 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer tracking-tight-rem bg-gradient-to-tl from-red-600 to-orange-600 bg-150 bg-x-25 hover:-translate-y-px active:opacity-85">Delete</button>
+        </div>
+      </div>
+      
+      <!-- Divider -->
+      <hr *ngIf="!last" class="h-px mx-0 my-4 bg-transparent border-0 opacity-25 bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+    </div>
+  </div>
+</div> 

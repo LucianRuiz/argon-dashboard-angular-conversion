@@ -1,0 +1,84 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-950 bg-gray-50 text-slate-500 dark:bg-slate-900 dark:text-white">
+
+  <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-[18.75rem]"></div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    <!-- Navbar -->
+    <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+
+    <!-- Widgets Content -->
+    <div class="w-full p-6 mx-auto">
+      <!-- Primera fila: Battery, Music, Income, Tasks -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+        <div class="flex flex-col gap-6 h-full">
+          <app-battery-health-widget *ngIf="batteryHealthData$ | async as data" [data]="data"></app-battery-health-widget>
+          <app-music-volume-widget *ngIf="musicVolumeData$ | async as data" [data]="data"></app-music-volume-widget>
+        </div>
+        <div class="h-full flex flex-col justify-between">
+          <app-income-chart-widget *ngIf="incomeChartData$ | async as data" [data]="data" class="h-full"></app-income-chart-widget>
+        </div>
+        <div class="md:col-span-2 h-full flex flex-col justify-between">
+          <app-tasks-stats-card *ngIf="tasksChartData$ | async as data" [data]="data" class="h-full"></app-tasks-stats-card>
+        </div>
+      </div>
+
+      <!-- Segunda fila: Upcoming, Salary/Paypal, Credit Card -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+        <div class="md:col-span-4 h-full flex flex-col justify-between">
+          <app-upcoming-events-widget *ngIf="upcomingEventsData$ | async as data" [data]="data" class="h-full"></app-upcoming-events-widget>
+        </div>
+        <div class="md:col-span-4 h-full flex flex-col justify-between">
+          <app-summary-cards *ngIf="paymentCardsData$ | async as data" [data]="data" class="h-full"></app-summary-cards>
+        </div>
+        <div class="md:col-span-4 h-full flex flex-col justify-between">
+          <app-credit-card-visual *ngIf="creditCardData$ | async as data" [data]="data" class="h-full"></app-credit-card-visual>
+        </div>
+      </div>
+
+      <!-- Tercera fila: Full Body, Lights, Calories, Location, Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+        <div class="md:col-span-3 h-full flex flex-col justify-between">
+          <app-full-body-widget *ngIf="fullBodyData$ | async as data" [data]="data" class="h-full"></app-full-body-widget>
+        </div>
+        <div class="md:col-span-2 h-full flex flex-col justify-between">
+          <app-lights-widget *ngIf="lightsData$ | async as data" [data]="data" class="h-full"></app-lights-widget>
+        </div>
+        <div class="md:col-span-3 h-full flex flex-col justify-between">
+          <app-calories-widget *ngIf="caloriesData$ | async as data" [data]="data" class="h-full"></app-calories-widget>
+        </div>
+        <div class="md:col-span-2 h-full flex flex-col justify-between">
+          <app-location-distance-widget *ngIf="locationDistanceData$ | async as data" [data]="data" class="h-full"></app-location-distance-widget>
+        </div>
+        <div class="md:col-span-2 h-full flex flex-col justify-between">
+          <app-steps-widget *ngIf="stepsData$ | async as data" [data]="data" class="h-full"></app-steps-widget>
+        </div>
+      </div>
+
+      <!-- Cuarta fila: Calendar, Categories/Music, Timeline -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+        <div class="md:col-span-5 h-full flex flex-col justify-between">
+          <app-calendar-widget *ngIf="calendarData$ | async as data" [data]="data" class="h-full"></app-calendar-widget>
+        </div>
+        <div class="md:col-span-3 h-full flex flex-col gap-6 justify-between">
+          <app-categories *ngIf="categoriesData$ | async as categories" [categories]="categories" class="h-full"></app-categories>
+          <app-vr-music-player *ngIf="musicPlayerData$ | async as data" [data]="data" class="h-full"></app-vr-music-player>
+        </div>
+        <div class="md:col-span-4 h-full flex flex-col justify-between">
+          <app-timeline *ngIf="timelineData$ | async as data" [data]="data" variant="widget" class="h-full"></app-timeline>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+  </main>
+  
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

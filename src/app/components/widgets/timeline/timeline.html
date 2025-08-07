@@ -1,0 +1,39 @@
+<!-- Forzar a Tailwind a generar las utilidades necesarias para la línea vertical -->
+<div class="hidden">
+  before:border-slate-100 before:border before:border-r-2 before:border-solid before:border-blue-500 before:border-black
+</div>
+
+<!-- Componente principal timeline -->
+<div
+  [ngClass]="{
+    'bg-white dark:bg-slate-850 dark:shadow-dark-xl': mode === 'default' || mode === 'timeline-light',
+    'bg-gradient-to-tl from-zinc-800 to-zinc-700 shadow-dark-xl': mode === 'timeline-dark'
+  }"
+  class="relative flex flex-col min-w-0 break-words border-0 rounded-2xl bg-clip-border"
+>
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+    <h6 [ngClass]="{
+      'text-slate-700 dark:text-white': mode === 'default' || mode === 'timeline-light',
+      'text-white': mode === 'timeline-dark'
+    }">{{ data.title }}</h6>
+    <p *ngIf="data.percentage" class="text-sm leading-normal">
+      <i *ngIf="data.percentageIcon" class="fa" [ngClass]="data.percentageIcon"></i>
+      <span class="font-semibold">{{ data.percentage }}</span> {{ data.percentageText }}
+    </p>
+  </div>
+  <div class="flex-auto p-4">
+    <div
+      class="relative before:absolute before:left-4 before:top-0 before:h-full before:border-r-2 before:border-solid before:content-[''] lg:before:-ml-px"
+      [ngClass]="{
+        'before:border-slate-100': mode === 'default' || mode === 'timeline-light',
+        'before:border-white/30': mode === 'timeline-dark'
+      }"
+    >
+      <app-timeline-item 
+        *ngFor="let item of data.items; let last = last" 
+        [data]="getTimelineItemData(item, last)"
+        [mode]="mode"
+      ></app-timeline-item>
+    </div>
+  </div>
+</div> 

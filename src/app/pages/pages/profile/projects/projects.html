@@ -1,0 +1,31 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80">
+
+  <!-- Background -->
+  <div class="absolute bg-y-50 w-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75">
+    <span class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-60"></span>
+  </div>
+
+  <!-- Sidebar -->
+  <app-sidebar theme="default" *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+    
+    <!-- Profile Header -->
+    <div class="w-full mx-auto mt-60">
+      <app-profile-header *ngIf="profileHeaderData$ | async as profileHeaderData" [data]="profileHeaderData"></app-profile-header>
+    </div>
+
+    <!-- Projects List -->
+    <div class="w-full p-6 mx-auto">
+      <app-all-projects *ngIf="projectsData$ | async as projectsData" [data]="projectsData"></app-all-projects>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+</div> 

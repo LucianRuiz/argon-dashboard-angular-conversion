@@ -1,0 +1,52 @@
+<!-- Tabla de páginas -->
+<div class="relative flex flex-col h-full min-w-0 mt-6 break-words bg-white border-0 shadow-xl md:mt-0 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-4 pb-0">
+    <div class="flex items-center">
+      <h6 class="dark:text-white">{{ data.title }}</h6>
+      <button type="button" class="active:shadow-xs active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 ml-auto flex cursor-pointer items-center justify-center border border-solid border-emerald-500 bg-transparent text-center align-middle font-bold text-emerald-500 shadow-none transition-all hover:bg-transparent hover:text-emerald-500 hover:opacity-75 hover:shadow-none active:bg-emerald-500 active:text-black hover:active:bg-transparent hover:active:text-emerald-500 hover:active:opacity-75 hover:active:shadow-none" data-target="tooltip_trigger">
+        <i class="fas fa-check text-3xs"></i>
+      </button>
+      <div class="z-50 hidden px-2 py-1 text-sm text-center text-white bg-black rounded-lg max-w-46" id="tooltip" role="tooltip" data-popper-placement="bottom">
+        {{ data.tooltipText }}
+        <div id="arrow" class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-auto px-4 pb-2">
+    <div class="p-0 overflow-x-auto">
+      <table class="items-center justify-center w-full mb-0 align-top border-collapse border-gray-200 dark:text-white/80 text-slate-500">
+        <thead class="align-bottom">
+          <tr>
+            <th class="py-3 pl-2 pr-6 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs leading-default text-slate-400 opacity-70 whitespace-nowrap tracking-none">Page</th>
+            <th class="py-3 pl-2 pr-6 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs leading-default text-slate-400 opacity-70 whitespace-nowrap tracking-none">Page Views</th>
+            <th class="py-3 pl-2 pr-6 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs leading-default text-slate-400 opacity-70 whitespace-nowrap tracking-none">Avg. Time</th>
+            <th class="py-3 pl-2 pr-6 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xxs leading-default text-slate-400 opacity-70 whitespace-nowrap tracking-none">Bounce Rate</th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr *ngFor="let page of data.pages; let last = last" 
+              class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit"
+              [class.border-b-0]="last">
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit"
+                [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ page.page }}</p>
+            </td>
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit"
+                [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ page.pageViews.toLocaleString() }}</p>
+            </td>
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit"
+                [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ page.avgTime }}</p>
+            </td>
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit"
+                [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ page.bounceRate }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 

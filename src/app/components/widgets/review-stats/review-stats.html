@@ -1,0 +1,68 @@
+<div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="p-4 pb-0 mb-0 rounded-t-2xl">
+    <h6 class="mb-0 dark:text-white">Reviews</h6>
+  </div>
+  <div class="flex-auto p-4 pb-0">
+    <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+      <li class="relative flex items-center px-0 py-2 mb-0 border-0 rounded-t-inherit text-inherit">
+        <div class="w-full">
+          <div class="flex mb-2">
+            <span class="mr-2 text-sm font-semibold leading-normal capitalize">{{ stats[0].label }}</span>
+            <span class="ml-auto text-sm font-semibold leading-normal">{{ stats[0].percentage }}%</span>
+          </div>
+          <div>
+            <div class="flex h-2 overflow-visible text-xs bg-gray-200 rounded-lg">
+              <div class="flex flex-col justify-center h-2 -ml-px overflow-hidden text-center text-white transition-width duration-600 ease rounded-1 whitespace-nowrap" 
+                   [class]="'bg-gradient-to-tl ' + stats[0].color"
+                   [style.width]="stats[0].percentage + '%'"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="relative flex items-center px-0 py-2 mb-2 border-0 text-inherit">
+        <div class="w-full">
+          <div class="flex mb-2">
+            <span class="mr-2 text-sm font-semibold leading-normal capitalize">{{ stats[1].label }}</span>
+            <span class="ml-auto text-sm font-semibold leading-normal">{{ stats[1].percentage }}%</span>
+          </div>
+          <div>
+            <div class="flex h-2 overflow-visible text-xs bg-gray-200 rounded-lg">
+              <div class="flex flex-col justify-center h-2 -ml-px overflow-hidden text-center text-white transition-width duration-600 ease rounded-1 whitespace-nowrap" 
+                   [class]="'bg-gradient-to-tl ' + stats[1].color"
+                   [style.width]="stats[1].percentage + '%'"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="relative flex items-center px-0 py-2 mb-2 border-0 rounded-b-inherit text-inherit">
+        <div class="w-full">
+          <div class="flex mb-2">
+            <span class="mr-2 text-sm font-semibold leading-normal capitalize">{{ stats[2].label }}</span>
+            <span class="ml-auto text-sm font-semibold leading-normal">{{ stats[2].percentage }}%</span>
+          </div>
+          <div>
+            <div class="flex h-2 overflow-visible text-xs bg-gray-200 rounded-lg">
+              <div class="flex flex-col justify-center h-2 -ml-px overflow-hidden text-center text-white transition-width duration-600 ease rounded-1 whitespace-nowrap" 
+                   [class]="'bg-gradient-to-tl ' + stats[2].color"
+                   [style.width]="stats[2].percentage + '%'"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="flex items-center p-4 pt-0 rounded-b-2xl">
+    <div class="w-3/5">
+      <p class="text-sm leading-normal dark:text-white/60">
+        More than
+        <b>1,500,000</b>
+        developers used Creative Tim's products and over
+        <b>700,000</b>
+        projects were created.
+      </p>
+    </div>
+    <div class="w-2/5 text-right">
+      <a href="javascript:;" class="inline-block px-5 py-2.5 mb-0 text-sm font-bold leading-normal text-right text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 bg-gradient-to-tl from-zinc-800 to-zinc-700 tracking-tight-rem bg-150 bg-x-25">View all reviews</a>
+    </div>
+  </div>
+</div> 

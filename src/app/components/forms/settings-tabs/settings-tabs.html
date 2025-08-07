@@ -1,0 +1,19 @@
+<!-- Settings Tabs Widget -->
+<div class="relative right-0">
+  <ul nav-pills class="relative flex flex-wrap p-1 mb-0 list-none dark:shadow-dark-xl dark:bg-slate-850 rounded-xl bg-gray-50" role="tablist">
+    <li *ngFor="let tab of data.tabs; trackBy: trackByIndex" class="z-30 flex-auto text-center">
+      <a class="block w-full py-1 transition-colors ease-in-out border-0 rounded-lg bg-inherit bg-none dark:text-white dark:bg-inherit cursor-pointer"
+         [class.bg-white]="tab.isActive"
+         [class.shadow-lg]="tab.isActive"
+         [class.text-slate-700]="tab.isActive"
+         [class.dark:text-white]="tab.isActive"
+         [class.dark:bg-inherit]="tab.isActive"
+         [class.text-slate-500]="!tab.isActive"
+         (click)="selectTab(tab)"
+         role="tab" 
+         [attr.aria-selected]="tab.isActive">
+        {{ tab.text }}
+      </a>
+    </li>
+  </ul>
+</div> 

@@ -1,0 +1,36 @@
+<div class="p-6 pb-0 mb-0">
+  <h4 class="font-bold">{{ data.title }}</h4>
+  <p class="mb-0">{{ data.description }}</p>
+</div>
+
+<div class="flex-auto p-6">
+  <form role="form">
+    <div class="mb-4">
+      <input 
+        type="email" 
+        [placeholder]="data.emailField.placeholder" 
+        [(ngModel)]="email"
+        name="email"
+        class="focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+      />
+    </div>
+    <div class="mb-4">
+      <input 
+        type="text" 
+        [placeholder]="data.verificationField.placeholder" 
+        [(ngModel)]="verificationCode"
+        name="verificationCode"
+        class="focus:shadow-primary-outline dark:bg-slate-850 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" 
+      />
+    </div>
+    <div class="text-center">
+      <button 
+        type="button" 
+        (click)="onSend()"
+        class="my-6 w-full inline-block px-16 py-3.5 font-bold text-center text-white align-middle transition-all border-0 rounded-lg cursor-pointer hover:-translate-y-px active:-translate-y-px active:text-black active:hover:text-white hover:shadow-xs bg-blue-500 leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25"
+      >
+        {{ data.sendButton.text }}
+      </button>
+    </div>
+  </form>
+</div> 

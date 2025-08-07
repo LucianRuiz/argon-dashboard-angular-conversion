@@ -1,0 +1,33 @@
+<div class="relative flex flex-col items-start min-w-0 break-words transition-all duration-200 ease-out bg-white border-0 border-transparent shadow-xl transform3d hover:transform3d-hover rounded-2xl bg-clip-border after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl"
+     [ngClass]="getGradientClasses()">
+  <div class="cursor-pointer">
+    <div class="absolute w-full h-full bg-center bg-cover mb-7 rounded-2xl" [style.background-image]="'url(' + data.backgroundImage + ')'"></div>
+    <div class="relative z-20 flex-auto p-6 text-white">
+      <h5 class="mb-0 text-white">{{data.title}}</h5>
+      <p class="text-sm leading-normal text-white dark:opacity-60">{{data.artist}}</p>
+      <div class="flex mt-12">
+        <button class="inline-block p-2 mb-0 text-xs font-bold tracking-tight text-center text-white uppercase align-middle transition-all ease-in border border-solid rounded-full shadow-none leading-pro hover:bg-transparent hover:opacity-75 hover:shadow-none hover:border-white active:hover:bg-transparent active:hover:opacity-75 active:hover:shadow-none active:hover:border-white active:bg-white active:border-white active:text-black active:opacity-85 active:shadow-xs hover:-translate-y-px border-white/75 bg-white/10" type="button" data-target="tooltip_trigger">
+          <i class="p-2 fas fa-backward"></i>
+        </button>
+        <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+          Prev
+          <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+        </div>
+        <button class="inline-block p-2 mx-2 mb-0 text-xs font-bold tracking-tight text-center text-white uppercase align-middle transition-all ease-in border border-solid rounded-full shadow-none leading-pro hover:bg-transparent hover:opacity-75 hover:shadow-none hover:border-white active:hover:bg-transparent active:hover:opacity-75 active:hover:shadow-none active:hover:border-white active:bg-white active:border-white active:text-black active:opacity-85 active:shadow-xs hover:-translate-y-px border-white/75 bg-white/10" type="button" data-target="tooltip_trigger">
+          <i class="p-2 fas fa-play"></i>
+        </button>
+        <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+          Pause
+          <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+        </div>
+        <button class="inline-block p-2 mb-0 text-xs font-bold tracking-tight text-center text-white uppercase align-middle transition-all ease-in border border-solid rounded-full shadow-none leading-pro hover:bg-transparent hover:opacity-75 hover:shadow-none hover:border-white active:hover:bg-transparent active:hover:opacity-75 active:hover:shadow-none active:hover:border-white active:bg-white active:border-white active:text-black active:opacity-85 active:shadow-xs hover:-translate-y-px border-white/75 bg-white/10" type="button" data-target="tooltip_trigger">
+          <i class="p-2 fas fa-forward"></i>
+        </button>
+        <div data-target="tooltip" class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg" data-popper-placement="top">
+          Next
+          <div class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']" data-popper-arrow></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,51 @@
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80 h-screen overflow-hidden">
+    <!-- Background -->
+  <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+  
+    <!-- Sidebar -->
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+  
+    <!-- Main Content Area -->
+  <main class="relative h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" appPerfectScrollbar>
+  
+    <!-- Navbar -->
+      <app-navbar *ngIf="navbarData$ | async as navbarData" [data]="navbarData"></app-navbar>
+  
+    <!-- Content -->
+    <div class="w-full p-6 mx-auto">
+      
+      <!-- Team Members Header -->
+      <app-team-members-header *ngIf="teamMembersData$ | async as teamMembersData" [data]="teamMembersData"></app-team-members-header>
+      
+      <div class="flex flex-wrap -mx-3 lg:mb-24">
+        
+        <!-- Calendar Main Section -->
+        <div class="w-full max-w-full px-3 shrink-0 xl:flex-0 xl:w-9/12">
+          <app-calendar-widget *ngIf="calendarData$ | async as calendarData" [data]="calendarData"></app-calendar-widget>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="w-full max-w-full px-3 shrink-0 xl:flex-0 xl:w-3/12">
+          <div class="flex flex-wrap -mx-3">
+            
+            <!-- Upcoming Events -->
+            <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 xl:w-full xl:mt-0">
+              <app-upcoming-events-widget *ngIf="upcomingEventsData$ | async as upcomingEventsData" [data]="upcomingEventsData"></app-upcoming-events-widget>
+            </div>
+            
+            <!-- Productivity Chart -->
+            <div class="w-full max-w-full px-3 mt-6 shrink-0 md:flex-0 md:w-6/12 xl:w-full">
+              <app-income-chart-widget *ngIf="productivityData$ | async as productivityData" [data]="productivityData"></app-income-chart-widget>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+    </div>
+    </main>
+    
+    <!-- Argon Configurator -->
+    <app-argon-configurator></app-argon-configurator>
+  </div> 

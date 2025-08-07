@@ -1,0 +1,64 @@
+<!-- Page Layout with Sidebar -->
+<div class="m-0 font-sans text-base antialiased font-normal text-left leading-default dark:bg-slate-900 bg-gray-50 text-slate-500 dark:text-white/80">
+  
+  <!-- Background Header Image -->
+  <div class="absolute bg-y-50 w-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75">
+    <span class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-60"></span>
+  </div>
+  
+  <!-- Sidebar -->
+  <app-sidebar *ngIf="sidebarData$ | async as sidebarData" [data]="sidebarData"></app-sidebar>
+
+  <!-- Main Content Area -->
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68" appPerfectScrollbar>
+
+    <!-- Profile Header Widget -->
+    <ng-container *ngIf="profileHeader$ | async as profileHeaderWidget">
+      <app-profile-header [data]="profileHeaderWidget"></app-profile-header>
+    </ng-container>
+
+    <!-- Content Grid -->
+    <div class="w-full p-6 mx-auto mt-4">
+      <div class="flex flex-wrap -mx-3">
+        
+        <!-- Left Column - Platform Settings -->
+        <div class="w-full max-w-full px-3 xl:w-4/12">
+          <ng-container *ngIf="platformSettingsWidget$ | async as platformSettingsWidget">
+            <app-platform-settings [data]="platformSettingsWidget"></app-platform-settings>
+          </ng-container>
+        </div>
+
+        <!-- Center Column - Profile Information -->
+        <div class="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12">
+          <ng-container *ngIf="profileInformationWidget$ | async as profileInformationWidget">
+            <app-profile-information [data]="profileInformationWidget"></app-profile-information>
+          </ng-container>
+        </div>
+
+        <!-- Right Column - Conversations -->
+        <div class="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12">
+          <ng-container *ngIf="conversationsWidget$ | async as conversationsWidget">
+            <app-conversations [data]="conversationsWidget"></app-conversations>
+          </ng-container>
+        </div>
+
+        <!-- Full Width - Projects Section -->
+        <div class="flex-none w-full max-w-full px-3 mt-6">
+          <ng-container *ngIf="projectsListWidget$ | async as projectsListWidget">
+            <app-projects-list [data]="projectsListWidget"></app-projects-list>
+          </ng-container>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <app-footer></app-footer>
+
+    </div>
+
+  </main>
+
+  <!-- Argon Configurator -->
+  <app-argon-configurator></app-argon-configurator>
+
+</div> 

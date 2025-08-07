@@ -1,0 +1,59 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+    <h6 class="mb-4 text-lg font-semibold dark:text-white">Top Referred Users</h6>
+    <div class="w-full overflow-x-auto">
+      <table class="items-center justify-center w-full mb-0 align-top border-collapse border-gray-200 text-slate-500 dark:text-white/80">
+        <thead class="align-bottom">
+          <tr>
+            <th 
+              *ngFor="let column of columns" 
+              class="px-6 py-4 font-bold uppercase align-middle border-b border-gray-200 border-solid text-xs text-slate-400 dark:text-white opacity-70 whitespace-nowrap tracking-none"
+              [class]="getColumnAlignment(column)">
+              {{ column.label }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr *ngFor="let user of users; let last = last">
+            <!-- User Column -->
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit" [class.border-b-0]="last">
+              <div class="flex px-4 py-1">
+                <div>
+                  <img class="inline-flex items-center justify-center w-12 h-12 mr-4 text-base text-white transition-all duration-200 ease-in-out rounded-xl" [src]="user.avatar" [alt]="user.name + ' avatar'">
+                </div>
+                <div class="flex flex-col justify-center">
+                  <h6 class="mb-0 text-sm leading-normal dark:text-white">{{ user.name }}</h6>
+                  <p class="mb-0 text-sm font-semibold leading-normal text-slate-400"><span class="text-lime-500">{{ user.orders | number }}</span> orders</p>
+                </div>
+              </div>
+            </td>
+            
+            <!-- Value Column -->
+            <td class="p-2 align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit" [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ user.value }}</p>
+            </td>
+            
+            <!-- Profit Column -->
+            <td class="p-2 text-center align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit" [class.border-b-0]="last">
+              <p class="mb-0 text-sm font-semibold leading-normal">{{ user.profit }}</p>
+            </td>
+            
+            <!-- Refunds Column -->
+            <td class="p-2 text-center align-middle border-b border-solid dark:border-white/40 whitespace-nowrap border-inherit" [class.border-b-0]="last">
+              <div class="flex items-center justify-center px-4 py-1">
+                <p class="mb-0 text-sm font-semibold leading-normal">{{ user.refunds }}</p>
+                <i class="mt-1 ml-1 text-sm leading-normal {{ getRefundTrendIcon(user.refundTrend) }}"></i>
+                <button 
+                  type="button" 
+                  class="active:shadow-xs ml-4 active:opacity-85 ease-in leading-pro text-xs bg-150 bg-x-25 rounded-3.5xl p-1.2 h-6 w-6 mb-0 flex cursor-pointer items-center justify-center border border-solid border-slate-400 bg-transparent text-center align-middle font-bold text-slate-400 shadow-none transition-all hover:bg-transparent hover:text-slate-400 hover:opacity-75 hover:shadow-none active:bg-slate-400 active:text-black hover:active:bg-transparent hover:active:text-slate-400 hover:active:opacity-75 hover:active:shadow-none" 
+                  *ngIf="shouldShowInfoButton(user.id)">
+                  <i class="fas fa-info text-3xs" aria-hidden="true"></i>
+                </button>
+              </div>
+            </td>                        
+          </tr>
+        </tbody>
+      </table>                      
+    </div>                
+  </div>
+</div> 

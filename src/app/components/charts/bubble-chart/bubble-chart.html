@@ -1,0 +1,10 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl z-2 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+  <div class="p-4 pb-0 border-black/12.5 rounded-t-2xl border-b-0 border-solid">
+    <h6 class="dark:text-white">{{ data.title }}</h6>
+  </div>
+  <div class="flex-auto p-4">
+    <div>
+      <canvas [id]="data.chartId" height="140"></canvas>
+    </div>
+  </div>
+</div>
