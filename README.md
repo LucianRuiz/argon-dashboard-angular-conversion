@@ -148,8 +148,7 @@ This project was developed as a freelance service. Please respect intellectual p
 ## 👨‍💻 Developer
 
 **Luciano Ruiz**
-- Portfolio: [Your Portfolio Link]
-- LinkedIn: [Your LinkedIn]
+- LinkedIn: https://www.linkedin.com/in/luciano-stefano-ruiz-blas-637411316/
 - Email: luciano.software@hotmail.com
 
 ---
