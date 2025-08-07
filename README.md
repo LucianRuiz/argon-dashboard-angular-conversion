@@ -55,7 +55,7 @@ argon-dashboard-angular/
 ├── src/
 │   ├── app/
 │   │   ├── components/      # Reusable UI components (sidebar, navbar, cards, widgets, tables, etc.)
-│   │   ├── pages/           # Dashboard pages (default, automotive, landing, crm, smart-home, vr)
+│   │   ├── pages/           # Pages (default, automotive, landing, crm, smart-home, vr, etc)
 │   │   ├── services/        # Data services for each dashboard and widget
 │   │   └── ...
 │   └── assets/              # Images, icons, fonts, etc.
